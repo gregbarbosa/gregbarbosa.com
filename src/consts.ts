@@ -11,20 +11,24 @@ export const SITE_BASE = ''
 
 export const SocialLinks = [
 	{
-		name: 'GitHub',
-		url: 'https://github.com/gregbarbosa',
-	},
-	{
-		name: 'LinkedIn',
-		url: 'https://www.linkedin.com/in/gregbarbosa/',
-	},
-	{
-		name: 'X / Twitter',
-		url: 'https://twitter.com/gregbarbosa',
+		name: 'YouTube',
+		icon: 'youtube',
+		url: 'https://www.youtube.com/channel/UCmZGb97WqYfH9NtRJWcFpVA',
 	},
 	{
 		name: 'Instagram',
+		icon: 'instagram',
 		url: 'https://instagram.com/gregbarbosa',
+	},
+	{
+		name: 'X / Twitter',
+		icon: 'twitter',
+		url: 'https://twitter.com/gregbarbosa',
+	},
+	{
+		name: 'GitHub',
+		icon: 'github',
+		url: 'https://github.com/gregbarbosa',
 	},
 ]
 
