@@ -1,0 +1,38 @@
+---
+import { getCollection } from 'astro:content'
+import BaseHead from '../../components/BaseHead.astro'
+import Navbar from '../../components/Navbar.astro'
+import Footer from '../../components/Footer.astro'
+import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts'
+
+const reviews = await getCollection('book-reviews')
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Navbar />
+		<main>
+			<section>
+				<h1>Book Reviews</h1>
+				<ul>
+					{
+						reviews.map((review) => (
+							<li>
+								<a href={`/book-reviews/${review.slug}/`}>
+									<h4 class="title">{review.data.title}</h4>
+									<p class="author">by {review.data.author}</p>
+									<p class="rating">Rating: {review.data.rating}</p>
+								</a>
+							</li>
+						))
+					}
+				</ul>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>

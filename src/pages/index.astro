@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
+import { Image } from 'astro:assets'
+import heroImage from '../assets/images/gregbarbosa.jpg'
 import { SITE_BASE, SocialLinks } from '../consts'
 import { Icon } from 'astro-icon/components'
 import BlogCard from '../components/BlogCard.astro'
@@ -14,25 +16,37 @@ const posts = (await getCollection('blog'))
 	<main
 		class="app-container flex flex-col gap-12 justify-center py-36 md:py-48 pt-44 md:pt-56 relative"
 	>
-		<div>
-			<div>
-				<h1 class="text-6xl font-bold leading-none italic">
-					Technically Creative
-				</h1>
-			</div>
-		</div>
-		<div class="flex flex-wrap gap-8">
-			{
-				SocialLinks.map((link) => (
-					<a
-						class="text-xl text-primary dark:text-primary-dark underline hover:underline underline-offset-4"
-						href={link.url}
-						target="_blank"
+		<div class="flex flex-col lg:flex-row gap-4 items-center justify-center">
+			<div class="w-full lg:w-1/2 order-2 lg:order-1">
+				<div>
+					<h1
+						class="text-4xl md:text-6xl font-bold leading-none italic uppercase"
 					>
-						{link.name}
-					</a>
-				))
-			}
+						Technically Creative
+					</h1>
+				</div>
+				<div class="flex gap-8 md:gap-4 pt-5">
+					{
+						SocialLinks.map((link) => (
+							<a
+								class="text-xl text-primary dark:text-primary-dark underline hover:underline underline-offset-4"
+								href={link.url}
+								target="_blank"
+							>
+								<Icon class="text-4xl" name={`mdi:${link.icon}`} />
+							</a>
+						))
+					}
+				</div>
+			</div>
+			<div class="w-full lg:w-1/2 order-1 lg:order-2">
+				<Image
+					src={heroImage}
+					alt="Greg Barbosa"
+					class="[clip-path:ellipse(50%_40%_at_50%_50%)]"
+					loading="eager"
+				/>
+			</div>
 		</div>
 	</main>
 

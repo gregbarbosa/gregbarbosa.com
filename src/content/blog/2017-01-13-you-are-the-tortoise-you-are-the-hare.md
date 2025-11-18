@@ -1,6 +1,9 @@
 ---
 title: 'You are the tortoise, you are the hare'
 description: There's nothing wrong with setting goals, but too many set them wrong.
+author: 'Greg Barbosa'
+featured: false
+
 pubDate: 'Jan 13 2017'
 ---
 

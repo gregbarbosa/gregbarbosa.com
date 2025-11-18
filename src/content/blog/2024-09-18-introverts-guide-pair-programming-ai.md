@@ -1,6 +1,9 @@
 ---
 title: "An Introvert's Guide to Pair Programming (Spoiler…It's AI)"
 description: AI in your workflow with VS Code, Continue, and Ollama.
+author: "Greg Barbosa"
+featured: false
+
 pubDate: 'Sep 18 2024'
 ---
 
