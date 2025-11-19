@@ -1,0 +1,101 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+
+const title = 'Now'
+const description = 'What Greg Barbosa is up to right now'
+const lastUpdated = 'November 2025'
+---
+
+<BaseLayout title={title} description={description}>
+	<main id="main-content" class="app-container py-24">
+		<div class="max-w-2xl mx-auto">
+			<h1 class="text-4xl font-bold mb-4">What I'm Doing Now</h1>
+			<p class="text-muted-foreground mb-12">
+				Last updated: {lastUpdated}
+			</p>
+
+			<div class="space-y-8">
+				<section>
+					<h2 class="text-2xl font-semibold mb-3">Work</h2>
+					<p class="text-lg leading-relaxed">
+						I'm currently the <strong>Director of Innovation & Systems</strong> at{
+							' '
+						}
+						<a
+							href="https://avulux.com"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="text-primary hover:underline"
+						>
+							Avulux
+						</a>, where I focus on building innovative systems and processes.
+					</p>
+				</section>
+
+				<section>
+					<h2 class="text-2xl font-semibold mb-3">Learning</h2>
+					<p class="text-lg leading-relaxed mb-3">
+						I'm diving deep into several areas right now:
+					</p>
+					<ul class="list-disc list-inside space-y-2 text-lg ml-4">
+						<li>
+							<strong>Astro</strong> - Building fast, content-focused websites with
+							this modern web framework
+						</li>
+						<li>
+							<strong>DaVinci Resolve</strong> - Learning professional video editing
+							for content creation
+						</li>
+						<li>
+							<strong>Photography</strong> - Deepening my understanding of composition,
+							lighting, and post-processing
+						</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2 class="text-2xl font-semibold mb-3">Creating</h2>
+					<p class="text-lg leading-relaxed">
+						I'm building out my{' '}
+						<a
+							href="https://www.youtube.com/channel/UCmZGb97WqYfH9NtRJWcFpVA"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="text-primary hover:underline"
+						>
+							YouTube channel
+						</a>{' '}
+						with a mix of AI and photography content. Expect tutorials, insights,
+						and creative experiments.
+					</p>
+				</section>
+
+				<section>
+					<h2 class="text-2xl font-semibold mb-3">Speaking</h2>
+					<p class="text-lg leading-relaxed">
+						I'm open to speaking opportunities! If you're looking for a speaker
+						on web development, AI tools, or photography, feel free to{' '}
+						<a href="/contact" class="text-primary hover:underline"
+							>get in touch</a
+						>.
+					</p>
+				</section>
+			</div>
+
+			<div class="mt-12 pt-8 border-t border-border">
+				<p class="text-sm text-muted-foreground">
+					This is a{' '}
+					<a
+						href="https://nownownow.com/about"
+						target="_blank"
+						rel="noopener noreferrer"
+						class="underline hover:text-foreground"
+					>
+						now page
+					</a>, inspired by Derek Sivers. It's a snapshot of what I'm focused on
+					right now.
+				</p>
+			</div>
+		</div>
+	</main>
+</BaseLayout>
