@@ -50,6 +50,14 @@ export const WebsiteLinks = [
 		url: '/speaking',
 	},
 	{
+		name: 'Uses',
+		url: '/uses',
+	},
+	{
+		name: 'Now',
+		url: '/now',
+	},
+	{
 		name: 'About',
 		url: '/about',
 	},
