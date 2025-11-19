@@ -1,0 +1,71 @@
+---
+import { SITE_BASE } from '@/consts'
+import type { ImageMetadata } from 'astro'
+import { Image } from 'astro:assets'
+
+const { review } = Astro.props
+
+// Assuming book covers are stored in src/assets/book-covers/
+// and named after the slug or referenced in frontmatter
+const bookCovers = import.meta.glob<{ default: ImageMetadata }>(
+	'/src/assets/book-covers/**/*.{jpeg,jpg,png,gif,svg}'
+)
+
+// If review.data.cover is present, use it. Otherwise try to find one by slug?
+// For now, let's assume review.data.cover is the filename relative to src/assets/book-covers/
+// e.g. "pragmatic-programmer.jpg"
+const coverPath = review.data.cover
+	? `/src/assets/book-covers/${review.data.cover}`
+	: null
+---
+
+<div class="flex flex-col gap-4 pb-8 h-full group transition-colors">
+	<a href={review.data.link} target="_blank" rel="noopener noreferrer">
+		{
+			coverPath && bookCovers[coverPath] && (
+				<Image
+					src={bookCovers[coverPath]()}
+					alt={review.data.title}
+					class="object-cover rounded-xl aspect-[2/3] w-full hover:shadow-lg transition-shadow"
+					loading="eager"
+				/>
+			)
+		}
+		{
+			!coverPath && (
+				<div class="aspect-[2/3] w-full bg-gray-200 dark:bg-gray-800 rounded-xl flex items-center justify-center text-gray-400 hover:shadow-lg transition-shadow">
+					No Cover
+				</div>
+			)
+		}
+	</a>
+	<a
+		href={review.data.link}
+		target="_blank"
+		rel="noopener noreferrer"
+		class="text-2xl font-semibold group-hover:text-primary dark:group-hover:text-primary-dark group-hover:underline transition-colors"
+	>
+		{review.data.title}
+	</a>
+	<p class="text-sm opacity-70">by {review.data.author}</p>
+	<p class="opacity-80">
+		{review.data.description || 'No description available.'}
+	</p>
+	<div class="mt-auto flex justify-between items-center">
+		<span
+			class="text-sm font-medium bg-primary/10 text-primary px-2 py-1 rounded"
+		>
+			{review.data.rating}
+		</span>
+		{
+			review.data.fullReview && (
+				<a
+					href={`${SITE_BASE}/book-reviews/${review.slug}/`}
+					class="text-sm font-medium text-primary hover:underline"
+				>
+					Read Full Review &rarr;
+				</a>
+			)
+		}
+	</div>
+</div>

@@ -24,10 +24,13 @@ const bookReview = defineCollection({
 	schema: z.object({
 		title: z.string(),
 		author: z.string(),
+		description: z.string().optional(),
 		rating: z.string(),
 		genre: z.string(),
 		format: z.string(),
 		link: z.string(),
+		cover: z.string().optional(),
+		fullReview: z.boolean().optional(),
 	}),
 })
 

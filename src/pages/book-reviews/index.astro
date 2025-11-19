@@ -1,38 +1,27 @@
 ---
 import { getCollection } from 'astro:content'
-import BaseHead from '../../components/BaseHead.astro'
-import Navbar from '../../components/Navbar.astro'
-import Footer from '../../components/Footer.astro'
-import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts'
+import BookCard from '../../components/BookCard.astro'
+import BaseLayout from '../../layouts/BaseLayout.astro'
 
 const reviews = await getCollection('book-reviews')
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Navbar />
-		<main>
-			<section>
-				<h1>Book Reviews</h1>
-				<ul>
-					{
-						reviews.map((review) => (
-							<li>
-								<a href={`/book-reviews/${review.slug}/`}>
-									<h4 class="title">{review.data.title}</h4>
-									<p class="author">by {review.data.author}</p>
-									<p class="rating">Rating: {review.data.rating}</p>
-								</a>
-							</li>
-						))
-					}
-				</ul>
-			</section>
-		</main>
-		<Footer />
-	</body>
-</html>
+<BaseLayout>
+	<main class="app-container pt-36">
+		<h1 class="text-6xl pb-8 font-bold">Books</h1>
+		<p class="md:w-2/3 text-lg leading-[2rem]">
+			A collection of books I've read and my thoughts on them.
+		</p>
+	</main>
+	<section class="app-container py-12">
+		<ul class="grid my-6 gap-6 grid-cols-2 xl:grid-cols-4">
+			{
+				reviews.map((review) => (
+					<li>
+						<BookCard review={review} />
+					</li>
+				))
+			}
+		</ul>
+	</section>
+</BaseLayout>
