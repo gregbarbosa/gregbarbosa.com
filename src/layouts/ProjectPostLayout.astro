@@ -13,7 +13,6 @@ dayjs.extend(utc)
 type Props = CollectionEntry<'projects'>['data'] & {
 	headings: MarkdownHeading[]
 	slug?: string
-	remarkPluginFrontmatter: Record<string, string>
 }
 
 const {
@@ -24,7 +23,6 @@ const {
 	link,
 	techStack,
 	headings,
-	remarkPluginFrontmatter,
 } = Astro.props
 
 const projectImages = import.meta.glob<{ default: ImageMetadata }>(

@@ -13,24 +13,31 @@ export async function getStaticPaths() {
 	)
 	return projects.map((project, index) => ({
 		params: { slug: project.slug },
-		props: { project, headings: headings[index], slug: project.slug },
+		props: { project, headings: headings[index] },
 	}))
 }
 
 type Props = {
 	project: CollectionEntry<'projects'>
 	headings: MarkdownHeading[]
-	slug: string
 }
 
-const { project, headings, slug } = Astro.props
-const { Content, remarkPluginFrontmatter } = await project.render()
+const { project, headings } = Astro.props
+const { Content } = await project.render()
 ---
 
 <ProjectPostLayout
-	{...project.data}
+	title={project.data.title}
+	description={project.data.description}
+	pubDate={project.data.pubDate}
+	updatedDate={project.data.updatedDate}
+	heroImage={project.data.heroImage}
+	repo={project.data.repo}
+	link={project.data.link}
+	techStack={project.data.techStack}
+	featured={project.data.featured}
 	headings={headings}
-	remarkPluginFrontmatter={remarkPluginFrontmatter}
+	slug={project.slug}
 >
 	<Content />
 </ProjectPostLayout>
