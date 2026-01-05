@@ -8,7 +8,10 @@ const posts = (await getCollection('blog')).sort(
 )
 ---
 
-<BaseLayout>
+<BaseLayout
+	title="Blog | Greg Barbosa"
+	description="Thoughts on software engineering, leadership, AI, and creative technology."
+>
 	<main id="main-content" class="app-container pt-36">
 		<h1 class="text-6xl pb-8 font-bold">Blog</h1>
 		<p class="md:w-2/3 text-lg leading-[2rem]">

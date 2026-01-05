@@ -1,8 +1,6 @@
 ---
 import { type CollectionEntry, getCollection } from 'astro:content'
-import BaseHead from '../../components/BaseHead.astro'
-import Navbar from '../../components/Navbar.astro'
-import Footer from '../../components/Footer.astro'
+import BaseLayout from '../../layouts/BaseLayout.astro'
 
 export async function getStaticPaths() {
 	const reviews = await getCollection('reading-list')
@@ -17,38 +15,51 @@ const review = Astro.props
 const { Content } = await review.render()
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead
-			title={review.data.title}
-			description={`Review of ${review.data.title} by ${review.data.author}`}
-		/>
-	</head>
-	<body>
-		<a
-			href="#main-content"
-			class="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-50 focus:bg-background focus:text-foreground focus:p-4"
-		>
-			Skip to main content
-		</a>
-		<Navbar />
-		<main id="main-content">
-			<article>
-				<div class="prose">
-					<div class="title">
-						<h1>{review.data.title}</h1>
-						<p>Author: {review.data.author}</p>
-						<p>Rating: {review.data.rating}</p>
-						<p>Genre: {review.data.genre}</p>
-						<p>Format: {review.data.format}</p>
-						<a href={review.data.link} target="_blank">Book Link</a>
-						<hr />
-					</div>
-					<Content />
+<BaseLayout
+	title={review.data.title}
+	description={`Review of ${review.data.title} by ${review.data.author}`}
+>
+	<main id="main-content" class="app-container py-24">
+		<article class="max-w-3xl mx-auto">
+			<div class="mb-12">
+				<h1 class="text-4xl md:text-5xl font-bold mb-6">{review.data.title}</h1>
+				<div class="flex flex-wrap gap-4 text-muted-foreground mb-8">
+					<span
+						class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium"
+					>
+						{review.data.genre}
+					</span>
+					<span
+						class="px-3 py-1 border border-foreground/20 rounded-full text-sm"
+					>
+						{review.data.rating}
+					</span>
+					<span
+						class="px-3 py-1 border border-foreground/20 rounded-full text-sm"
+					>
+						{review.data.format}
+					</span>
 				</div>
-			</article>
-		</main>
-		<Footer />
-	</body>
-</html>
+				<p class="text-xl mb-4">
+					by <span class="font-semibold">{review.data.author}</span>
+				</p>
+				<a
+					href={review.data.link}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="text-primary hover:underline font-medium inline-flex items-center gap-1"
+				>
+					View on Bookshop / Amazon &rarr;
+				</a>
+			</div>
+
+			<hr class="border-foreground/10 mb-12" />
+
+			<div
+				class="prose prose-neutral prose-lg md:prose-xl dark:prose-invert prose-img:rounded-xl"
+			>
+				<Content />
+			</div>
+		</article>
+	</main>
+</BaseLayout>
