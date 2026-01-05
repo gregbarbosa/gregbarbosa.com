@@ -1,0 +1,61 @@
+---
+interface Props {
+	id: string
+	ad_storage?: 'granted' | 'denied'
+	ad_user_data?: 'granted' | 'denied'
+	ad_personalization?: 'granted' | 'denied'
+	analytics_storage?: 'granted' | 'denied'
+	debug?: boolean
+}
+
+const {
+	id,
+	ad_storage = 'denied',
+	ad_user_data = 'denied',
+	ad_personalization = 'denied',
+	analytics_storage = 'denied',
+	debug = false,
+} = Astro.props
+---
+
+{
+	import.meta.env.PROD && id && (
+		<>
+			<script is:inline type="text/partytown" src={`https://www.googletagmanager.com/gtag/js?id=${id}`}></script>
+			<script is:inline type="text/partytown" set:html={`
+				window.dataLayer = window.dataLayer || [];
+				function gtag() {
+					dataLayer.push(arguments);
+				}
+				gtag("js", new Date());
+
+				gtag("consent", "default", {
+					ad_storage: "${ad_storage}",
+					ad_user_data: "${ad_user_data}",
+					ad_personalization: "${ad_personalization}",
+					analytics_storage: "${analytics_storage}",
+				});
+
+				gtag("config", "${id}", {
+					send_page_view: false,
+					${debug ? 'debug_mode: true,' : ''}
+				});
+			`} />
+			<script is:inline>
+				let prevUrl = document.referrer;
+				document.addEventListener('astro:page-load', () => {
+					if (window.gtag) {
+						gtag('event', 'page_view', {
+							page_title: document.title,
+							page_location: window.location.href,
+							page_path: window.location.pathname,
+							page_referrer: prevUrl,
+							viewport_size: `${window.innerWidth}x${window.innerHeight}`,
+						})
+					}
+					prevUrl = window.location.href;
+				})
+			</script>
+		</>
+	)
+}

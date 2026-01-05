@@ -11,12 +11,16 @@ interface Props {
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 
 const { title, description, image = `${SITE_BASE}/saral-og.jpg` } = Astro.props
+
+import GoogleAnalytics from './GoogleAnalytics.astro'
 ---
 
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <meta name="generator" content={Astro.generator} />
+
+<GoogleAnalytics id="G-LKJF70D58R" />
 
 <!-- Favicons -->
 <link
