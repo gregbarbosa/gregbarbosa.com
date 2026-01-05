@@ -38,6 +38,7 @@ const posts = (await getCollection('blog'))
 								class="text-xl text-primary dark:text-primary-dark underline hover:underline underline-offset-4"
 								href={link.url}
 								target="_blank"
+								aria-label={link.name}
 							>
 								<Icon class="text-4xl" name={`mdi:${link.icon}`} />
 							</a>
