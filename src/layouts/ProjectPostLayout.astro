@@ -15,15 +15,8 @@ type Props = CollectionEntry<'projects'>['data'] & {
 	slug?: string
 }
 
-const {
-	title,
-	description,
-	heroImage,
-	repo,
-	link,
-	techStack,
-	headings,
-} = Astro.props
+const { title, description, heroImage, repo, link, techStack, headings } =
+	Astro.props
 
 const projectImages = import.meta.glob<{ default: ImageMetadata }>(
 	'/src/assets/projectimages/**/*.{jpeg,jpg,png,gif,webp}'
