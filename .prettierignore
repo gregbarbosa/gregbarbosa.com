@@ -1,0 +1,6 @@
+.claude/
+node_modules/
+dist/
+.astro/
+public/
+src/components/GoogleAnalytics.astro
