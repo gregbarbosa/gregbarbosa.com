@@ -1,7 +1,7 @@
 ---
 title: 'How to Enable Dark Mode on Your iPhone'
 description: Grayscale, black and white, or dark mode. Whatever you call it, desaturating your iPhone's blaring screen colors can have real benefits. Let's dig into why and how you do it.
-author: "Greg Barbosa"
+author: 'Greg Barbosa'
 featured: false
 
 pubDate: 'May 03 2019'

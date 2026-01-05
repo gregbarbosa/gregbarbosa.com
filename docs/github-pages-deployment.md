@@ -48,7 +48,6 @@ _This tells GitHub Pages which domain to associate with this repository._
 ## Final Launch Steps (On GitHub)
 
 1. **GitHub Pages Settings**:
-
    - Go to your repo on GitHub: **Settings > Pages**.
    - Under **Custom domain**, enter `gregbarbosa.com` and click **Save**.
    - Check **Enforce HTTPS** (this may take a few minutes to become available while the certificate issues).

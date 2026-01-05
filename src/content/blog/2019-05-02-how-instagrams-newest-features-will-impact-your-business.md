@@ -1,7 +1,7 @@
 ---
 title: "How Instagram's Newest Features Will Impact Your Business"
 description: At Facebook's 2019 F8 event, the company announced a number of initiatives that will directly impact various businesses on their platforms. Let's take a look at what they are and what they'll mean to you.
-author: "Greg Barbosa"
+author: 'Greg Barbosa'
 featured: false
 
 pubDate: 'May 02 2019'

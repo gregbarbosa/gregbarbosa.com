@@ -1,7 +1,7 @@
 ---
 title: 'How to Write Contracts'
 description: Behind every great project, is a great contract.
-author: "Greg Barbosa"
+author: 'Greg Barbosa'
 featured: false
 
 pubDate: 'Sep 11 2020'

@@ -1,7 +1,7 @@
 ---
 title: 'Avoiding scope creep'
 description: The number one thing to avoid as a freelancer.
-author: "Greg Barbosa"
+author: 'Greg Barbosa'
 featured: false
 
 pubDate: 'Sep 04 2020'
