@@ -80,6 +80,7 @@ export default [
 			'node_modules/',
 			'.astro/',
 			'public/',
+			'.claude/',
 			'*.config.js',
 			'*.config.mjs',
 			'*.config.ts',
