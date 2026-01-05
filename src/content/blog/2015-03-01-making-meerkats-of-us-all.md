@@ -1,6 +1,9 @@
 ---
 title: 'Making Meerkats of us all'
 description: I am absolutely excited for Meerkat. Like viciously excited.
+author: "Greg Barbosa"
+featured: false
+
 pubDate: 'Mar 01 2015'
 ---
 

@@ -1,0 +1,97 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import { Icon } from 'astro-icon/components'
+import { YouTube } from 'astro-embed'
+
+const title = 'Speaking'
+const description = 'Greg Barbosa - Speaker Profile and Talks'
+
+const talks = [
+	{
+		title: 'React Miami 2025',
+		date: '2025-04-18', // Approximate date, can be updated
+		event: 'React Miami',
+		location: 'Miami, FL',
+		description: 'A talk about... (Description to be filled)',
+		video:
+			'https://www.youtube.com/watch?v=s3hmX5WTEQ8&list=PL4mWVugy3a2il28mbeNmyjJDoHOvw4JTK&index=12',
+		slides: null,
+	},
+	{
+		title: "An Introvert's Guide to Pair Programming (Spoiler…It's AI)",
+		date: '2024-09-18',
+		event: 'South Florida Tech Hub DevDive',
+		location: 'Online / South Florida',
+		description: 'A workshop on using AI tools for pair programming.',
+		video: 'https://www.youtube.com/watch?v=mMoFxfPBlII',
+		slides: null,
+	},
+]
+---
+
+<BaseLayout title={title} description={description}>
+	<main class="app-container pt-36">
+		<div class="max-w-3xl">
+			<h1 class="text-6xl pb-8 font-bold">Speaking</h1>
+			<p class="md:w-2/3 text-lg leading-[2rem] mb-12">
+				I love sharing my knowledge and experiences with the community.
+				Available for conferences, meetups, and podcasts.
+			</p>
+
+			<div class="mb-16">
+				<h2 class="text-2xl font-bold mb-6">Past Talks</h2>
+				<div class="grid gap-8">
+					{
+						talks.map((talk) => (
+							<div class="border rounded-xl p-6 bg-card">
+								<div class="flex flex-col md:flex-row justify-between gap-4 mb-4">
+									<div>
+										<h3 class="text-xl font-semibold">{talk.title}</h3>
+										<p class="text-muted-foreground">
+											{talk.event} • {talk.location}
+										</p>
+									</div>
+									<time class="text-sm text-muted-foreground whitespace-nowrap">
+										{talk.date}
+									</time>
+								</div>
+
+								{talk.video && (
+									<div class="rounded-lg overflow-hidden mb-4">
+										<YouTube id={talk.video} />
+									</div>
+								)}
+
+								<div class="flex gap-4 mt-4">
+									{talk.video && (
+										<a
+											href={talk.video}
+											target="_blank"
+											class="inline-flex items-center gap-2 text-sm font-medium hover:underline text-primary"
+										>
+											<Icon name="mdi:youtube" class="w-5 h-5" />
+											Watch Video
+										</a>
+									)}
+								</div>
+							</div>
+						))
+					}
+				</div>
+			</div>
+			<div class="space-y-6 text-center">
+				<h2 class="section-title">Want me to speak at your event?</h2>
+				<p class="text-lg mb-8 max-w-xl mx-auto">
+					I'm always looking for opportunities to speak about web development,
+					design systems, and engineering leadership.
+				</p>
+				<div class="flex flex-wrap mt-auto space-x-4 items-center">
+					<a class="btn-primary mx-auto" href="/contact"
+						>Get in touch
+						<Icon height={20} name="mdi:email" />
+					</a>
+				</div>
+			</div>
+		</div>
+	</main>
+</BaseLayout>

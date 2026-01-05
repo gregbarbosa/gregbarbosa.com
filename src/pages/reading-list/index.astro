@@ -1,0 +1,30 @@
+---
+import { getCollection } from 'astro:content'
+import BookCard from '../../components/BookCard.astro'
+import BaseLayout from '../../layouts/BaseLayout.astro'
+
+const reviews = await getCollection('reading-list')
+---
+
+<BaseLayout
+	title="Reading List | Greg Barbosa"
+	description="A curated collection of books I’ve read, recommend, and love."
+>
+	<main id="main-content" class="app-container pt-36">
+		<h1 class="text-6xl pb-8 font-bold">Reading List</h1>
+		<p class="md:w-2/3 text-lg leading-[2rem]">
+			Books I’ve read, recommend, and love.
+		</p>
+	</main>
+	<section class="app-container py-12">
+		<ul class="grid my-6 gap-6 grid-cols-4 xl:grid-cols-4">
+			{
+				reviews.map((review) => (
+					<li>
+						<BookCard review={review} />
+					</li>
+				))
+			}
+		</ul>
+	</section>
+</BaseLayout>

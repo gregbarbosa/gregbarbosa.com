@@ -1,0 +1,51 @@
+---
+import { SITE_BASE } from '@/consts'
+import FormattedDate from './FormattedDate.astro'
+import type { ImageMetadata } from 'astro'
+import { Image } from 'astro:assets'
+
+const { project } = Astro.props
+
+const projectImages = import.meta.glob<{ default: ImageMetadata }>(
+	'/src/assets/projectimages/**/*.{jpeg,jpg,png,gif,webp}'
+)
+
+const coverImagePath = project.data.heroImage
+---
+
+<a
+	href={`${SITE_BASE}/projects/${project.slug}/`}
+	class="flex flex-col gap-4 pb-8 h-full group transition-colors"
+>
+	{
+		coverImagePath && projectImages[coverImagePath] && (
+			<Image
+				src={projectImages[coverImagePath]()}
+				alt={project.data.title}
+				class="object-cover rounded-xl aspect-video"
+				loading="eager"
+			/>
+		)
+	}
+	<h4
+		class="text-2xl font-semibold group-hover:text-primary dark:group-hover:text-primary-dark group-hover:underline transition-colors"
+	>
+		{project.data.title}
+	</h4>
+	<p class="opacity-80">
+		{project.data.description}
+	</p>
+	<div class="flex gap-2 flex-wrap mt-auto">
+		{
+			project.data.techStack &&
+				project.data.techStack.map((tech: string) => (
+					<span class="text-xs border border-foreground/20 rounded-full px-2 py-1">
+						{tech}
+					</span>
+				))
+		}
+	</div>
+	<p class="uppercase text-sm mt-2 tracking-tight">
+		<FormattedDate date={project.data.pubDate} />
+	</p>
+</a>

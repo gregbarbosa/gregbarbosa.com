@@ -1,0 +1,41 @@
+---
+import { getCollection } from 'astro:content'
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import FreebieCard from '../../components/FreebieCard.astro'
+
+const freebies = (await getCollection('freebies')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+)
+
+const categories = [
+	{ name: 'All', value: 'all' },
+	{ name: 'Final Cut Pro', value: 'final-cut-pro' },
+	{ name: 'Lightroom', value: 'lightroom' },
+	{ name: 'iOS Shortcuts', value: 'ios-shortcuts' },
+	{ name: 'Other', value: 'other' },
+]
+---
+
+<BaseLayout
+	title="Freebies"
+	description="Free resources, presets, templates, and tools"
+>
+	<main id="main-content" class="app-container pt-36">
+		<h1 class="text-6xl pb-8 font-bold">Freebies</h1>
+		<p class="md:w-2/3 text-lg leading-[2rem]">
+			Free resources to help you with photography, video editing, and
+			productivity. Download presets, templates, shortcuts, and more!
+		</p>
+	</main>
+	<section class="app-container py-12">
+		<ul class="grid my-6 grid-cols-2 xl:grid-cols-4 gap-6">
+			{
+				freebies.map((freebie) => (
+					<li>
+						<FreebieCard freebie={freebie} />
+					</li>
+				))
+			}
+		</ul>
+	</section>
+</BaseLayout>

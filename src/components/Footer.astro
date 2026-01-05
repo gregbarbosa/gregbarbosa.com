@@ -1,5 +1,5 @@
 ---
-import { SocialLinks, WebsiteLinks } from '../consts'
+import { SocialLinks, WebsiteLinks, SITE_BASE } from '../consts'
 import LogoSVG from '../assets/logo.svg'
 import { Icon } from 'astro-icon/components'
 
@@ -31,7 +31,7 @@ const today = new Date()
 					))
 				}
 				<a
-					href="rss.xml"
+					href="/rss.xml"
 					target="_blank"
 					rel="noopener noreferrer"
 					class="text-lg"
@@ -51,8 +51,9 @@ const today = new Date()
 							href={link.url}
 							target="_blank"
 							rel="noopener noreferrer"
+							aria-label={link.name}
 						>
-							{link.name}
+							<Icon class="text-4xl" name={`mdi:${link.icon}`} />
 						</a>
 					))
 				}
@@ -63,7 +64,7 @@ const today = new Date()
 		<p class="text-left md:text-center w-full">
 			&copy; {today.getFullYear()} Source code available on <a
 				class="underline"
-				href="https://github.com/yashjawale/saral-theme-astro"
+				href="https://github.com/gregbarbosa/gregbarbosa.com"
 				target="_blank">GitHub</a
 			>
 		</p>

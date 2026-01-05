@@ -1,6 +1,9 @@
 ---
 title: 'The Reason Your Business is Stuck'
 description: I no longer spend the weekends wondering what I did with my work, but instead, I spend it relaxing, knowing that I accomplished what I needed to.
+author: "Greg Barbosa"
+featured: false
+
 pubDate: 'Jan 25 2021'
 ---
 

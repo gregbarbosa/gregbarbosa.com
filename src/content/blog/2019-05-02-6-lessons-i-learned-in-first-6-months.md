@@ -1,6 +1,9 @@
 ---
 title: '6 Lessons I Learned in the First 6 Months of My Business'
 description: After being fired from my day job, I realized it was finally time to focus in on my own freelance business. I was going to build a full-blown company. I thought I was ready.
+author: "Greg Barbosa"
+featured: false
+
 pubDate: 'May 02 2019'
 ---
 

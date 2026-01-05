@@ -7,6 +7,19 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Use `astro add` for official integrations (e.g. astro add tailwind, astro add react). For other packages, install using the command for the preferred package manager rather than editing package.json directly.
 - Always check the latest docs before implementing new features.
 
+### Browser Debugging Skills
+
+- Use **web-browser** skill for everyday debugging (5x more context efficient):
+  - Quick visual checks, screenshots, navigation
+  - Simple DOM queries and element selection
+  - Interactive element picker
+- Use **chrome-devtools** skill only when needed:
+  - Performance profiling (Core Web Vitals)
+  - Network request analysis
+  - Console error monitoring
+  - Complex element discovery with snapshot.js
+  - When structured JSON output is required
+
 ## Project Overview
 
 Saral Theme is an Astro-based personal blog theme with a focus on simplicity and accessibility. The project uses TypeScript, Tailwind CSS v4, and various Astro integrations for MDX, RSS, sitemap generation, and icon support.
@@ -113,5 +126,3 @@ The project uses a strict ESLint setup:
 ## Deployment
 
 - Configured for GitHub Pages deployment
-- Remove `.github/workflows/deploy.yml` if not using GitHub Pages
-- Remove `<meta name="robots" content="noindex" />` from `src/components/BaseHead.astro` before production deployment

@@ -1,8 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
+import { Image } from 'astro:assets'
+import heroImage from '../assets/images/gregbarbosa.jpg'
 import { SITE_BASE, SocialLinks } from '../consts'
 import { Icon } from 'astro-icon/components'
 import BlogCard from '../components/BlogCard.astro'
+import HeroMask from '../components/HeroMask.astro'
 import { getCollection } from 'astro:content'
 
 const posts = (await getCollection('blog'))
@@ -10,35 +13,53 @@ const posts = (await getCollection('blog'))
 	.slice(0, 4)
 ---
 
-<BaseLayout>
+<BaseLayout
+	title="Greg Barbosa | Technically Creative"
+	description="Director of Innovation & Systems at Avulux. Building fast websites, capturing street photography, and sharing creative experiments."
+>
+	<HeroMask />
 	<main
-		class="app-container flex flex-col gap-12 justify-center py-36 md:py-48 pt-44 md:pt-56 relative"
+		id="main-content"
+		class="app-container flex flex-col gap-12 justify-center py-36 md:py-28 pt-44 md:pt-46 relative"
 	>
-		<div>
-			<div>
-				<h1 class="text-6xl font-bold leading-none italic">
-					Technically Creative
-				</h1>
-			</div>
-		</div>
-		<div class="flex flex-wrap gap-8">
-			{
-				SocialLinks.map((link) => (
-					<a
-						class="text-xl text-primary dark:text-primary-dark underline hover:underline underline-offset-4"
-						href={link.url}
-						target="_blank"
+		<div class="flex flex-col lg:flex-row gap-4 items-center justify-center">
+			<div class="w-full lg:w-1/2 order-2 lg:order-1">
+				<div>
+					<h1
+						class="text-4xl md:text-6xl font-bold leading-none italic uppercase"
 					>
-						{link.name}
-					</a>
-				))
-			}
+						Technically Creative
+					</h1>
+				</div>
+				<div class="flex gap-8 md:gap-4 pt-5">
+					{
+						SocialLinks.map((link) => (
+							<a
+								class="text-xl text-primary dark:text-primary-dark underline hover:underline underline-offset-4"
+								href={link.url}
+								target="_blank"
+							>
+								<Icon class="text-4xl" name={`mdi:${link.icon}`} />
+							</a>
+						))
+					}
+				</div>
+			</div>
+			<div class="w-full lg:w-1/2 order-1 lg:order-2">
+				<Image
+					src={heroImage}
+					alt="Greg Barbosa"
+					class="w-full h-auto"
+					style="clip-path: url(#hero-mask); -webkit-clip-path: url(#hero-mask);"
+					loading="eager"
+				/>
+			</div>
 		</div>
 	</main>
 
 	<!-- Recent Posts Section -->
-	<section class="app-container">
-		<h2 class="section-title">Recent Posts</h2>
+	<section class="app-container py-42">
+		<h2 class="section-title">Latest Posts</h2>
 		<div class="posts-grid-container">
 			{posts.map((post) => <BlogCard post={post} />)}
 		</div>
@@ -46,40 +67,5 @@ const posts = (await getCollection('blog'))
 			>Read All
 			<Icon size={20} name="mdi:arrow-right" />
 		</a>
-	</section>
-
-	<!-- Recent Posts Section -->
-	<section class="app-container py-42 grid lg:grid-cols-2 gap-28 lg:gap-10">
-		<div class="space-y-6">
-			<h2 class="section-title">About Me</h2>
-			<p class="text-lg max-w-xl pb-4">
-				A brief introduction about yourself. You can include your profession,
-				hobbies, interests, or anything you'd like visitors to know about you.
-			</p>
-			<a class="btn-secondary" href={`${SITE_BASE}/about`}
-				>Go to About
-				<Icon size={20} name="mdi:arrow-right" />
-			</a>
-		</div>
-		<div class="space-y-6">
-			<h2 class="section-title">Get in touch</h2>
-			<p class="text-lg max-w-xl">
-				Use the buttons below for my resume & email.
-			</p>
-			<div class="flex flex-wrap mt-auto space-x-4">
-				<a
-					class="btn-primary"
-					href="mailto:example@email.com"
-					download
-					target="_blank"
-					>Get in touch
-					<Icon height={20} name="mdi:email" />
-				</a>
-				<a class="btn-secondary" href="https://example.com" target="_blank"
-					>Download Resume
-					<Icon height={20} name="mdi:arrow-collapse-down" />
-				</a>
-			</div>
-		</div>
 	</section>
 </BaseLayout>

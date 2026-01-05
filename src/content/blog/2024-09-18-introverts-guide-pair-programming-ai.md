@@ -1,10 +1,13 @@
 ---
 title: "An Introvert's Guide to Pair Programming (Spoiler…It's AI)"
 description: AI in your workflow with VS Code, Continue, and Ollama.
+author: "Greg Barbosa"
+featured: false
+
 pubDate: 'Sep 18 2024'
 ---
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/mMoFxfPBlII" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/mMoFxfPBlII" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="An Introvert's Guide to Pair Programming"></iframe>
 
 Last week, I was invited to speak at South Florida Tech Hub's DevDive event. We talked about AI, specifically large language models, and how developers can integrate them into their workflows. If any of you were there, thank you for attending! All the post talk conversations were a lot of fun.
 

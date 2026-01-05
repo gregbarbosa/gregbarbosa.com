@@ -26,6 +26,12 @@ import '@fontsource-variable/jetbrains-mono'
 	<body
 		class="text-foreground bg-background font-light dark:text-foreground-dark dark:bg-background-dark transition-colors"
 	>
+		<a
+			href="#main-content"
+			class="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-50 focus:bg-background focus:text-foreground focus:p-4"
+		>
+			Skip to main content
+		</a>
 		<Navbar title={SITE_TITLE} />
 		<slot />
 		<Footer />

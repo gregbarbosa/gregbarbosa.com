@@ -1,5 +1,5 @@
 ---
-import { SITE_BASE } from '@/consts'
+import { SITE_BASE, SITE_TITLE, SITE_DESCRIPTION, SocialLinks } from '@/consts'
 import '../styles/global.css'
 
 interface Props {
@@ -56,11 +56,40 @@ const { title, description, image = `${SITE_BASE}/saral-og.jpg` } = Astro.props
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
+<meta name="twitter:site" content="@gregbarbosa" />
+<meta name="twitter:creator" content="@gregbarbosa" />
 
 <!-- RSS Auto-discovery -->
 <link
 	rel="alternate"
 	type="application/rss+xml"
-	title="Saral Theme RSS Feed"
+	title="Greg Barbosa RSS Feed"
 	href={new URL('rss.xml', Astro.site)}
+/>
+
+<!-- Schema.org -->
+<script
+	type="application/ld+json"
+	is:inline
+	set:html={JSON.stringify({
+		'@context': 'https://schema.org',
+		'@graph': [
+			{
+				'@type': 'WebSite',
+				'@id': new URL('#website', Astro.site),
+				url: Astro.site,
+				name: SITE_TITLE,
+				description: SITE_DESCRIPTION,
+				inLanguage: 'en-US',
+			},
+			{
+				'@type': 'Person',
+				'@id': new URL('#person', Astro.site),
+				name: 'Greg Barbosa',
+				url: Astro.site,
+				image: new URL('saral-og.jpg', Astro.site),
+				sameAs: SocialLinks.map((link) => link.url),
+			},
+		],
+	})}
 />

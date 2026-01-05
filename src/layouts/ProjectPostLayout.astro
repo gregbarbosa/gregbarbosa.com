@@ -1,0 +1,161 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import FormattedDate from '../components/FormattedDate.astro'
+import type { MarkdownHeading, ImageMetadata } from 'astro'
+import TableOfContents from '../components/TableOfContents.astro'
+import dayjs from 'dayjs'
+import utc from 'dayjs/plugin/utc'
+import BaseLayout from './BaseLayout.astro'
+import { Image } from 'astro:assets'
+import { Icon } from 'astro-icon/components'
+
+dayjs.extend(utc)
+
+type Props = CollectionEntry<'projects'>['data'] & {
+	headings: MarkdownHeading[]
+	slug: string
+	remarkPluginFrontmatter: Record<string, string>
+}
+
+const {
+	title,
+	description,
+	pubDate,
+	updatedDate,
+	heroImage,
+	repo,
+	link,
+	techStack,
+	headings,
+	slug,
+	remarkPluginFrontmatter,
+} = Astro.props
+
+const projectImages = import.meta.glob<{ default: ImageMetadata }>(
+	'/src/assets/projectimages/**/*.{jpeg,jpg,png,gif,webp}'
+)
+
+const coverImagePath = heroImage
+
+const lastModified = dayjs(remarkPluginFrontmatter.lastModified)
+	.utc()
+	.format('D MMM YYYY')
+---
+
+<BaseLayout title={title} description={description}>
+	<main id="main-content">
+		<article>
+			<div
+				class="app-container flex flex-col lg:flex-row-reverse justify-between gap-8 py-24 relative"
+			>
+				<div class="md:w-1/4 relative">
+					<div class="sticky top-0 md:top-28 hidden lg:block">
+						<TableOfContents headings={headings} />
+						<div class="py-12 rounded">
+							<h2 class="text-2xl mr-2 pb-1 mb-3 font-bold">On This Page</h2>
+							<div class="flex flex-col gap-4 mt-8">
+								{
+									repo && (
+										<a
+											href={repo}
+											target="_blank"
+											class="flex items-center gap-2 hover:underline text-muted-foreground hover:text-foreground transition-colors"
+										>
+											<Icon name="mdi:github" size={20} />
+											Repository
+										</a>
+									)
+								}
+								{
+									link && (
+										<a
+											href={link}
+											target="_blank"
+											class="flex items-center gap-2 hover:underline text-muted-foreground hover:text-foreground transition-colors"
+										>
+											<Icon name="mdi:web" size={20} />
+											Live Demo
+										</a>
+									)
+								}
+								{
+									techStack && (
+										<div class="flex gap-2 flex-wrap mb-8">
+											{techStack.map((tech) => (
+												<span class="text-sm border border-foreground/20 rounded-full px-3 py-1">
+													{tech}
+												</span>
+											))}
+										</div>
+									)
+								}
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="grow w-full md:max-w-[75ch]">
+					<div>
+						<h1 class="text-4xl sm:text-5xl leading-snug pt-12 font-bold">
+							{title}
+						</h1>
+
+						<div class="flex gap-4 mb-8 pt-8 lg:hidden">
+							{
+								repo && (
+									<a
+										href={repo}
+										target="_blank"
+										class="flex items-center gap-2 hover:underline"
+									>
+										<Icon name="mdi:github" size={24} />
+										Repository
+									</a>
+								)
+							}
+							{
+								link && (
+									<a
+										href={link}
+										target="_blank"
+										class="flex items-center gap-2 hover:underline"
+									>
+										<Icon name="mdi:web" size={24} />
+										Live Demo
+									</a>
+								)
+							}
+						</div>
+
+						<!-- {
+							techStack && (
+								<div class="flex gap-2 flex-wrap mb-8">
+									{techStack.map((tech) => (
+										<span class="text-sm border border-foreground/20 rounded-full px-3 py-1">
+											{tech}
+										</span>
+									))}
+								</div>
+							)
+						} -->
+
+						{
+							coverImagePath && projectImages[coverImagePath] && (
+								<Image
+									src={projectImages[coverImagePath]()}
+									alt={title}
+									class="rounded-lg mb-8"
+									loading="eager"
+								/>
+							)
+						}
+					</div>
+					<div
+						class="prose prose-neutral prose-lg md:prose-xl dark:prose-invert prose-img:rounded-xl prose-figure:text-center prose-img:mx-auto"
+					>
+						<slot />
+					</div>
+				</div>
+			</div>
+		</article>
+	</main>
+</BaseLayout>
