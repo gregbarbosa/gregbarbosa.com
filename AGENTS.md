@@ -126,3 +126,22 @@ The project uses a strict ESLint setup:
 ## Deployment
 
 - Configured for GitHub Pages deployment
+
+## GitHub Actions CI/CD
+
+After pushing to `main`, GitHub Actions automatically runs:
+
+1. **Lint, Format, and Type Check** - Runs on Node 18.x and 20.x:
+   - `npm run format:check`
+   - `npm run lint`
+   - `npm run astro check`
+
+2. **Deploy to GitHub Pages** - Builds and deploys on success
+
+**Post-push workflow:**
+
+1. Push to `main`
+2. Wait ~1-2 minutes for CI to complete
+3. Check status: `gh run list --limit 5`
+4. If CI fails, check logs: `gh run view <run-id> --log`
+5. Fix issues, commit, and push again
