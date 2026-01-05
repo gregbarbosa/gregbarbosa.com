@@ -12,7 +12,7 @@ dayjs.extend(utc)
 
 type Props = CollectionEntry<'projects'>['data'] & {
 	headings: MarkdownHeading[]
-	slug: string
+	slug?: string
 	remarkPluginFrontmatter: Record<string, string>
 }
 
@@ -24,7 +24,6 @@ const {
 	link,
 	techStack,
 	headings,
-	_slug,
 	remarkPluginFrontmatter,
 } = Astro.props
 
@@ -33,10 +32,6 @@ const projectImages = import.meta.glob<{ default: ImageMetadata }>(
 )
 
 const coverImagePath = heroImage
-
-const _lastModified = dayjs(remarkPluginFrontmatter.lastModified)
-	.utc()
-	.format('D MMM YYYY')
 ---
 
 <BaseLayout title={title} description={description}>
