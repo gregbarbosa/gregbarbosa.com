@@ -1,6 +1,5 @@
 ---
 import type { CollectionEntry } from 'astro:content'
-import FormattedDate from '../components/FormattedDate.astro'
 import type { MarkdownHeading, ImageMetadata } from 'astro'
 import TableOfContents from '../components/TableOfContents.astro'
 import dayjs from 'dayjs'
@@ -20,14 +19,12 @@ type Props = CollectionEntry<'projects'>['data'] & {
 const {
 	title,
 	description,
-	pubDate,
-	updatedDate,
 	heroImage,
 	repo,
 	link,
 	techStack,
 	headings,
-	slug,
+	_slug,
 	remarkPluginFrontmatter,
 } = Astro.props
 
@@ -37,7 +34,7 @@ const projectImages = import.meta.glob<{ default: ImageMetadata }>(
 
 const coverImagePath = heroImage
 
-const lastModified = dayjs(remarkPluginFrontmatter.lastModified)
+const _lastModified = dayjs(remarkPluginFrontmatter.lastModified)
 	.utc()
 	.format('D MMM YYYY')
 ---

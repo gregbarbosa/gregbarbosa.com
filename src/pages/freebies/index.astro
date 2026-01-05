@@ -6,14 +6,6 @@ import FreebieCard from '../../components/FreebieCard.astro'
 const freebies = (await getCollection('freebies')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 )
-
-const categories = [
-	{ name: 'All', value: 'all' },
-	{ name: 'Final Cut Pro', value: 'final-cut-pro' },
-	{ name: 'Lightroom', value: 'lightroom' },
-	{ name: 'iOS Shortcuts', value: 'ios-shortcuts' },
-	{ name: 'Other', value: 'other' },
-]
 ---
 
 <BaseLayout
