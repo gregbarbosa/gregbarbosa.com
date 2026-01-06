@@ -59,9 +59,15 @@ Always run these commands before committing:
 
 - **Blog posts** are markdown files in `src/content/blog/`
 - The filename becomes the URL slug (e.g., `my-post.md` → `/blog/my-post`)
-- Blog schema defined in `src/content/config.ts` requires: `title`, `description`, `pubDate`, and optionally `updatedDate` and `coverImageCredit`
+- Blog schema defined in `src/content/config.ts` requires: `title`, `description`, `author`, `pubDate`, and optionally `updatedDate`, `coverImageCredit`, and `category`
 - Cover images must be placed at `src/assets/blogimages/<SLUG>/cover.jpg` (recommended: 853×480px)
 - Blog images for content go in `src/assets/blogimages/<SLUG>/` and are referenced as `![Alt](../../assets/blogimages/<SLUG>/image.ext)`
+
+### Obsidian Templates
+
+- **Template location**: `templates/blog-post.md`
+- **Frontmatter fields**: title, author, description, featured, category, pubDate, updatedDate
+- **Templater syntax**: Uses `<% tp.file.creation_date("YYYY-MM-DD") %>` for dates
 
 ### Custom Remark/Rehype Plugins
 
@@ -118,10 +124,21 @@ The project uses a strict ESLint setup:
 
 ## Git Workflow Notes
 
-- Current branch: `dev`
-- Main branch for PRs: `main`
-- GitHub Actions run on pushes/PRs to `main` and `develop` branches
-- Linting workflow tests against Node 18.x and 20.x
+- Current branch: `main`
+- Main branch: `main`
+- GitHub Actions run on pushes to `main` branch
+- Linting workflow tests against Node 20.x
+
+## Obsidian Vault Workflow
+
+This repo is configured as an Obsidian vault. See [OBSIDIAN-SETUP.md](./OBSIDIAN-SETUP.md) for plugin configuration.
+
+**Content publishing workflow:**
+
+1. Create note from template: `templates/blog-post.md`
+2. Write content, add images to `src/assets/blogimages/`
+3. Push from Obsidian Git
+4. Auto-PR created → Auto-merged → Deployed
 
 ## Deployment
 
@@ -143,12 +160,12 @@ GitHub Pages uses a hardcoded 10-minute cache TTL (`max-age=600`) for all `_astr
 
 After pushing to `main`, GitHub Actions automatically runs:
 
-1. **Lint, Format, and Type Check** - Runs on Node 18.x and 20.x:
+1. **Lint, Format, and Type Check** - Runs on Node 20.x:
    - `npm run format:check`
    - `npm run lint`
    - `npm run astro check`
 
-2. **Deploy to GitHub Pages** - Builds and deploys on success
+2. **Deploy to GitHub Pages** - Builds and deploys on success (only runs after lint passes)
 
 **Post-push workflow:**
 
@@ -157,3 +174,25 @@ After pushing to `main`, GitHub Actions automatically runs:
 3. Check status: `gh run list --limit 5`
 4. If CI fails, check logs: `gh run view <run-id> --log`
 5. Fix issues, commit, and push again
+
+### Auto Content PR Workflow
+
+This repo uses an auto-PR workflow for safe content publishing:
+
+**How it works:**
+
+- Push to any branch except `main` triggers the workflow
+- Workflow checks if only content files changed (blog posts, images, templates)
+- **Content-only changes**: Auto-creates PR → Waits for lint → Auto-merges → Deploys
+- **Non-content changes**: Creates PR with warning comment → Requires manual review
+
+**Protected files (require manual review):**
+
+- `src/components/`, `src/layouts/`, `src/pages/`
+- `astro.config.*`, `package.json`
+- `.github/workflows/`, `.gitignore`
+
+**Commands:**
+
+- Check runs: `gh run list --limit 5`
+- Check specific run: `gh run view <run-id> --log`

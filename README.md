@@ -40,11 +40,30 @@ Derived from [yashjawale.github.io](https://yashjawale.github.io)
 
 ## Adding a blog post
 
+### Option 1: Obsidian Workflow (Recommended)
+
+This repo is configured as an Obsidian vault for seamless publishing:
+
+1. **Open this repo in Obsidian** as your vault
+2. **Create new note from template**: `Cmd+P` → "Templater: Create new note from template" → select `blog-post.md`
+3. **Write your content** - The template auto-fills frontmatter (title, date, etc.)
+4. **Add images** - Configure Obsidian's attachment path to `src/assets/blogimages`
+5. **Commit & Push**: `Cmd+P` → "Obsidian Git: Commit all changes and push"
+
+**What happens next:**
+
+- If only content files changed → Auto-creates PR → Auto-merges → Deploys
+- If code/config files changed → Creates PR for manual review
+
+See [OBSIDIAN-SETUP.md](./OBSIDIAN-SETUP.md) for detailed plugin configuration.
+
+### Option 2: Manual
+
 - Add `your-blog-post.md` file under `src/content/blog` (filename denotes the URL slug)
 - Write content in file using Markdown syntax
 - Add cover image at `src/assets/blogimages/<YOUR_SLUG>/cover.jpg` - Recommended dimensions: `853x480px`
 - For adding images to content, use the folowing syntax for caption support `![Alt text](../../assets/blogimages/<YOUR_SLUG>/imagename.ext)`
-- Create a PR & merge after passing workflow checks
+- Push to a branch → Auto-PR created → Auto-merge on success
 
 > [!TIP]
 > Facing any issues or want a feature? Feel free to create a new [issue](https://github.com/yashjawale/saral-theme-astro/issues)
