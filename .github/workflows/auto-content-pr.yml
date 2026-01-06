@@ -1,0 +1,50 @@
+name: Auto Content PR
+
+on:
+  push:
+    branches-ignore:
+      - main
+
+jobs:
+  check-and-pr:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check changed files
+        id: files
+        run: |
+          git fetch origin main --depth=1
+          CHANGED_FILES=$(git diff --name-only HEAD origin/main | grep -v '^src/components\|^src/layouts\|^src/pages\|^astro.config\|^.gitignore\|package.json\|package-lock.json\|tsconfig.json\|tailwind.config\|eslint\|.github/workflows\|public/_headers' || true)
+          echo "changed=$CHANGED_FILES" >> $GITHUB_OUTPUT
+          if [ -n "$CHANGED_FILES" ]; then
+            echo "content_only=true" >> $GITHUB_OUTPUT
+          else
+            echo "content_only=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create PR for content changes
+        if: steps.files.outputs.content_only == 'true'
+        run: |
+          gh pr create \
+            --title "Content update: $(git log -1 --oneline --format='%s')" \
+            --body "Auto-generated PR for content changes from Obsidian vault." \
+            --base main \
+            --head ${{ github.ref_name }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Comment on non-content changes
+        if: steps.files.outputs.content_only == 'false'
+        run: |
+          gh pr comment \
+            $(gh pr list --base main --head ${{ github.ref_name }} --json number -q '.number' 2>/dev/null || echo "") \
+            --body "⚠️ **This PR contains non-content files.** Please review manually before merging. Content-only changes are auto-merged."
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true
