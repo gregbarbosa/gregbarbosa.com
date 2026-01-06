@@ -41,23 +41,53 @@ This document helps you configure the Obsidian plugins needed for the publishing
 2. Set **Attachment folder path**: `src/assets/blogimages`
 3. This ensures images save to the correct location for Astro
 
-## 4. Daily Workflow
+## 4. Publishing Workflow
 
-### Desktop
+### How It Works
+
+```
+You push from Obsidian
+       ↓
+GitHub Actions checks if only content files changed
+       ↓
+┌─────────────────────────────────────────────────────────┐
+│ Content-only (blog posts, images, templates):           │
+│ → Auto-creates PR → Auto-merges when checks pass        │
+│ → Site deploys automatically                             │
+│                                                         │
+│ Non-content files (components, configs):                │
+│ → Creates PR for manual review                          │
+└─────────────────────────────────────────────────────────┘
+```
+
+### Protected Files (require manual review)
+
+- `src/components/` - Astro components
+- `src/layouts/` - Page layouts
+- `src/pages/` - Routes
+- `astro.config.*` - Astro configuration
+- `package.json` / `package-lock.json` - Dependencies
+- `.github/workflows/` - CI/CD workflows
+
+### Daily Workflow
+
+#### Desktop
 
 1. Create new note from template: `Cmd+P` → "Templater: Create new note from template"
 2. Select `blog-post.md`
 3. Write your content
 4. Add images via Obsidian's insert image command
 5. Commit & Push: `Cmd+P` → "Obsidian Git: Commit all changes and push"
+6. GitHub Actions auto-merges and deploys (1-2 minutes)
 
-### Mobile (iOS)
+#### Mobile (iOS)
 
 1. Write note in Obsidian mobile
 2. Tap the Obsidian Git icon (ribbon)
 3. Review changes
 4. Tap commit (with message)
 5. Tap push
+6. GitHub Actions handles the rest
 
 ## 5. Troubleshooting
 
