@@ -7,4 +7,5 @@ category: ''
 pubDate: <% tp.file.creation_date("YYYY-MM-DD") %>
 updatedDate: <% tp.file.creation_date("YYYY-MM-DD") %>
 ---
+
 Write your post here...
