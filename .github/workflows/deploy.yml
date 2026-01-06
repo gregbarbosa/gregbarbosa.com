@@ -2,8 +2,14 @@ name: Deploy to GitHub Pages
 
 on:
   # Trigger the workflow every time you push to the `main` branch
-  # Using a different branch name? Replace `main` with your branch’s name
+  # Using a different branch name? Replace `main` with your branch's name
   push:
+    branches: [main]
+  # Trigger only after lint workflow completes successfully
+  workflow_run:
+    workflows: ['Lint, Format, and Type Check']
+    types:
+      - completed
     branches: [main]
   # Allows you to run this workflow manually from the Actions tab on GitHub.
   workflow_dispatch:
@@ -22,6 +28,7 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'push' || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success') }}
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v4
