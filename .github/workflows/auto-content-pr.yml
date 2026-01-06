@@ -39,12 +39,22 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Enable auto-merge for content PRs
+        if: steps.files.outputs.content_only == 'true'
+        run: |
+          PR_NUMBER=$(gh pr list --base main --head ${{ github.ref_name }} --json number -q '.[0].number')
+          gh pr merge $PR_NUMBER --auto --squash --body "Auto-merged content update."
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true
+
       - name: Comment on non-content changes
         if: steps.files.outputs.content_only == 'false'
         run: |
-          gh pr comment \
-            $(gh pr list --base main --head ${{ github.ref_name }} --json number -q '.number' 2>/dev/null || echo "") \
-            --body "⚠️ **This PR contains non-content files.** Please review manually before merging. Content-only changes are auto-merged."
+          PR_NUMBER=$(gh pr list --base main --head ${{ github.ref_name }} --json number -q '.[0].number' || echo "")
+          if [ -n "$PR_NUMBER" ]; then
+            gh pr comment $PR_NUMBER --body "⚠️ **This PR contains non-content files.** Please review manually before merging."
+          fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         continue-on-error: true
