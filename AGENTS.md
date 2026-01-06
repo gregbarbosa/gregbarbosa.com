@@ -127,6 +127,18 @@ The project uses a strict ESLint setup:
 
 - Configured for GitHub Pages deployment
 
+### Caching on GitHub Pages
+
+GitHub Pages uses a hardcoded 10-minute cache TTL (`max-age=600`) for all `_astro/*` assets. This is a known limitation - custom cache headers in `public/_headers` are ignored.
+
+**Impact:** Minor repeated downloads for visitors within 10-minute windows.
+**Acceptable for:** Personal blogs with typical traffic patterns.
+
+**Alternatives (if caching becomes an issue):**
+
+- Connect Cloudflare (free) in front of GitHub Pages for full caching control
+- Migrate to Vercel/Netlify which support proper immutable caching headers
+
 ## GitHub Actions CI/CD
 
 After pushing to `main`, GitHub Actions automatically runs:

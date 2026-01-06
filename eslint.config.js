@@ -81,6 +81,7 @@ export default [
 			'.astro/',
 			'public/',
 			'.claude/',
+			'.obsidian/', // Obsidian vault configuration (third-party plugins)
 			'*.config.js',
 			'*.config.mjs',
 			'*.config.ts',
