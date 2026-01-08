@@ -129,6 +129,13 @@ The project uses a strict ESLint setup:
 - GitHub Actions run on pushes to `main` branch
 - Linting workflow tests against Node 20.x
 
+### Branch Management Strategy
+
+- **Feature Branches**: Always create a new branch for features or fixes (e.g., `feature/nav-redesign`, `fix/broken-link`).
+- **Selective Commits**: If work is mixed across different concerns (e.g., design vs. content), use `git checkout -b new-branch` and selectively `git add` specific files to separate the work into clean, focused branches.
+- **Cleanup**: Delete feature branches after they are merged into `main` to keep the repository clean.
+- **Squash & Merge**: Use "Squash and Merge" for PRs to keep the `main` history clean. Note that local git may not realize these are merged, so force delete (`git branch -D`) is often required locally.
+
 ## Obsidian Vault Workflow
 
 This repo is configured as an Obsidian vault. See [OBSIDIAN-SETUP.md](./OBSIDIAN-SETUP.md) for plugin configuration.
@@ -196,6 +203,9 @@ This repo uses an auto-PR workflow for safe content publishing:
 
 - Check runs: `gh run list --limit 5`
 - Check specific run: `gh run view <run-id> --log`
+
+**Self-Review & Approval Note:**
+If the repository requires PR reviews but you are a solo developer, ensure repository settings allow bypassing reviews or uncheck "Require pull request reviews before merging" in Branch Protection Rules. This prevents deadlocks where you cannot approve your own PR.
 
 ## Starwind UI
 
