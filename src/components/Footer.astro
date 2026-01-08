@@ -2,19 +2,33 @@
 import { SocialLinks, WebsiteLinks, SITE_BASE } from '../consts'
 import LogoSVG from '../assets/logo.svg'
 import { Icon } from 'astro-icon/components'
+import { Separator } from '@/components/starwind/separator'
+import { Button } from '@/components/starwind/button'
+import { ButtonGroup } from '@/components/starwind/button-group'
+import { Input } from '@/components/starwind/input'
 
 const today = new Date()
 ---
 
 <footer>
-	<div
-		class="app-container grid md:grid-cols-3 gap-12 py-16 border-t-2 border-foreground/50 dark:border-foreground-dark/50"
-	>
+	<!-- Me -->
+	<div class="app-container grid md:grid-cols-3 gap-12 py-16">
+		<Separator orientation="horizontal" class="mb-8 md:hidden" />
 		<div>
 			<a href={`${SITE_BASE}/`} class="block w-fit" aria-label="Home">
-				<LogoSVG height={36} width={36} />
+				<LogoSVG height={54} width={54} />
 			</a>
+			<div class="gap-4 mt-4">
+				<ButtonGroup>
+					<Input placeholder="enter your email" />
+					<Button variant="outline" aria-label="Enter your email address">
+						Subscribe
+					</Button>
+				</ButtonGroup>
+			</div>
 		</div>
+
+		<!-- Links -->
 		<div>
 			<h3 class="font-semibold text-2xl">Links</h3>
 			<div class="flex flex-wrap gap-4 mt-4">
@@ -39,34 +53,36 @@ const today = new Date()
 				>
 					<Icon name="mdi:rss" class="w-6 h-6" />
 				</a>
+				<p class="text-left md:text-left w-full">
+					&copy; {today.getFullYear()} Source code available at <a
+						class="underline"
+						href="https://github.com/gregbarbosa/gregbarbosa.com"
+						target="_blank">GitHub</a
+					>
+				</p>
 			</div>
 		</div>
-		<div>
-			<h3 class="font-semibold text-2xl">Socials</h3>
-			<div class="flex flex-wrap gap-4 mt-4">
-				{
-					SocialLinks.map((link) => (
-						<a
-							class="text-lg"
-							href={link.url}
-							target="_blank"
-							rel="noopener noreferrer"
-							aria-label={link.name}
-						>
-							<Icon class="text-4xl" name={`mdi:${link.icon}`} />
-						</a>
-					))
-				}
+
+		<!-- Socials -->
+		<div class="app-container flex justify-between items-center pb-6">
+			<div>
+				<h3 class="font-semibold text-2xl">Socials</h3>
+				<div class="flex flex-wrap gap-4 mt-4">
+					{
+						SocialLinks.map((link) => (
+							<a
+								class="text-lg"
+								href={link.url}
+								target="_blank"
+								rel="noopener noreferrer"
+								aria-label={link.name}
+							>
+								<Icon class="text-4xl" name={`mdi:${link.icon}`} />
+							</a>
+						))
+					}
+				</div>
 			</div>
 		</div>
-	</div>
-	<div class="app-container flex justify-between items-center pb-6 text-center">
-		<p class="text-left md:text-center w-full">
-			&copy; {today.getFullYear()} Source code available on <a
-				class="underline"
-				href="https://github.com/gregbarbosa/gregbarbosa.com"
-				target="_blank">GitHub</a
-			>
-		</p>
 	</div>
 </footer>

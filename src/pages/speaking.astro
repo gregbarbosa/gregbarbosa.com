@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
 import { Icon } from 'astro-icon/components'
-import { YouTube } from 'astro-embed'
+import { Video } from '@/components/starwind/video/index.js'
 
 const title = 'Speaking'
 const description = 'Greg Barbosa - Speaker Profile and Talks'
@@ -39,6 +39,10 @@ const talks = [
 			</p>
 
 			<div class="mb-16">
+				<Video
+					src="https://www.youtube.com/watch?v=mMoFxfPBlII"
+					class="rounded-lg"
+				/>
 				<h2 class="text-2xl font-bold mb-6">Past Talks</h2>
 				<div class="grid gap-8">
 					{
@@ -58,7 +62,7 @@ const talks = [
 
 								{talk.video && (
 									<div class="rounded-lg overflow-hidden mb-4">
-										<YouTube id={talk.video} />
+										<Video src={talk.video} class="rounded-lg" />
 									</div>
 								)}
 
@@ -68,10 +72,7 @@ const talks = [
 											href={talk.video}
 											target="_blank"
 											class="inline-flex items-center gap-2 text-sm font-medium hover:underline text-primary"
-										>
-											<Icon name="mdi:youtube" class="w-5 h-5" />
-											Watch Video
-										</a>
+										/>
 									)}
 								</div>
 							</div>

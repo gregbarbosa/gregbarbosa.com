@@ -20,10 +20,10 @@ const posts = (await getCollection('blog'))
 	<HeroMask />
 	<main
 		id="main-content"
-		class="app-container flex flex-col gap-12 justify-center py-36 md:py-28 pt-44 md:pt-46 relative"
+		class="app-container flex flex-col gap-12 justify-center py-36 md:py-0 pt-44 md:pt-34 relative"
 	>
 		<div class="flex flex-col lg:flex-row gap-4 items-center justify-center">
-			<div class="w-full lg:w-1/2 order-2 lg:order-1">
+			<div class="w-full lg:w-2/4 order-2 lg:order-1">
 				<div>
 					<h1
 						class="text-4xl md:text-6xl font-bold leading-none italic uppercase"
@@ -35,7 +35,7 @@ const posts = (await getCollection('blog'))
 					{
 						SocialLinks.map((link) => (
 							<a
-								class="text-xl text-primary dark:text-primary-dark underline hover:underline underline-offset-4"
+								class="text-xl text-primary underline hover:underline underline-offset-4"
 								href={link.url}
 								target="_blank"
 								aria-label={link.name}
@@ -46,7 +46,7 @@ const posts = (await getCollection('blog'))
 					}
 				</div>
 			</div>
-			<div class="w-full lg:w-1/2 order-1 lg:order-2">
+			<div class="w-full lg:w-4/4 order-1 lg:order-2">
 				<Image
 					src={heroImage}
 					alt="Greg Barbosa"
@@ -60,7 +60,7 @@ const posts = (await getCollection('blog'))
 	</main>
 
 	<!-- Recent Posts Section -->
-	<section class="app-container py-42">
+	<section class="app-container py-2">
 		<h2 class="section-title">Latest Posts</h2>
 		<div class="posts-grid-container">
 			{posts.map((post) => <BlogCard post={post} />)}

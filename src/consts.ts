@@ -34,35 +34,35 @@ export const SocialLinks = [
 
 export const WebsiteLinks = [
 	{
-		name: 'Blog',
+		name: 'posts',
 		url: '/blog',
 	},
 	{
-		name: 'Reading List',
+		name: 'reading list',
 		url: '/reading-list',
 	},
 	{
-		name: 'Projects',
+		name: 'projects',
 		url: '/projects',
 	},
+	// {
+	// 	name: 'Freebies',
+	// 	url: '/freebies',
+	// },
+	// {
+	// 	name: 'Speaking',
+	// 	url: '/speaking',
+	// },
+	// {
+	// 	name: 'Uses',
+	// 	url: '/uses',
+	// },
+	// {
+	// 	name: 'Now',
+	// 	url: '/now',
+	// },
 	{
-		name: 'Freebies',
-		url: '/freebies',
-	},
-	{
-		name: 'Speaking',
-		url: '/speaking',
-	},
-	{
-		name: 'Uses',
-		url: '/uses',
-	},
-	{
-		name: 'Now',
-		url: '/now',
-	},
-	{
-		name: 'About',
+		name: 'about',
 		url: '/about',
 	},
 ]
