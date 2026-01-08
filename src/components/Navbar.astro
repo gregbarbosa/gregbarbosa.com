@@ -70,18 +70,28 @@ import {
 							</button>
 						</SheetClose>
 					</SheetHeader>
-					<div class="flex flex-col h-full items-start gap-8 pt-8">
+					<div class="flex flex-col items-start gap-10 pt-12">
 						{
 							WebsiteLinks.map((link) => (
-								<NavbarLink class="text-4xl font-light" href={link.url}>
+								<NavbarLink
+									class="text-5xl font-bold uppercase tracking-tighter"
+									href={link.url}
+								>
 									{link.name}
 								</NavbarLink>
 							))
 						}
-						<Button variant="primary" size="lg" href="#footer" class="w-full">
+						<Button
+							variant="primary"
+							size="lg"
+							href="#footer"
+							class="w-full text-xl py-8"
+						>
 							Subscribe
 						</Button>
-						<ThemeSelector class:list="mt-4" />
+						<div class="mt-4 w-full flex justify-center">
+							<ThemeSelector />
+						</div>
 					</div>
 				</SheetContent>
 			</Sheet>
