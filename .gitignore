@@ -22,3 +22,6 @@ pnpm-debug.log*
 
 # Obsidian vault configuration (local only, not committed)
 .obsidian/
+
+# Documentation screenshots
+docs/screenshots/
