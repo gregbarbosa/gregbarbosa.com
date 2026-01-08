@@ -3,11 +3,21 @@ import NavbarLink from './NavbarLink.astro'
 import { Icon } from 'astro-icon/components'
 import ThemeSelector from './ThemeSelector.astro'
 import { SITE_BASE, WebsiteLinks } from '../consts'
+import {
+	Sheet,
+	SheetTrigger,
+	SheetContent,
+	SheetHeader,
+	SheetTitle,
+	SheetClose,
+} from '@/components/starwind/sheet'
 ---
 
-<header class="fixed top-0 w-full z-40 bg-background dark:bg-background-dark">
+<header class="fixed top-0 w-full z-40 bg-background dark:bg-background">
 	<nav class="">
-		<div class="app-container flex justify-between items-center py-5">
+		<div
+			class="app-container flex justify-between items-center py-1 md:py-5 not-md:border-b not-md:border-b-[#2d4d42]"
+		>
 			<a
 				href={`${SITE_BASE}/`}
 				aria-label="Home"
@@ -16,13 +26,13 @@ import { SITE_BASE, WebsiteLinks } from '../consts'
 					: undefined}
 			>
 				<!-- <LogoSVG height={36} width={36} /> -->
-				<h2 class="text-3xl font-bold">GREG BARBOSA</h2>
+				<h2 class="text-2xl font-bold">GREG BARBOSA</h2>
 			</a>
 			<div class="gap-8 hidden md:flex items-center">
 				{
 					WebsiteLinks.map((link) => (
 						<NavbarLink
-							class="text-lg"
+							class="text-md"
 							href={`${link.url}`}
 							target={link.url.charAt(0) === 'h' ? '_blank' : '_self'}
 						>
@@ -32,61 +42,46 @@ import { SITE_BASE, WebsiteLinks } from '../consts'
 				}
 				<ThemeSelector />
 			</div>
-			<button
-				class="md:hidden cursor-pointer"
-				id="nav-open-btn"
-				aria-label="Open navigation menu"
-				aria-expanded="false"
-				title="Open navigation menu"
-			>
-				<Icon aria-hidden name="mdi:menu" size={32} />
-			</button>
-
-			<!-- Mobile nav -->
-			<div
-				class="translate-x-full md:hidden fixed top-0 right-0 bg-background dark:bg-background-dark h-screen w-5/6 px-8 py-6 transition-transform z-40 border-l-[1px] border-background"
-				id="mobile-menu"
-			>
-				<button
-					id="nav-close-btn"
-					class="ml-auto block cursor-pointer"
-					aria-label="Close navigation menu"
-					title="Close navigation menu"
+			<Sheet class="md:hidden">
+				<SheetTrigger asChild>
+					<button
+						class="md:hidden cursor-pointer"
+						aria-label="Open navigation menu"
+						title="Open navigation menu"
+					>
+						<Icon aria-hidden name="mdi:menu" size={32} />
+					</button>
+				</SheetTrigger>
+				<SheetContent
+					side="right"
+					class="w-5/6 bg-background dark:bg-background"
 				>
-					<Icon aria-hidden name="mdi:close" size={32} />
-				</button>
-				<div class="flex flex-col h-full items-start gap-8 pt-16">
-					{
-						WebsiteLinks.map((link) => (
-							<NavbarLink class="text-4xl font-light" href={link.url}>
-								{link.name}
-							</NavbarLink>
-						))
-					}
-					<ThemeSelector class:list="mt-4" />
-				</div>
-			</div>
+					<SheetHeader class="flex flex-row items-center justify-between">
+						<SheetTitle class="sr-only">Navigation Menu</SheetTitle>
+						<SheetClose asChild>
+							<button
+								class="ml-auto block cursor-pointer"
+								aria-label="Close navigation menu"
+								title="Close navigation menu"
+							>
+								<Icon aria-hidden name="mdi:close" size={32} />
+							</button>
+						</SheetClose>
+					</SheetHeader>
+					<div class="flex flex-col h-full items-start gap-8 pt-8">
+						{
+							WebsiteLinks.map((link) => (
+								<NavbarLink class="text-4xl font-light" href={link.url}>
+									{link.name}
+								</NavbarLink>
+							))
+						}
+						<ThemeSelector class:list="mt-4" />
+					</div>
+				</SheetContent>
+			</Sheet>
 		</div>
 	</nav>
-
-	<script>
-		function toggleNav() {
-			const menu = document.querySelector('#mobile-menu')
-			menu?.classList.toggle('mobile-nav-open')
-
-			const isOpen = menu?.classList.contains('mobile-nav-open')
-			document
-				.querySelector('#nav-open-btn')
-				?.setAttribute('aria-expanded', String(isOpen))
-		}
-
-		document
-			.querySelector('#nav-open-btn')
-			?.addEventListener('click', toggleNav)
-		document
-			.querySelector('#nav-close-btn')
-			?.addEventListener('click', toggleNav)
-	</script>
 </header>
 
 <script is:inline>

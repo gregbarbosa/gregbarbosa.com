@@ -1,0 +1,26 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+import { tv } from 'tailwind-variants'
+
+type Props = Omit<HTMLAttributes<'h2'>, 'id'> & {
+	/**
+	 * The content to be rendered inside the dialog title
+	 */
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	children: any
+}
+
+export const dialogTitle = tv({
+	base: 'font-heading text-xl leading-none font-semibold tracking-tight',
+})
+
+const { class: className, ...rest } = Astro.props
+---
+
+<h2
+	class:list={dialogTitle({ class: className })}
+	data-slot="dialog-title"
+	{...rest}
+>
+	<slot />
+</h2>
