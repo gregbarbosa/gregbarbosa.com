@@ -32,8 +32,21 @@ jobs:
             echo "content_only=false" >> $GITHUB_OUTPUT
           fi
 
+      - name: Check if PR already exists
+        id: pr-check
+        run: |
+          PR_NUMBER=$(gh pr list --base main --head ${{ github.ref_name }} --json number -q '.[0].number' || echo "")
+          if [ -n "$PR_NUMBER" ]; then
+            echo "pr_exists=true" >> $GITHUB_OUTPUT
+            echo "pr_number=$PR_NUMBER" >> $GITHUB_OUTPUT
+          else
+            echo "pr_exists=false" >> $GITHUB_OUTPUT
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Create PR for content changes
-        if: steps.files.outputs.content_only == 'true'
+        if: steps.files.outputs.content_only == 'true' && steps.pr-check.outputs.pr_exists == 'false'
         run: |
           gh pr create \
             --title "Content update: $(git log -1 --oneline --format='%s')" \
@@ -43,11 +56,19 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Enable auto-merge for content PRs
+      - name: Get PR number
+        id: pr-number
         if: steps.files.outputs.content_only == 'true'
         run: |
           PR_NUMBER=$(gh pr list --base main --head ${{ github.ref_name }} --json number -q '.[0].number')
-          gh pr merge $PR_NUMBER --auto --squash --body "Auto-merged content update."
+          echo "number=$PR_NUMBER" >> $GITHUB_OUTPUT
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Enable auto-merge for content PRs
+        if: steps.files.outputs.content_only == 'true'
+        run: |
+          gh pr merge ${{ steps.pr-number.outputs.number }} --auto --squash --body "Auto-merged content update."
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         continue-on-error: true
