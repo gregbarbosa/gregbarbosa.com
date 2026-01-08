@@ -1,20 +1,18 @@
-# Saral Theme
+# Greg Barbosa's Personal Site
 
 [![Built with Astro](https://astro.badg.es/v2/built-with-astro/tiny.svg)](https://astro.build)
-[![Lint, Format, and Type Check](https://github.com/yashjawale/saral-theme-astro/actions/workflows/lint.yml/badge.svg)](https://github.com/yashjawale/saral-theme-astro/actions/workflows/lint.yml)
-[![Deploy to GitHub Pages](https://github.com/yashjawale/saral-theme-astro/actions/workflows/deploy.yml/badge.svg)](https://github.com/yashjawale/saral-theme-astro/actions/workflows/deploy.yml)
+[![Lint, Format, and Type Check](https://github.com/gregbarbosa/gregbarbosa.com/actions/workflows/lint.yml/badge.svg)](https://github.com/gregbarbosa/gregbarbosa.com/actions/workflows/lint.yml)
+[![Deploy to GitHub Pages](https://github.com/gregbarbosa/gregbarbosa.com/actions/workflows/deploy.yml/badge.svg)](https://github.com/gregbarbosa/gregbarbosa.com/actions/workflows/deploy.yml)
 
-A simple & minimal theme for personal blog sites, crafted for Astro framework.
+My personal site, crafted with Astro and based on the Saral Theme.
 
-View demo at [https://yashjawale.github.io/saral-theme-astro/](https://yashjawale.github.io/saral-theme-astro/)
+View it at [https://beta.gregbarbosa.com](https://beta.gregbarbosa.com)
 
-View in Astro themes at [https://astro.build/themes/details/saral/](https://astro.build/themes/details/saral/)
-
-> Like what you see? Consider starring the repository 🌟
+---
 
 ![Theme Screenshot](./screenshot.jpg)
 
-Derived from [yashjawale.github.io](https://yashjawale.github.io)
+Derived from [yashjawale/saral-theme-astro](https://github.com/yashjawale/saral-theme-astro)
 
 ## Features
 
@@ -66,8 +64,8 @@ See [OBSIDIAN-SETUP.md](./OBSIDIAN-SETUP.md) for detailed plugin configuration.
 - Push to a branch → Auto-PR created → Auto-merge on success
 
 > [!TIP]
-> Facing any issues or want a feature? Feel free to create a new [issue](https://github.com/yashjawale/saral-theme-astro/issues)
+> Facing any issues or want a feature? Feel free to create a new [issue](https://github.com/gregbarbosa/gregbarbosa.com/issues)
 
 ---
 
-<a href="https://yashjawale.github.io/" target="_blank"><img style="height: 22px;" src="https://raw.githubusercontent.com/yashjawale/.github/main/docs/logo.svg" alt="Yash Jawale"/></a>
+Original theme by <a href="https://yashjawale.github.io/" target="_blank"><img style="height: 22px;" src="https://raw.githubusercontent.com/yashjawale/.github/main/docs/logo.svg" alt="Yash Jawale"/></a>

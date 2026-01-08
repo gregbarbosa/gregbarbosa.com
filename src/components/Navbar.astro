@@ -3,6 +3,7 @@ import NavbarLink from './NavbarLink.astro'
 import { Icon } from 'astro-icon/components'
 import ThemeSelector from './ThemeSelector.astro'
 import { SITE_BASE, WebsiteLinks } from '../consts'
+import { Button } from '@/components/starwind/button'
 import {
 	Sheet,
 	SheetTrigger,
@@ -40,6 +41,7 @@ import {
 						</NavbarLink>
 					))
 				}
+				<Button variant="primary" size="sm" href="#footer">Subscribe</Button>
 				<ThemeSelector />
 			</div>
 			<Sheet class="md:hidden">
@@ -68,15 +70,28 @@ import {
 							</button>
 						</SheetClose>
 					</SheetHeader>
-					<div class="flex flex-col h-full items-start gap-8 pt-8">
+					<div class="flex flex-col items-start gap-10 pt-12">
 						{
 							WebsiteLinks.map((link) => (
-								<NavbarLink class="text-4xl font-light" href={link.url}>
+								<NavbarLink
+									class="text-5xl font-bold uppercase tracking-tighter"
+									href={link.url}
+								>
 									{link.name}
 								</NavbarLink>
 							))
 						}
-						<ThemeSelector class:list="mt-4" />
+						<Button
+							variant="primary"
+							size="lg"
+							href="#footer"
+							class="w-full text-xl py-8"
+						>
+							Subscribe
+						</Button>
+						<div class="mt-4 w-full flex justify-center">
+							<ThemeSelector />
+						</div>
 					</div>
 				</SheetContent>
 			</Sheet>
@@ -97,6 +112,9 @@ import {
 		}
 
 		const theme = localStorage.theme || 'auto'
+		document
+			.querySelectorAll('.theme-button')
+			.forEach((el) => el.classList.remove('active'))
 		document
 			.querySelectorAll(`[data-theme="theme-${theme}"]`)
 			.forEach((el) => el.classList.add('active'))
