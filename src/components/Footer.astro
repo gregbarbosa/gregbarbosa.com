@@ -64,24 +64,22 @@ const today = new Date()
 		</div>
 
 		<!-- Socials -->
-		<div class="app-container flex justify-between items-center pb-6">
-			<div>
-				<h3 class="font-semibold text-2xl">Socials</h3>
-				<div class="flex flex-wrap gap-4 mt-4">
-					{
-						SocialLinks.map((link) => (
-							<a
-								class="text-lg"
-								href={link.url}
-								target="_blank"
-								rel="noopener noreferrer"
-								aria-label={link.name}
-							>
-								<Icon class="text-4xl" name={`mdi:${link.icon}`} />
-							</a>
-						))
-					}
-				</div>
+		<div>
+			<h3 class="font-semibold text-2xl">Socials</h3>
+			<div class="flex flex-wrap gap-4 mt-4">
+				{
+					SocialLinks.map((link) => (
+						<a
+							class="text-lg"
+							href={link.url}
+							target="_blank"
+							rel="noopener noreferrer"
+							aria-label={link.name}
+						>
+							<Icon class="text-3xl" name={`mdi:${link.icon}`} />
+						</a>
+					))
+				}
 			</div>
 		</div>
 	</div>
