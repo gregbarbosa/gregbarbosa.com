@@ -21,7 +21,11 @@ jobs:
         run: |
           git fetch origin main --depth=1
           CHANGED_FILES=$(git diff --name-only HEAD origin/main | grep -v '^src/components\|^src/layouts\|^src/pages\|^astro.config\|^.gitignore\|package.json\|package-lock.json\|tsconfig.json\|tailwind.config\|eslint\|.github/workflows\|public/_headers' || true)
-          echo "changed=$CHANGED_FILES" >> $GITHUB_OUTPUT
+          {
+            echo "changed<<EOF"
+            echo "$CHANGED_FILES"
+            echo "EOF"
+          } >> $GITHUB_OUTPUT
           if [ -n "$CHANGED_FILES" ]; then
             echo "content_only=true" >> $GITHUB_OUTPUT
           else
