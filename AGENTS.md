@@ -196,3 +196,27 @@ This repo uses an auto-PR workflow for safe content publishing:
 
 - Check runs: `gh run list --limit 5`
 - Check specific run: `gh run view <run-id> --log`
+
+## Starwind UI
+
+**Starwind UI** is a component library for Astro projects using Tailwind CSS v4.
+
+### Installation
+
+- **ALWAYS use the CLI** - Components must be installed via `npx starwind@latest add <component>`, not manually created
+- The CLI is interactive - run commands directly in terminal (not via exec tools that don't support interactivity)
+- Components are installed to `src/components/starwind/`
+- A `src/styles/starwind.css` file is created and must be imported in layouts
+
+### Adding Components
+
+```bash
+npx starwind@latest init          # First-time setup (interactive)
+npx starwind@latest add button    # Add individual components
+```
+
+### Notes
+
+- The CLI is designed for interactive use only - do not manually create Starwind components
+- If the CLI approach isn't feasible, ask the user to install the component themselves
+- Always follow the CLI output for proper setup

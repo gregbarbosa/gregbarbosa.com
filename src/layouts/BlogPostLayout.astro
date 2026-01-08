@@ -44,7 +44,7 @@ const lastModified = dayjs(remarkPluginFrontmatter.lastModified)
 	<main id="main-content">
 		<article>
 			<div
-				class="app-container flex flex-col lg:flex-row-reverse justify-between gap-8 py-24 relative"
+				class="app-container flex flex-col lg:flex-row-reverse justify-between gap-0 md:gap-8 py-14 md:py-24 relative"
 			>
 				<div class="md:w-1/4 relative">
 					<div class="sticky top-0 md:top-28 hidden lg:block">
@@ -53,15 +53,17 @@ const lastModified = dayjs(remarkPluginFrontmatter.lastModified)
 				</div>
 				<div class="grow w-full md:max-w-[75ch]">
 					<div>
-						<h1 class="text-4xl sm:text-5xl leading-snug pt-12 font-bold">
+						<h1
+							class="text-4xl md:text-3xl leading-snug pt-0 md:pt-12 font-bold"
+						>
 							{title}
 						</h1>
-						<div class="text-lg flex items-center gap-4 flex-wrap py-8">
+						<div class="text-md flex items-center gap-4 flex-wrap py-4 md:py-8">
 							<!-- Publish date -->
 							<span>
 								<Icon
 									name="mdi:calendar-month-outline"
-									class="inline-block text-primary dark:text-primary-dark"
+									class="inline-block text-primary"
 								/>
 								<FormattedDate date={pubDate} />
 							</span>
@@ -72,7 +74,7 @@ const lastModified = dayjs(remarkPluginFrontmatter.lastModified)
 									<span>
 										<Icon
 											name="mdi:calendar-refresh-outline"
-											class="inline-block text-primary dark:text-primary-dark"
+											class="inline-block text-primary"
 										/>
 										Last updated on <FormattedDate date={updatedDate} />
 									</span>
@@ -83,7 +85,7 @@ const lastModified = dayjs(remarkPluginFrontmatter.lastModified)
 							<span>
 								<Icon
 									name="mdi:clock-time-four-outline"
-									class="inline-block text-primary dark:text-primary-dark"
+									class="inline-block text-primary"
 								/>
 								{remarkPluginFrontmatter.minutesRead}
 							</span>
@@ -95,7 +97,7 @@ const lastModified = dayjs(remarkPluginFrontmatter.lastModified)
 									<Image
 										src={blogImages[coverImagePath]()}
 										alt={title}
-										class="rounded-lg"
+										class="rounded-lg mb-4"
 										loading="eager"
 									/>
 									{coverImageCredit && (
@@ -108,7 +110,7 @@ const lastModified = dayjs(remarkPluginFrontmatter.lastModified)
 						}
 					</div>
 					<div
-						class="prose prose-neutral prose-lg md:prose-xl dark:prose-invert prose-img:rounded-xl prose-figure:text-center prose-img:mx-auto"
+						class="prose prose-img:rounded-xl prose-figure:text-center prose-img:mx-auto"
 					>
 						<slot />
 					</div>
