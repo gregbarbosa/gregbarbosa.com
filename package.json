@@ -2,6 +2,10 @@
 	"name": "gregbarbosa",
 	"type": "module",
 	"version": "0.0.1",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/gregbarbosa/gregbarbosa.com.git"
+	},
 	"scripts": {
 		"dev": "astro dev",
 		"start": "astro dev",
