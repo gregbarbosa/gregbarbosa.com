@@ -4,6 +4,7 @@ import { Icon } from 'astro-icon/components'
 import ThemeSelector from './ThemeSelector.astro'
 import { SITE_BASE, WebsiteLinks } from '../consts'
 import { Button } from '@/components/starwind/button'
+import { SocialLinks } from '../consts'
 import {
 	Sheet,
 	SheetTrigger,
@@ -11,6 +12,8 @@ import {
 	SheetHeader,
 	SheetTitle,
 	SheetClose,
+	SheetDescription,
+	SheetFooter,
 } from '@/components/starwind/sheet'
 ---
 
@@ -47,109 +50,104 @@ import {
 			<Sheet class="md:hidden">
 				<SheetTrigger asChild>
 					<button
-						class="md:hidden cursor-pointer"
 						aria-label="Open navigation menu"
+						class="md:hidden cursor-pointer p-3 rounded-md hover:bg-muted transition-colors"
 						title="Open navigation menu"
 					>
 						<Icon aria-hidden name="mdi:menu" size={32} />
 					</button>
 				</SheetTrigger>
-				<SheetContent
-					side="right"
-					class="w-5/6 bg-background dark:bg-background"
-				>
-					<SheetHeader class="flex flex-row items-center justify-between">
-						<SheetTitle class="sr-only">Navigation Menu</SheetTitle>
-						<SheetClose asChild>
-							<button
-								class="ml-auto block cursor-pointer"
-								aria-label="Close navigation menu"
-								title="Close navigation menu"
-							>
-								<Icon aria-hidden name="mdi:close" size={32} />
-							</button>
-						</SheetClose>
+				<SheetContent>
+					<SheetHeader>
+						<!-- <SheetTitle>Menu</SheetTitle>
+						<Separator class="mt=2" /> -->
 					</SheetHeader>
-					<div class="flex flex-col items-start gap-10 pt-12">
+					<div class="flex flex-col px-4 gap-5">
 						{
 							WebsiteLinks.map((link) => (
-								<NavbarLink
-									class="text-5xl font-bold uppercase tracking-tighter"
-									href={link.url}
-								>
+								<NavbarLink class="text-3xl" href={link.url}>
 									{link.name}
 								</NavbarLink>
 							))
 						}
-						<Button
-							variant="primary"
-							size="lg"
-							href="#footer"
-							class="w-full text-xl py-8"
-						>
-							Subscribe
-						</Button>
-						<div class="mt-4 w-full flex justify-center">
+					</div>
+					<div class="mt-4 w-full flex justify-center"></div>
+					<SheetFooter>
+						<div class="flex flex-wrap justify-between gap-4 mt-4">
+							{
+								SocialLinks.map((link) => (
+									<a
+										class="text-lg"
+										href={link.url}
+										target="_blank"
+										rel="noopener noreferrer"
+										aria-label={link.name}
+									>
+										<Icon class="text-3xl" name={`mdi:${link.icon}`} />
+									</a>
+								))
+							}
 							<ThemeSelector />
 						</div>
-					</div>
+						<Button variant="primary">Subscribe</Button>
+					</SheetFooter>
 				</SheetContent>
 			</Sheet>
 		</div>
 	</nav>
-</header>
 
-<script is:inline>
-	function reComputeTheme() {
-		if (
-			localStorage.theme === 'dark' ||
-			(!('theme' in localStorage) &&
-				window.matchMedia('(prefers-color-scheme: dark)').matches)
-		) {
-			document.documentElement.classList.add('dark')
-		} else {
-			document.documentElement.classList.remove('dark')
+	<script is:inline>
+		function reComputeTheme() {
+			if (
+				localStorage.theme === 'dark' ||
+				(!('theme' in localStorage) &&
+					window.matchMedia('(prefers-color-scheme: dark)').matches)
+			) {
+				document.documentElement.classList.add('dark')
+			} else {
+				document.documentElement.classList.remove('dark')
+			}
+
+			const theme = localStorage.theme || 'auto'
+			document
+				.querySelectorAll('.theme-button')
+				.forEach((el) => el.classList.remove('active'))
+			document
+				.querySelectorAll(`[data-theme="theme-${theme}"]`)
+				.forEach((el) => el.classList.add('active'))
 		}
 
-		const theme = localStorage.theme || 'auto'
-		document
-			.querySelectorAll('.theme-button')
-			.forEach((el) => el.classList.remove('active'))
-		document
-			.querySelectorAll(`[data-theme="theme-${theme}"]`)
-			.forEach((el) => el.classList.add('active'))
-	}
-
-	function addThemeEventListeners() {
-		themeButtons = document.querySelectorAll('.theme-button')
-		themeButtons.forEach((button) => {
-			button.addEventListener('click', () => {
-				themeButtons.forEach((btn) => btn.classList.remove('active'))
-				button.classList.add('active')
-				if (button.dataset.theme === 'theme-auto') {
-					localStorage.removeItem('theme')
-					reComputeTheme()
-				} else {
-					localStorage.theme = button.dataset.theme.replace('theme-', '')
-					document.documentElement.classList.toggle(
-						'dark',
-						button.dataset.theme === 'theme-dark'
-					)
-				}
+		function addThemeEventListeners() {
+			themeButtons = document.querySelectorAll('.theme-button')
+			themeButtons.forEach((button) => {
+				button.addEventListener('click', () => {
+					themeButtons.forEach((btn) => btn.classList.remove('active'))
+					button.classList.add('active')
+					if (button.dataset.theme === 'theme-auto') {
+						localStorage.removeItem('theme')
+						reComputeTheme()
+					} else {
+						localStorage.theme = button.dataset.theme.replace('theme-', '')
+						document.documentElement.classList.toggle(
+							'dark',
+							button.dataset.theme === 'theme-dark'
+						)
+					}
+				})
 			})
-		})
-	}
+		}
 
-	// Set active class on OS theme change
-	window
-		.matchMedia('(prefers-color-scheme: dark)')
-		.addEventListener('change', (_e) => {
+		// Set active class on OS theme change
+		window
+			.matchMedia('(prefers-color-scheme: dark)')
+			.addEventListener('change', (_e) => {
+				reComputeTheme()
+			})
+
+		// Run on page load
+		window.addEventListener('DOMContentLoaded', () => {
+			addThemeEventListeners()
 			reComputeTheme()
 		})
-
-	// Run on page load
-	window.addEventListener('DOMContentLoaded', () => {
-		addThemeEventListeners()
-		reComputeTheme()
-	})
-</script>
+	</script>
+</header>

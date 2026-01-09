@@ -30,6 +30,11 @@ export const SocialLinks = [
 		icon: 'github',
 		url: 'https://github.com/gregbarbosa',
 	},
+	{
+		name: 'RSS',
+		icon: 'rss',
+		url: '/rss.xml',
+	},
 ]
 
 export const WebsiteLinks = [
