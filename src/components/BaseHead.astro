@@ -20,6 +20,28 @@ import GoogleAnalytics from './GoogleAnalytics.astro'
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <meta name="generator" content={Astro.generator} />
 
+<!-- Theme initialization (blocking script to prevent FOUC) -->
+<script is:inline>
+	// Apply theme immediately on page load (before render)
+	(function() {
+		const applyTheme = () => {
+			const stored = localStorage.getItem('theme-preference');
+			const theme = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+			if (theme === 'dark') {
+				document.documentElement.classList.add('dark');
+			} else {
+				document.documentElement.classList.remove('dark');
+			}
+		};
+
+		// Apply immediately
+		applyTheme();
+
+		// Re-apply after Astro View Transitions swap
+		document.addEventListener('astro:after-swap', applyTheme);
+	})();
+</script>
+
 <GoogleAnalytics id="G-LKJF70D58R" />
 
 <!-- Favicons -->
