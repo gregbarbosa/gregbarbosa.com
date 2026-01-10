@@ -29,4 +29,8 @@ export default defineConfig({
 		remarkPlugins: [remarkReadingTime, remarkModifiedTime],
 		rehypePlugins: [rehypeFigureTitle, rehypeAccessibleEmojis],
 	},
+	image: {
+		domains: [],
+		remotePatterns: [],
+	},
 })
