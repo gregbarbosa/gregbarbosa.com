@@ -2,7 +2,7 @@
 import { SITE_BASE } from '@/consts'
 import type { ImageMetadata } from 'astro'
 import { Image } from 'astro:assets'
-import { CardContent } from '@/components/starwind/card'
+import { Card, CardContent } from '@/components/starwind/card'
 import { AspectRatio } from '@/components/starwind/aspect-ratio'
 
 const { review } = Astro.props
@@ -16,7 +16,7 @@ const coverPath = review.data.cover
 	: null
 ---
 
-<div class="flex flex-col gap-4 pb-8 h-full group transition-colors">
+<Card class="flex flex-col gap-4 h-full group hover:shadow-lg transition-all">
 	<a href={review.data.link} target="_blank" rel="noopener noreferrer">
 		<AspectRatio ratio={2 / 3}>
 			{
@@ -31,30 +31,30 @@ const coverPath = review.data.cover
 			}
 			{
 				!coverPath && (
-					<div class="aspect-[2/3] w-full bg-gray-200 dark:bg-gray-800 rounded-xl flex items-center justify-center text-gray-400 hover:shadow-lg transition-shadow">
+					<div class="aspect-2/3 w-full bg-gray-200 dark:bg-gray-800 rounded-xl flex items-center justify-center text-gray-400 hover:shadow-lg transition-shadow">
 						No Cover
 					</div>
 				)
 			}
 		</AspectRatio>
 	</a>
-	<CardContent class="p-0">
+	<CardContent class="p-4 pt-0 flex flex-col gap-2">
 		<a
 			href={review.data.link}
 			target="_blank"
 			rel="noopener noreferrer"
-			class="text-2xl font-semibold group-hover:text-primary dark:group-hover:text-primary-dark group-hover:underline transition-colors"
+			class="text-xl font-semibold group-hover:text-primary dark:group-hover:text-primary-dark group-hover:underline transition-colors leading-tight"
 		>
 			{review.data.title}
 		</a>
-		<p class="text-sm opacity-70">by {review.data.author}</p>
-		<p class="opacity-80 mt-2">
+		<p class="text-sm opacity-70 -mt-1">by {review.data.author}</p>
+		<p class="opacity-80 text-sm leading-relaxed">
 			{review.data.description || 'No description available.'}
 		</p>
-		<div class="mt-4 flex justify-between items-center">
+		<div class="mt-2 flex justify-between items-center gap-2">
 			{
 				review.data.rating && (
-					<span class="text-sm font-medium bg-primary/10 text-primary px-2 py-1 rounded">
+					<span class="text-xs font-medium bg-primary/10 text-primary px-2 py-1 rounded">
 						{review.data.rating}
 					</span>
 				)
@@ -63,12 +63,12 @@ const coverPath = review.data.cover
 				review.data.fullReview && (
 					<a
 						href={`${SITE_BASE}/reading-list/${review.slug}/`}
-						class="text-sm font-medium text-primary hover:underline"
+						class="text-xs font-medium text-primary hover:underline"
 					>
-						Read Full Review &rarr;
+						Full Review &rarr;
 					</a>
 				)
 			}
 		</div>
 	</CardContent>
-</div>
+</Card>
