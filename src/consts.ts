@@ -2,7 +2,7 @@
 // You can import this data from anywhere in your site by using the `import` keyword.
 
 export const SITE_TITLE = 'Greg Barbosa'
-export const SITE_DESCRIPTION = 'Technically creative…'
+export const SITE_DESCRIPTION = 'Technically Creative'
 
 // If you deploy to a subdirectory, set the `WEBSITE_BASE` here.
 // e.g. '/blog' if you are deploying to example.com/blog

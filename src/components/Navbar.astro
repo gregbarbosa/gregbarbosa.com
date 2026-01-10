@@ -17,10 +17,10 @@ import {
 } from '@/components/starwind/sheet'
 ---
 
-<header class="fixed top-0 w-full z-40 bg-background dark:bg-background">
+<header class="fixed top-0 left-0 right-0 md:w-[90%] mx-auto z-40">
 	<nav class="">
 		<div
-			class="app-container md:border-2 md:rounded-full flex justify-between items-center py-1 mt-2 not-md:border-b not-md:border-b-[#2d4d42]"
+			class="app-container md:border-2 md:rounded-full flex justify-between items-center py-1 mt-2 not-md:border-b not-md:border-b-[#2d4d42] bg-background dark:bg-background"
 		>
 			<a
 				href={`${SITE_BASE}/`}
@@ -51,7 +51,7 @@ import {
 				<SheetTrigger asChild>
 					<button
 						aria-label="Open navigation menu"
-						class="md:hidden cursor-pointer p-3 rounded-md hover:bg-muted transition-colors"
+						class="md:hidden cursor-pointer rounded-md hover:bg-muted transition-colors"
 						title="Open navigation menu"
 					>
 						<Icon aria-hidden name="mdi:menu" size={32} />
@@ -59,25 +59,28 @@ import {
 				</SheetTrigger>
 				<SheetContent>
 					<SheetHeader>
-						<!-- <SheetTitle>Menu</SheetTitle>
-						<Separator class="mt=2" /> -->
+						<div class="flex justify-between items-center">
+							<ThemeSelector />
+						</div>
 					</SheetHeader>
 					<div class="flex flex-col px-4 gap-5">
 						{
 							WebsiteLinks.map((link) => (
-								<NavbarLink class="text-3xl" href={link.url}>
+								<NavbarLink
+									class="text-3xl text-foreground hover:text-primary"
+									href={link.url}
+								>
 									{link.name}
 								</NavbarLink>
 							))
 						}
 					</div>
-					<div class="mt-4 w-full flex justify-center"></div>
 					<SheetFooter>
 						<div class="flex flex-wrap justify-between gap-4 mt-4">
 							{
 								SocialLinks.map((link) => (
 									<a
-										class="text-lg"
+										class="text-lg text-foreground hover:text-primary"
 										href={link.url}
 										target="_blank"
 										rel="noopener noreferrer"
@@ -87,7 +90,6 @@ import {
 									</a>
 								))
 							}
-							<ThemeSelector />
 						</div>
 						<Button variant="primary">Subscribe</Button>
 					</SheetFooter>
@@ -95,59 +97,4 @@ import {
 			</Sheet>
 		</div>
 	</nav>
-
-	<script is:inline>
-		function reComputeTheme() {
-			if (
-				localStorage.theme === 'dark' ||
-				(!('theme' in localStorage) &&
-					window.matchMedia('(prefers-color-scheme: dark)').matches)
-			) {
-				document.documentElement.classList.add('dark')
-			} else {
-				document.documentElement.classList.remove('dark')
-			}
-
-			const theme = localStorage.theme || 'auto'
-			document
-				.querySelectorAll('.theme-button')
-				.forEach((el) => el.classList.remove('active'))
-			document
-				.querySelectorAll(`[data-theme="theme-${theme}"]`)
-				.forEach((el) => el.classList.add('active'))
-		}
-
-		function addThemeEventListeners() {
-			themeButtons = document.querySelectorAll('.theme-button')
-			themeButtons.forEach((button) => {
-				button.addEventListener('click', () => {
-					themeButtons.forEach((btn) => btn.classList.remove('active'))
-					button.classList.add('active')
-					if (button.dataset.theme === 'theme-auto') {
-						localStorage.removeItem('theme')
-						reComputeTheme()
-					} else {
-						localStorage.theme = button.dataset.theme.replace('theme-', '')
-						document.documentElement.classList.toggle(
-							'dark',
-							button.dataset.theme === 'theme-dark'
-						)
-					}
-				})
-			})
-		}
-
-		// Set active class on OS theme change
-		window
-			.matchMedia('(prefers-color-scheme: dark)')
-			.addEventListener('change', (_e) => {
-				reComputeTheme()
-			})
-
-		// Run on page load
-		window.addEventListener('DOMContentLoaded', () => {
-			addThemeEventListeners()
-			reComputeTheme()
-		})
-	</script>
 </header>

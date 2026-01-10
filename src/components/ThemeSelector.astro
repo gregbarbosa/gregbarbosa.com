@@ -1,66 +1,125 @@
 ---
 import { Icon } from 'astro-icon/components'
-import { Button } from '@/components/starwind/button'
-import {
-	Dropdown,
-	DropdownTrigger,
-	DropdownContent,
-	DropdownItem,
-} from '@/components/starwind/dropdown'
+import { Toggle } from '@/components/starwind/toggle'
 
 const { class: className } = Astro.props
 ---
 
-<Dropdown class:list={[className]} openOnHover>
-	<DropdownTrigger asChild>
-		<Button
-			variant="ghost"
-			size="icon"
-			class="rounded-full md:opacity-80 hover:opacity-100 transition-opacity size-12 md:size-11"
-			aria-label="Select Theme"
-		>
-			<Icon
-				name="mdi:white-balance-sunny"
-				class="theme-icon-light hidden text-3xl md:text-xl"
-				aria-hidden
-			/>
-			<Icon
-				name="mdi:moon-and-stars"
-				class="theme-icon-dark hidden text-3xl md:text-xl"
-				aria-hidden
-			/>
-		</Button>
-	</DropdownTrigger>
-	<DropdownContent align="end" class="w-40 md:w-32">
-		<DropdownItem
-			data-theme="theme-auto"
-			class="theme-button cursor-pointer py-3 md:py-1.5"
-		>
-			<Icon name="mdi:brightness-auto" class="mr-2 h-5 w-5 md:h-4 md:w-4" />
-			<span class="text-lg md:text-base">System</span>
-		</DropdownItem>
-		<DropdownItem
-			data-theme="theme-light"
-			class="theme-button cursor-pointer py-3 md:py-1.5"
-		>
-			<Icon name="mdi:white-balance-sunny" class="mr-2 h-5 w-5 md:h-4 md:w-4" />
-			<span class="text-lg md:text-base">Light</span>
-		</DropdownItem>
-		<DropdownItem
-			data-theme="theme-dark"
-			class="theme-button cursor-pointer py-3 md:py-1.5"
-		>
-			<Icon name="mdi:moon-and-stars" class="mr-2 h-5 w-5 md:h-4 md:w-4" />
-			<span class="text-lg md:text-base">Dark</span>
-		</DropdownItem>
-	</DropdownContent>
-</Dropdown>
+<Toggle
+	id="theme-toggle"
+	defaultPressed={false}
+	class:list={[
+		'rounded-full md:opacity-80 hover:opacity-100 transition-opacity size-12 md:size-11',
+		className,
+	]}
+	aria-label="Toggle theme"
+>
+	<Icon
+		name="mdi:white-balance-sunny"
+		class="theme-icon-light hidden text-2xl md:text-xl text-foreground"
+		aria-hidden
+	/>
+	<Icon
+		name="mdi:moon-and-stars"
+		class="theme-icon-dark hidden text-2xl md:text-xl text-foreground"
+		aria-hidden
+	/>
+</Toggle>
+
+<script>
+	// Theme management with system preference as initial default
+	const STORAGE_KEY = 'theme-preference'
+
+	function getSystemPreference(): 'light' | 'dark' {
+		return window.matchMedia('(prefers-color-scheme: dark)').matches
+			? 'dark'
+			: 'light'
+	}
+
+	function getStoredTheme(): 'light' | 'dark' | null {
+		const stored = localStorage.getItem(STORAGE_KEY)
+		return stored === 'light' || stored === 'dark' ? stored : null
+	}
+
+	function applyTheme(theme: 'light' | 'dark') {
+		if (theme === 'dark') {
+			document.documentElement.classList.add('dark')
+		} else {
+			document.documentElement.classList.remove('dark')
+		}
+	}
+
+	function updateToggleState(theme: 'light' | 'dark') {
+		const toggle = document.getElementById('theme-toggle')
+		if (!toggle) return
+
+		// Pressed = light mode (sun icon), unpressed = dark mode (moon icon)
+		const isPressed = theme === 'light'
+		toggle.setAttribute('aria-pressed', isPressed.toString())
+		toggle.setAttribute('data-state', isPressed ? 'on' : 'off')
+	}
+
+	// Initialize theme on page load
+	function initTheme() {
+		// Use stored preference if available, otherwise use system preference
+		const storedTheme = getStoredTheme()
+		const theme = storedTheme ?? getSystemPreference()
+
+		applyTheme(theme)
+
+		// Wait for toggle to be initialized by Starwind, then update its state
+		requestAnimationFrame(() => {
+			updateToggleState(theme)
+		})
+	}
+
+	// Handle toggle changes
+	function setupToggleListener() {
+		const toggle = document.getElementById('theme-toggle')
+		if (!toggle) return
+
+		toggle.addEventListener('starwind-toggle:change', (event) => {
+			const customEvent = event as CustomEvent<{ pressed: boolean }>
+			const newTheme = customEvent.detail.pressed ? 'light' : 'dark'
+
+			applyTheme(newTheme)
+			localStorage.setItem(STORAGE_KEY, newTheme)
+		})
+	}
+
+	// Initialize immediately to prevent flash
+	initTheme()
+
+	// Set up listener after DOM and Starwind are ready
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', setupToggleListener)
+	} else {
+		setupToggleListener()
+	}
+
+	// Re-initialize after navigation (for Astro view transitions)
+	document.addEventListener('astro:after-swap', () => {
+		initTheme()
+		setupToggleListener()
+	})
+
+	// Listen for system preference changes (when no stored preference)
+	window
+		.matchMedia('(prefers-color-scheme: dark)')
+		.addEventListener('change', (e) => {
+			if (!getStoredTheme()) {
+				const newTheme = e.matches ? 'dark' : 'light'
+				applyTheme(newTheme)
+				updateToggleState(newTheme)
+			}
+		})
+</script>
 
 <style>
 	@reference "../styles/starwind.css";
 
-	.theme-button.active {
-		@apply bg-accent text-accent-foreground font-medium;
+	#theme-toggle[data-state='on'] {
+		background-color: transparent !important;
 	}
 
 	:global(.dark) .theme-icon-dark {
