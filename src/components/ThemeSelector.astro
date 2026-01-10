@@ -51,7 +51,9 @@ const { class: className } = Astro.props
 
 	function updateToggleState(theme: 'light' | 'dark') {
 		const toggle = document.getElementById('theme-toggle')
-		if (!toggle) return
+		if (!toggle) {
+			return
+		}
 
 		// Pressed = light mode (sun icon), unpressed = dark mode (moon icon)
 		const isPressed = theme === 'light'
@@ -76,7 +78,9 @@ const { class: className } = Astro.props
 	// Handle toggle changes
 	function setupToggleListener() {
 		const toggle = document.getElementById('theme-toggle')
-		if (!toggle) return
+		if (!toggle) {
+			return
+		}
 
 		toggle.addEventListener('starwind-toggle:change', (event) => {
 			const customEvent = event as CustomEvent<{ pressed: boolean }>

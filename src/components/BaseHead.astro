@@ -23,23 +23,27 @@ import GoogleAnalytics from './GoogleAnalytics.astro'
 <!-- Theme initialization (blocking script to prevent FOUC) -->
 <script is:inline>
 	// Apply theme immediately on page load (before render)
-	(function() {
+	;(function () {
 		const applyTheme = () => {
-			const stored = localStorage.getItem('theme-preference');
-			const theme = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+			const stored = localStorage.getItem('theme-preference')
+			const theme =
+				stored ||
+				(window.matchMedia('(prefers-color-scheme: dark)').matches
+					? 'dark'
+					: 'light')
 			if (theme === 'dark') {
-				document.documentElement.classList.add('dark');
+				document.documentElement.classList.add('dark')
 			} else {
-				document.documentElement.classList.remove('dark');
+				document.documentElement.classList.remove('dark')
 			}
-		};
+		}
 
 		// Apply immediately
-		applyTheme();
+		applyTheme()
 
 		// Re-apply after Astro View Transitions swap
-		document.addEventListener('astro:after-swap', applyTheme);
-	})();
+		document.addEventListener('astro:after-swap', applyTheme)
+	})()
 </script>
 
 <GoogleAnalytics id="G-LKJF70D58R" />

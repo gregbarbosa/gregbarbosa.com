@@ -7,7 +7,6 @@ import { Icon } from 'astro-icon/components'
 import BlogCard from '../components/BlogCard.astro'
 import HeroMask from '../components/HeroMask.astro'
 import { getCollection } from 'astro:content'
-import { Button } from '@/components/starwind/button'
 
 const posts = (await getCollection('blog'))
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())

@@ -36,13 +36,13 @@ const {
 
 {
 	(title || description) && (
-		<main id="main-content" class={`app-container ${heroPadding}`}>
-			{title && <h1 class={titleClass}>{title}</h1>}
-			{description && <p class={descriptionClass}>{description}</p>}
+		<main id="main-content" class:list={[`app-container`, `${heroPadding}`]}>
+			{title && <h1 class:list={titleClass}>{title}</h1>}
+			{description && <p class:list={descriptionClass}>{description}</p>}
 		</main>
 	)
 }
 
-<section class={`app-container ${contentPadding}`}>
+<section class:list={[`app-container`, `${contentPadding}`]}>
 	<slot />
 </section>
