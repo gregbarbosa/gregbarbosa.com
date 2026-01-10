@@ -26,7 +26,8 @@ Saral Theme is an Astro-based personal blog theme with a focus on simplicity and
 
 ## Project Docs
 
-- Astro docs are avaialble at https://docs.astro.build. A small docs sitemap is avaialble at https://docs.astro.build/llms.txt. A comprehensive one is at https://docs.astro.build/llms-full.txt. Fallback to the astro-docs MCP server when necessary.
+- Astro docs are available at https://docs.astro.build. A small docs sitemap is avaialble at https://docs.astro.build/llms.txt. A comprehensive one is at https://docs.astro.build/llms-full.txt. Fallback to the astro-docs MCP server when necessary.
+- Starwind UI docs are available at https://starwind.dev/docs/getting-started/ai/. Small docs sitemap is available at https://starwind.dev/llms.txt. Comprehgensive one is at https://starwind.dev/llms-full.txt. Fallback to the starwind ui MCP server when necessary.
 
 ## Development Commands
 
