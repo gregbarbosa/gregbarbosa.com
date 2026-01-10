@@ -4,6 +4,7 @@ import BaseHead from '../components/BaseHead.astro'
 import Navbar from '../components/Navbar.astro'
 import Footer from '../components/Footer.astro'
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts'
+import { ViewTransitions } from 'astro:transitions'
 
 interface Props {
 	title?: string
@@ -12,17 +13,19 @@ interface Props {
 
 const { title, description } = Astro.props
 
+import '@fontsource/instrument-serif'
 import '@fontsource-variable/inter'
 import '@fontsource-variable/jetbrains-mono'
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" transition:animate="none">
 	<head>
 		<BaseHead
 			title={title || SITE_TITLE}
 			description={description || SITE_DESCRIPTION}
 		/>
+		<ViewTransitions />
 	</head>
 	<body
 		class="text-foreground bg-background font-normal dark:text-foreground-dark dark:bg-background-dark transition-colors"
