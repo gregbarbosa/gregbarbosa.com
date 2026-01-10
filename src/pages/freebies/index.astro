@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content'
 import BaseLayout from '../../layouts/BaseLayout.astro'
+import PageLayout from '../../components/PageLayout.astro'
 import FreebieCard from '../../components/FreebieCard.astro'
 
 const freebies = (await getCollection('freebies')).sort(
@@ -12,14 +13,10 @@ const freebies = (await getCollection('freebies')).sort(
 	title="Freebies"
 	description="Free resources, presets, templates, and tools"
 >
-	<main id="main-content" class="app-container pt-36">
-		<h1 class="text-6xl pb-8 font-bold">Freebies</h1>
-		<p class="md:w-2/3 text-lg leading-[2rem]">
-			Free resources to help you with photography, video editing, and
-			productivity. Download presets, templates, shortcuts, and more!
-		</p>
-	</main>
-	<section class="app-container py-12">
+	<PageLayout
+		title="Freebies"
+		description="Free resources to help you with photography, video editing, and productivity. Download presets, templates, shortcuts, and more!"
+	>
 		<ul class="grid my-6 grid-cols-2 xl:grid-cols-4 gap-6">
 			{
 				freebies.map((freebie) => (
@@ -29,5 +26,5 @@ const freebies = (await getCollection('freebies')).sort(
 				))
 			}
 		</ul>
-	</section>
+	</PageLayout>
 </BaseLayout>

@@ -1,0 +1,48 @@
+---
+/**
+ * PageLayout Component
+ *
+ * Provides consistent layout structure for content pages with:
+ * - Standardized hero section spacing
+ * - Optional title and description
+ * - Reusable content container
+ * - Consistent responsive padding
+ */
+
+export interface Props {
+	/** Page title displayed in hero section */
+	title?: string
+	/** Optional description text below title */
+	description?: string
+	/** Custom title class override (default: text-6xl pb-8 font-bold) */
+	titleClass?: string
+	/** Custom description class override (default: md:w-2/3 text-lg leading-[2rem]) */
+	descriptionClass?: string
+	/** Hero section padding override (default: pt-36) */
+	heroPadding?: string
+	/** Content section padding override (default: py-12) */
+	contentPadding?: string
+}
+
+const {
+	title,
+	description,
+	titleClass = 'text-6xl pb-8 font-bold',
+	descriptionClass = 'md:w-2/3 text-lg leading-[2rem]',
+	heroPadding = 'pt-36',
+	contentPadding = 'py-12',
+} = Astro.props
+---
+
+{
+	(title || description) && (
+		<main id="main-content" class={`app-container ${heroPadding}`}>
+			{title && <h1 class={titleClass}>{title}</h1>}
+			{description && <p class={descriptionClass}>{description}</p>}
+		</main>
+	)
+}
+
+<section class={`app-container ${contentPadding}`}>
+	<slot />
+</section>

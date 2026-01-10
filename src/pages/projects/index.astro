@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content'
 import ProjectCard from '../../components/ProjectCard.astro'
 import BaseLayout from '../../layouts/BaseLayout.astro'
+import PageLayout from '../../components/PageLayout.astro'
 
 const projects = (await getCollection('projects')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
@@ -12,13 +13,10 @@ const projects = (await getCollection('projects')).sort(
 	title="Projects | Greg Barbosa"
 	description="A collection of apps, tools, and code experiments I've built."
 >
-	<main id="main-content" class="app-container pt-36">
-		<h1 class="text-6xl pb-8 font-bold">Projects</h1>
-		<p class="md:w-2/3 text-lg leading-[2rem]">
-			Here are some of the projects I've worked on.
-		</p>
-	</main>
-	<section class="app-container py-12">
+	<PageLayout
+		title="Projects"
+		description="Here are some of the projects I've worked on."
+	>
 		<ul class="posts-grid-container">
 			{
 				projects.map((project) => (
@@ -28,5 +26,5 @@ const projects = (await getCollection('projects')).sort(
 				))
 			}
 		</ul>
-	</section>
+	</PageLayout>
 </BaseLayout>

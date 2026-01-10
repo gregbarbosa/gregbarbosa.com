@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
+import PageLayout from '../components/PageLayout.astro'
 
 const title = 'Uses'
 const description =
@@ -7,13 +8,11 @@ const description =
 ---
 
 <BaseLayout title={title} description={description}>
-	<main id="main-content" class="app-container pt-36">
-		<div class="max-w-3xl">
-			<h1 class="text-6xl pb-8 font-bold">What I Use</h1>
-			<p class="md:w-2/3 text-lg leading-[2rem] mb-12">
-				A collection of the tools, software, and gear I use for development,
-				photography, and content creation.
-			</p>
+	<PageLayout
+		title="What I Use"
+		description="A collection of the tools, software, and gear I use for development, photography, and content creation."
+	>
+		<div class="max-w-3xl mb-12">
 
 			<div class="space-y-12">
 				<section>
@@ -329,19 +328,19 @@ const description =
 				</section>
 			</div>
 
-			<div class="mt-12 pt-8 border-t border-border">
-				<p class="text-sm text-muted-foreground">
-					This page is inspired by{' '}
-					<a
-						href="https://uses.tech"
-						target="_blank"
-						rel="noopener noreferrer"
-						class="underline hover:text-foreground"
-					>
-						uses.tech
-					</a>. Check it out to see what other developers are using!
-				</p>
-			</div>
+		<div class="mt-12 pt-8 border-t border-border">
+			<p class="text-sm text-muted-foreground">
+				This page is inspired by{' '}
+				<a
+					href="https://uses.tech"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="underline hover:text-foreground"
+				>
+					uses.tech
+				</a>. Check it out to see what other developers are using!
+			</p>
 		</div>
-	</main>
+		</div>
+	</PageLayout>
 </BaseLayout>

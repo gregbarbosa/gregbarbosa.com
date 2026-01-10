@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
+import PageLayout from '../components/PageLayout.astro'
 
 const title = 'Now'
 const description = 'What Greg Barbosa is up to right now'
@@ -7,12 +8,11 @@ const lastUpdated = 'January 2026'
 ---
 
 <BaseLayout title={title} description={description}>
-	<main id="main-content" class="app-container pt-36">
-		<div class="max-w-2xl">
-			<h1 class="text-6xl pb-8 font-bold">What I'm Doing Now</h1>
-			<p class="md:w-2/3 text-lg leading-[2rem] mb-12">
-				Last updated: {lastUpdated}
-			</p>
+	<PageLayout
+		title="What I'm Doing Now"
+		description={`Last updated: ${lastUpdated}`}
+	>
+		<div class="max-w-2xl mb-12">
 
 			<div class="space-y-8">
 				<section>
@@ -82,20 +82,20 @@ const lastUpdated = 'January 2026'
 				</section>
 			</div>
 
-			<div class="mt-12 pt-8 border-t border-border">
-				<p class="text-sm text-muted-foreground">
-					This is a{' '}
-					<a
-						href="https://nownownow.com/about"
-						target="_blank"
-						rel="noopener noreferrer"
-						class="underline hover:text-foreground"
-					>
-						now page
-					</a>, inspired by Derek Sivers. It's a snapshot of what I'm focused on
-					right now.
-				</p>
-			</div>
+		<div class="mt-12 pt-8 border-t border-border">
+			<p class="text-sm text-muted-foreground">
+				This is a{' '}
+				<a
+					href="https://nownownow.com/about"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="underline hover:text-foreground"
+				>
+					now page
+				</a>, inspired by Derek Sivers. It's a snapshot of what I'm focused on
+				right now.
+			</p>
 		</div>
-	</main>
+		</div>
+	</PageLayout>
 </BaseLayout>

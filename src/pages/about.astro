@@ -1,29 +1,29 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
+import PageLayout from '../components/PageLayout.astro'
 ---
 
 <BaseLayout>
-	<main id="main-content" class="app-container pt-36">
-		<h1 class="text-6xl pb-2 font-bold">About Me</h1>
-	</main>
-	<section class="app-container py-12 mb-8">
-		<div
-			class="prose prose-neutral prose-lg md:prose-xl dark:prose-invert prose-img:rounded-xl prose-figure:text-center prose-img:mx-auto"
-		>
-			<h2>
-				Started Freelancing in 2010, Remote since 2016, full-time since 2018.
-			</h2>
-			<p>
-				At ten years old, I realized I could never truly work for someone else.
-				Eighteen years after that, I was let go from my dream job. And I finally
-				started to build the career I always wanted. But how…? Working under
-				others all those years taught me nearly all I needed to know. Now I just
-				needed to start. There are thousands of resources dedicated to helping
-				entrepreneurs, but few focusing on the new ones. That’s where I step in.
-				After close friends approached me about how I built what I built, I
-				realized it was time to share what I’ve learned. I’m Greg Barbosa, a
-				founder at Teller and HelpCarol. Let’s build the career you deserve.
-			</p>
+	<PageLayout title="About Me" titleClass="text-6xl pb-2 font-bold">
+		<div class="mb-8">
+			<div
+				class="prose prose-neutral prose-lg md:prose-xl dark:prose-invert prose-img:rounded-xl prose-figure:text-center prose-img:mx-auto"
+			>
+				<h2>
+					Started Freelancing in 2010, Remote since 2016, full-time since 2018.
+				</h2>
+				<p>
+					At ten years old, I realized I could never truly work for someone else.
+					Eighteen years after that, I was let go from my dream job. And I finally
+					started to build the career I always wanted. But how…? Working under
+					others all those years taught me nearly all I needed to know. Now I just
+					needed to start. There are thousands of resources dedicated to helping
+					entrepreneurs, but few focusing on the new ones. That's where I step in.
+					After close friends approached me about how I built what I built, I
+					realized it was time to share what I've learned. I'm Greg Barbosa, a
+					founder at Teller and HelpCarol. Let's build the career you deserve.
+				</p>
+			</div>
 		</div>
-	</section>
+	</PageLayout>
 </BaseLayout>
