@@ -46,6 +46,7 @@
 	--color-secondary-accent: var(--secondary-accent);
 	--color-muted: var(--muted);
 	--color-muted-foreground: var(--muted-foreground);
+	--color-muted-coral: var(--muted-coral);
 	--color-accent: var(--accent);
 	--color-accent-foreground: var(--accent-foreground);
 	--color-info: var(--info);
@@ -84,6 +85,7 @@
 	--secondary-accent: #8b7355;
 	--muted: #d4cfc2;
 	--muted-foreground: #4a4a4a;
+	--muted-coral: #ffbb8f;
 	--accent: #d4cfc2;
 	--accent-foreground: #001a14;
 	--info: #9bc4e4;
@@ -115,6 +117,7 @@
 	--secondary-accent: #d4c4a8;
 	--muted: #0f2e25;
 	--muted-foreground: #b8afa0;
+	--muted-coral: #d4856e;
 	--accent: #0f2e25;
 	--accent-foreground: #e3dcd2;
 	--info: #5a9fc4;

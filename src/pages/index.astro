@@ -2,11 +2,12 @@
 import BaseLayout from '../layouts/BaseLayout.astro'
 import { Image } from 'astro:assets'
 import heroImage from '../assets/images/gregbarbosa.jpg'
-import { SocialLinks } from '../consts'
+import { SITE_DESCRIPTION, SocialLinks } from '../consts'
 import { Icon } from 'astro-icon/components'
 import BlogCard from '../components/BlogCard.astro'
 import HeroMask from '../components/HeroMask.astro'
 import { getCollection } from 'astro:content'
+import { Button } from '@/components/starwind/button'
 
 const posts = (await getCollection('blog'))
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
@@ -28,8 +29,9 @@ const posts = (await getCollection('blog'))
 					<h1
 						class="text-4xl md:text-6xl font-bold leading-none italic uppercase"
 					>
-						Technically Creative
+						{SITE_DESCRIPTION}
 					</h1>
+					<p>I'm Greg and I…</p>
 				</div>
 				<div class="flex gap-8 md:gap-4 pt-5">
 					{
@@ -65,6 +67,10 @@ const posts = (await getCollection('blog'))
 		<div class="posts-grid-container">
 			{posts.map((post) => <BlogCard post={post} />)}
 		</div>
+		<Button variant="ghost" href="/blog" size="md"
+			>Read All
+			<Icon size={20} name="mdi:arrow-right" />
+		</Button>
 		<a class="btn-secondary" href="/blog"
 			>Read All
 			<Icon size={20} name="mdi:arrow-right" />

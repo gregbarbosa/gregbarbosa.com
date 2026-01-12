@@ -20,11 +20,11 @@ export const SocialLinks = [
 		icon: 'instagram',
 		url: 'https://instagram.com/gregbarbosa',
 	},
-	{
-		name: 'X / Twitter',
-		icon: 'twitter',
-		url: 'https://twitter.com/gregbarbosa',
-	},
+	// {
+	// 	name: 'X / Twitter',
+	// 	icon: 'twitter',
+	// 	url: 'https://twitter.com/gregbarbosa',
+	// },
 	{
 		name: 'GitHub',
 		icon: 'github',
@@ -43,7 +43,7 @@ export const WebsiteLinks = [
 		url: '/blog',
 	},
 	{
-		name: 'reading list',
+		name: 'books',
 		url: '/reading-list',
 	},
 	{
