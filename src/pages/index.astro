@@ -2,12 +2,13 @@
 import BaseLayout from '../layouts/BaseLayout.astro'
 import { Image } from 'astro:assets'
 import heroImage from '../assets/images/gregbarbosa.jpg'
-import { SITE_DESCRIPTION, SocialLinks } from '../consts'
+import { SITE_DESCRIPTION } from '../consts'
 import { Icon } from 'astro-icon/components'
 import BlogCard from '../components/BlogCard.astro'
 import HeroMask from '../components/HeroMask.astro'
 import { getCollection } from 'astro:content'
 import { Button } from '@/components/starwind/button'
+import SocialLinks from '../components/SocialLinks.astro'
 
 const posts = (await getCollection('blog'))
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
@@ -34,18 +35,10 @@ const posts = (await getCollection('blog'))
 					<p>I'm Greg and I…</p>
 				</div>
 				<div class="flex gap-8 md:gap-4 pt-5">
-					{
-						SocialLinks.map((link) => (
-							<a
-								class="text-xl text-primary underline hover:underline underline-offset-4"
-								href={link.url}
-								target="_blank"
-								aria-label={link.name}
-							>
-								<Icon class="text-4xl" name={`mdi:${link.icon}`} />
-							</a>
-						))
-					}
+					<SocialLinks
+						linkClass="text-xl text-primary underline hover:underline underline-offset-4"
+						iconClass="text-4xl"
+					/>
 				</div>
 			</div>
 			<div class="w-full lg:w-4/4 order-1 lg:order-2">
@@ -71,9 +64,5 @@ const posts = (await getCollection('blog'))
 			>Read All
 			<Icon size={20} name="mdi:arrow-right" />
 		</Button>
-		<a class="btn-secondary" href="/blog"
-			>Read All
-			<Icon size={20} name="mdi:arrow-right" />
-		</a>
 	</section>
 </BaseLayout>
