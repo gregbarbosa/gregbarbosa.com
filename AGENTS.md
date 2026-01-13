@@ -7,6 +7,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Use `astro add` for official integrations (e.g. astro add tailwind, astro add react). For other packages, install using the command for the preferred package manager rather than editing package.json directly.
 - Always check the latest docs before implementing new features.
 
+### Page Structure
+
+- **Read [PATTERNS.md](./PATTERNS.md) before creating or modifying pages** - All pages must follow the standard page structure using `PageLayout`
+- Never duplicate layout wrappers inside `PageLayout` slots
+- Always wrap page content in `max-w-2xl` or `max-w-3xl` with `mb-12`
+
 ### Browser Debugging Skills
 
 - Use **web-browser** skill for everyday debugging (5x more context efficient):
