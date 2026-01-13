@@ -5,6 +5,7 @@ import FormattedDate from '../../components/FormattedDate.astro'
 import type { ImageMetadata } from 'astro'
 import { Image } from 'astro:assets'
 import noThumbnail from '../../assets/no-thumbnail.jpg'
+import PageLayout from '../../components/PageLayout.astro'
 
 export async function getStaticPaths() {
 	const freebies = await getCollection('freebies')
@@ -29,10 +30,8 @@ const coverImageKey = Object.keys(freebieImages).find((path) =>
 ---
 
 <BaseLayout title={freebie.data.title} description={freebie.data.description}>
-	<main id="main-content" class="app-container py-24">
-		<div class="max-w-3xl mx-auto">
-			<h1 class="text-4xl font-bold mb-4">{freebie.data.title}</h1>
-
+	<PageLayout title={freebie.data.title}>
+		<div class="max-w-3xl">
 			<p class="text-lg text-muted-foreground mb-8">
 				<FormattedDate date={freebie.data.pubDate} />
 			</p>
@@ -75,5 +74,5 @@ const coverImageKey = Object.keys(freebieImages).find((path) =>
 				</a>
 			</div>
 		</div>
-	</main>
+	</PageLayout>
 </BaseLayout>
