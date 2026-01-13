@@ -13,8 +13,11 @@ const posts = (await getCollection('blog')).sort(
 	title="Blog | Greg Barbosa"
 	description="Thoughts on software engineering, leadership, AI, and creative technology."
 >
-	<PageLayout title="Blog" contentPadding="py-2">
-		<ul class="posts-grid-container">
+	<PageLayout
+		title="Blog"
+		description="Web dev, photography, and everything else."
+	>
+		<ul class="grid my-6 gap-6 grid-cols-1 md:grid-cols-4 xl:grid-cols-4">
 			{
 				posts.map((post) => (
 					<li>
@@ -25,3 +28,4 @@ const posts = (await getCollection('blog')).sort(
 		</ul>
 	</PageLayout>
 </BaseLayout>
+text-xl md:text-8xl font-bold leading-none italic uppercase

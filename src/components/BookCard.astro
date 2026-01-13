@@ -38,7 +38,7 @@ const coverPath = review.data.cover
 			}
 		</AspectRatio>
 	</a>
-	<CardContent class="p-4 pt-0 flex flex-col gap-2">
+	<CardContent class="p-4 pt-0 flex flex-col gap-2 flex-1">
 		<a
 			href={review.data.link}
 			target="_blank"
@@ -51,7 +51,7 @@ const coverPath = review.data.cover
 		<p class="opacity-80 text-sm leading-relaxed">
 			{review.data.description || 'No description available.'}
 		</p>
-		<div class="mt-2 flex justify-between items-center gap-2">
+		<div class="mt-auto flex justify-between items-center gap-2">
 			{
 				review.data.rating && (
 					<span class="text-xs font-medium bg-primary/10 text-primary px-2 py-1 rounded">
