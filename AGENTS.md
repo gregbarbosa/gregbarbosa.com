@@ -150,32 +150,26 @@ This project follows the **Conventional Commits** specification for all git comm
 Choose the type that best describes the primary purpose of your commit:
 
 - **feat** - A new feature or capability
-  - *Example:* `feat(homepage): add tagline subtitle`
+  - _Example:_ `feat(homepage): add tagline subtitle`
   - Use when: Adding new functionality, new components, new pages
-  
 - **fix** - A bug fix
-  - *Example:* `fix(navbar): correct mobile menu alignment`
+  - _Example:_ `fix(navbar): correct mobile menu alignment`
   - Use when: Resolving a broken feature, fixing styling issues, patching bugs
-  
 - **style** - Code style changes (formatting, semicolons, whitespace) with NO logic impact
-  - *Example:* `style(components): format button component`
+  - _Example:_ `style(components): format button component`
   - Use when: Running Prettier, fixing ESLint warnings (non-logic), adjusting CSS whitespace
   - **DO NOT use for visual/design changes** - those are `fix` if buggy or `feat` if new
-  
 - **refactor** - Code restructuring without changing functionality or fixing bugs
-  - *Example:* `refactor(layouts): extract common patterns into BaseLayout`
+  - _Example:_ `refactor(layouts): extract common patterns into BaseLayout`
   - Use when: Reorganizing code, extracting components, improving code structure, renaming (without behavior change)
-  
 - **chore** - Maintenance tasks, dependency updates, tooling (no user-facing impact)
-  - *Example:* `chore(deps): update astro to 4.15.0`
+  - _Example:_ `chore(deps): update astro to 4.15.0`
   - Use when: Package updates, build tool config, GitHub Actions changes, .gitignore modifications
-  
 - **docs** - Documentation updates
-  - *Example:* `docs(readme): update installation instructions`
+  - _Example:_ `docs(readme): update installation instructions`
   - Use when: Updating README, comments, inline docs, or like this AGENTS.md update
-  
 - **perf** - Performance improvements
-  - *Example:* `perf(images): lazy-load blog cover images`
+  - _Example:_ `perf(images): lazy-load blog cover images`
   - Use when: Optimizing bundle size, reducing render time, caching improvements
 
 ### Scope (Optional but Recommended)
@@ -247,15 +241,15 @@ When in doubt, ask yourself:
 
 ### Common Examples for This Project
 
-| Change | Type | Message |
-|--------|------|---------|
-| Add new blog sidebar component | `feat` | `feat(components): add blog sidebar widget` |
-| Fix broken blog links | `fix` | `fix(blog): correct archive link routing` |
-| Format code with Prettier | `style` | `style(components): format with Prettier` |
-| Reorganize component folders | `refactor` | `refactor(components): reorganize by domain` |
-| Update Astro version | `chore` | `chore(deps): update astro to 4.15.0` |
-| Update AGENTS.md guidance | `docs` | `docs: add conventional commits guidance` |
-| Optimize hero image loading | `perf` | `perf(homepage): lazy-load hero image` |
+| Change                         | Type       | Message                                      |
+| ------------------------------ | ---------- | -------------------------------------------- |
+| Add new blog sidebar component | `feat`     | `feat(components): add blog sidebar widget`  |
+| Fix broken blog links          | `fix`      | `fix(blog): correct archive link routing`    |
+| Format code with Prettier      | `style`    | `style(components): format with Prettier`    |
+| Reorganize component folders   | `refactor` | `refactor(components): reorganize by domain` |
+| Update Astro version           | `chore`    | `chore(deps): update astro to 4.15.0`        |
+| Update AGENTS.md guidance      | `docs`     | `docs: add conventional commits guidance`    |
+| Optimize hero image loading    | `perf`     | `perf(homepage): lazy-load hero image`       |
 
 ## Git Workflow Notes
 
