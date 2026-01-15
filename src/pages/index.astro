@@ -30,9 +30,18 @@ const posts = (await getCollection('blog'))
 					<h1
 						class="text-4xl md:text-6xl font-bold leading-none italic uppercase"
 					>
-						{SITE_DESCRIPTION}
+						{SITE_DESCRIPTION}<Tooltip>
+							<TooltipTrigger>
+								<Button variant="ghost" class="text-xl md:text-8xl font-bold"
+									>*</Button
+								>
+							</TooltipTrigger>
+							<TooltipContent class="lowercase"> Hello! </TooltipContent>
+						</Tooltip>
 					</h1>
-					<p>I'm Greg and I…</p>
+					<p class="text-xl mt-5">
+						I build things, photograph things, and share both here.
+					</p>
 				</div>
 				<div class="flex gap-8 md:gap-4 pt-5">
 					<SocialLinks
