@@ -3,11 +3,10 @@ import { Icon } from 'astro-icon/components'
 import { SocialLinks as socialLinksData } from '../consts'
 
 interface Props {
-	linkClass?: string
 	iconClass?: string
 }
 
-const { linkClass = '', iconClass = 'text-4xl' } = Astro.props
+const { iconClass = 'text-xl' } = Astro.props
 ---
 
 <div class="flex gap-6 mb-12">
@@ -17,7 +16,6 @@ const { linkClass = '', iconClass = 'text-4xl' } = Astro.props
 				href={link.url}
 				target="_blank"
 				rel="noopener noreferrer"
-				class={linkClass}
 				aria-label={link.name}
 			>
 				<Icon name={`mdi:${link.icon}`} class={iconClass} />

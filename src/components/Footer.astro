@@ -5,7 +5,7 @@ import { Separator } from '@/components/starwind/separator'
 import { Button } from '@/components/starwind/button'
 import { ButtonGroup } from '@/components/starwind/button-group'
 import { Input } from '@/components/starwind/input'
-import SocialLinksComponent from './SocialLinks.astro'
+import SocialLinks from '../components/SocialLinks.astro'
 
 const today = new Date()
 ---
@@ -58,7 +58,7 @@ const today = new Date()
 		<div>
 			<h3 class="font-semibold text-2xl">Socials</h3>
 			<div class="flex flex-wrap gap-4 mt-4">
-				<SocialLinksComponent linkClass="text-lg" iconClass="text-3xl" />
+				<SocialLinks iconClass="text-3xl" />
 			</div>
 		</div>
 	</div>

@@ -13,6 +13,10 @@ import SocialLinks from '../components/SocialLinks.astro'
 const posts = (await getCollection('blog'))
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
 	.slice(0, 4)
+
+const projects = (await getCollection('projects'))
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+	.slice(0, 4)
 ---
 
 <BaseLayout
@@ -20,15 +24,12 @@ const posts = (await getCollection('blog'))
 	description="Director of Innovation & Systems at Avulux. Building fast websites, capturing street photography, and sharing creative experiments."
 >
 	<HeroMask />
-	<main
-		id="main-content"
-		class="app-container flex flex-col gap-12 justify-center py-20 md:py-0 pt-24 md:pt-34 relative"
-	>
+	<main id="main-content" class="app-container md:py-15 md:pt-25">
 		<div class="flex flex-col lg:flex-row gap-4 items-center justify-center">
 			<div class="w-full lg:w-2/4 order-2 lg:order-1">
 				<div>
 					<h1
-						class="text-4xl md:text-6xl font-bold leading-none italic uppercase"
+						class="text-xl md:text-8xl font-bold leading-none italic uppercase"
 					>
 						{SITE_DESCRIPTION}<Tooltip>
 							<TooltipTrigger>
@@ -44,10 +45,7 @@ const posts = (await getCollection('blog'))
 					</p>
 				</div>
 				<div class="flex gap-8 md:gap-4 pt-5">
-					<SocialLinks
-						linkClass="text-xl text-primary underline hover:underline underline-offset-4"
-						iconClass="text-4xl"
-					/>
+					<SocialLinks iconClass="text-4xl" />
 				</div>
 			</div>
 			<div class="w-full lg:w-4/4 order-1 lg:order-2">
@@ -64,7 +62,7 @@ const posts = (await getCollection('blog'))
 	</main>
 
 	<!-- Recent Posts Section -->
-	<section class="app-container py-2">
+	<section class="app-container py-2 mb-12">
 		<h2 class="section-title">Latest Posts</h2>
 		<div class="posts-grid-container">
 			{posts.map((post) => <BlogCard post={post} />)}
