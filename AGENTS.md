@@ -129,6 +129,134 @@ The project uses a strict ESLint setup:
 - JSX accessibility rules for .jsx/.tsx files
 - Config files (\*.config.js/mjs/ts) are ignored
 
+## Conventional Commits
+
+This project follows the **Conventional Commits** specification for all git commits. This ensures consistent, semantic commit messages that clearly communicate the type and impact of changes.
+
+**Reference:** https://www.conventionalcommits.org/en/v1.0.0/
+
+### Commit Format
+
+```
+<type>(<scope>): <subject>
+
+<body>
+
+<footer>
+```
+
+### Commit Types
+
+Choose the type that best describes the primary purpose of your commit:
+
+- **feat** - A new feature or capability
+  - *Example:* `feat(homepage): add tagline subtitle`
+  - Use when: Adding new functionality, new components, new pages
+  
+- **fix** - A bug fix
+  - *Example:* `fix(navbar): correct mobile menu alignment`
+  - Use when: Resolving a broken feature, fixing styling issues, patching bugs
+  
+- **style** - Code style changes (formatting, semicolons, whitespace) with NO logic impact
+  - *Example:* `style(components): format button component`
+  - Use when: Running Prettier, fixing ESLint warnings (non-logic), adjusting CSS whitespace
+  - **DO NOT use for visual/design changes** - those are `fix` if buggy or `feat` if new
+  
+- **refactor** - Code restructuring without changing functionality or fixing bugs
+  - *Example:* `refactor(layouts): extract common patterns into BaseLayout`
+  - Use when: Reorganizing code, extracting components, improving code structure, renaming (without behavior change)
+  
+- **chore** - Maintenance tasks, dependency updates, tooling (no user-facing impact)
+  - *Example:* `chore(deps): update astro to 4.15.0`
+  - Use when: Package updates, build tool config, GitHub Actions changes, .gitignore modifications
+  
+- **docs** - Documentation updates
+  - *Example:* `docs(readme): update installation instructions`
+  - Use when: Updating README, comments, inline docs, or like this AGENTS.md update
+  
+- **perf** - Performance improvements
+  - *Example:* `perf(images): lazy-load blog cover images`
+  - Use when: Optimizing bundle size, reducing render time, caching improvements
+
+### Scope (Optional but Recommended)
+
+The scope specifies which part of the project is affected:
+
+- `homepage` - Home page changes
+- `navbar` - Navigation component
+- `blog` - Blog system (posts, layouts)
+- `components` - Reusable components
+- `layouts` - Page layouts
+- `styles` - Global styling
+- `config` - Configuration files
+- `deps` - Dependencies
+- `ci` - CI/CD workflows
+
+### Subject Line Rules
+
+- Use imperative, present tense: **"add"** not **"added"** or **"adds"**
+- Don't capitalize first letter: **"add"** not **"Add"**
+- No period at the end
+- Limit to ~50 characters
+- Be specific and descriptive
+
+### Body (Optional for Small Changes)
+
+Use for commits with more context needed:
+
+```
+feat(projects): redesign projects page with tech stack
+
+Add new sections for elevator pitch, why/how built, and access links.
+Implement grid layout for better project organization.
+Closes #36
+```
+
+### Breaking Changes
+
+If a commit introduces a **breaking change** that affects users/developers:
+
+```
+feat(theme)!: remove light mode support, lighthouse-only
+
+BREAKING CHANGE: Light theme mode is removed. Only lighthouse mode available.
+Users must switch to lighthouse theme in settings.
+```
+
+Or add `BREAKING CHANGE:` in the footer:
+
+```
+refactor(nav)!: restructure navigation config
+
+Complete rewrite of navigation structure.
+
+BREAKING CHANGE: Old nav format no longer supported.
+```
+
+### Decision Tree: Which Type?
+
+When in doubt, ask yourself:
+
+1. **Does it add new capability?** → `feat`
+2. **Does it fix something broken?** → `fix`
+3. **Is it just formatting/whitespace?** → `style`
+4. **Is it reorganizing without changing behavior?** → `refactor`
+5. **Is it a dependency/build/config change?** → `chore`
+6. **Is it making something faster?** → `perf`
+7. **Is it updating docs?** → `docs`
+
+### Common Examples for This Project
+
+| Change | Type | Message |
+|--------|------|---------|
+| Add new blog sidebar component | `feat` | `feat(components): add blog sidebar widget` |
+| Fix broken blog links | `fix` | `fix(blog): correct archive link routing` |
+| Format code with Prettier | `style` | `style(components): format with Prettier` |
+| Reorganize component folders | `refactor` | `refactor(components): reorganize by domain` |
+| Update Astro version | `chore` | `chore(deps): update astro to 4.15.0` |
+| Update AGENTS.md guidance | `docs` | `docs: add conventional commits guidance` |
+| Optimize hero image loading | `perf` | `perf(homepage): lazy-load hero image` |
+
 ## Git Workflow Notes
 
 - Current branch: `main`
