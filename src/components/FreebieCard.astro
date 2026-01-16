@@ -14,12 +14,12 @@ const freebieImages = import.meta.glob<{ default: ImageMetadata }>(
 )
 
 const coverImageKey = Object.keys(freebieImages).find((path) =>
-	path.includes(`/freebies/${freebie.slug}/cover.`)
+	path.includes(`/freebies/${freebie.id}/cover.`)
 )
 ---
 
 <a
-	href={`${SITE_BASE}/freebies/${freebie.slug}/`}
+	href={`${SITE_BASE}/freebies/${freebie.id}/`}
 	class="block h-full transition-colors group"
 >
 	<Card class="h-full flex flex-col">

@@ -12,11 +12,11 @@ const blogImages = import.meta.glob<{ default: ImageMetadata }>(
 	'/src/assets/blogimages/**/*.{jpeg,jpg,png,gif}'
 )
 
-const coverImagePath = `/src/assets/blogimages/${post.slug}/cover.jpg`
+const coverImagePath = `/src/assets/blogimages/${post.id}/cover.jpg`
 ---
 
 <a
-	href={`${SITE_BASE}/blog/${post.slug}/`}
+	href={`${SITE_BASE}/blog/${post.id}/`}
 	class="block h-full transition-colors group"
 >
 	<Card class="h-full flex flex-col">
