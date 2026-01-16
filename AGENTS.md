@@ -60,15 +60,40 @@ Always run these commands before committing:
 3. `npm run astro check`
 4. `npm run build`
 
-## Architecture
+## Astro v6 Migration Status
+
+**Current Version:** Astro v6 beta (as of 2025-01-16)
+
+### Key v6 Changes
+
+This project has been upgraded to Astro v6 beta. Important API changes to be aware of:
+
+1. **Content Collections API** - Moved from `src/content/config.ts` to `src/content.config.ts`
+   - All collections now use explicit `glob()` loaders
+   - Schemas import from `astro/zod` instead of `astro:content`
+
+2. **Collection Entry Properties** - `.slug` → `.id`
+   - Collection entries no longer have a `.slug` property
+   - Use `.id` instead (file-based ID from the loader)
+   - **Critical:** Update all component links to use `.id` (see [BlogCard.astro](src/components/BlogCard.astro), [ProjectCard.astro](src/components/ProjectCard.astro), etc.)
+
+3. **Rendering Content** - New `render()` function
+   - Import: `import { render } from 'astro:content'`
+   - Call: `const { Content } = await render(entry)`
+   - Replaces old `entry.render()` instance method
+
+4. **Client-Side Routing** - `ViewTransitions` → `ClientRouter`
+   - Replace `import { ViewTransitions } from 'astro:transitions'`
+   - With: `import { ClientRouter } from 'astro:transitions'`
+   - Update component tag: `<ViewTransitions />` → `<ClientRouter />`
 
 ### Content Management
 
 - **Blog posts** are markdown files in `src/content/blog/`
-- The filename becomes the URL slug (e.g., `my-post.md` → `/blog/my-post`)
-- Blog schema defined in `src/content/config.ts` requires: `title`, `description`, `author`, `pubDate`, and optionally `updatedDate`, `coverImageCredit`, and `category`
-- Cover images must be placed at `src/assets/blogimages/<SLUG>/cover.jpg` (recommended: 853×480px)
-- Blog images for content go in `src/assets/blogimages/<SLUG>/` and are referenced as `![Alt](../../assets/blogimages/<SLUG>/image.ext)`
+- The filename becomes the URL ID (e.g., `my-post.md` → ID is `my-post`)
+- Blog schema defined in `src/content.config.ts` requires: `title`, `description`, `author`, `pubDate`, and optionally `updatedDate`, `coverImageCredit`, and `category`
+- Cover images must be placed at `src/assets/blogimages/<ID>/cover.jpg` (recommended: 853×480px)
+- Blog images for content go in `src/assets/blogimages/<ID>/` and are referenced as `![Alt](../../assets/blogimages/<ID>/image.ext)`
 
 ### Obsidian Templates
 
