@@ -2,7 +2,7 @@
 
 Consistent page structure guidelines for this Astro project.
 
-> **See Also:** [STYLEGUIDE.md](./STYLEGUIDE.md) for overall development philosophy, [COMPONENTS.md](./COMPONENTS.md) for component patterns, and [STYLING.md](./STYLING.md) for CSS/Tailwind conventions.
+> **See Also:** [STYLEGUIDE.md](STYLEGUIDE.md) for overall development philosophy, [COMPONENTS.md](COMPONENTS.md) for component patterns, and [STYLING.md](STYLING.md) for CSS/Tailwind conventions.
 
 ## Standard Page Structure
 
@@ -123,6 +123,6 @@ const description = 'Page description for SEO'
 
 ## Next Steps
 
-- **Need to create a component?** → Read [COMPONENTS.md](./COMPONENTS.md) for component patterns, props definitions, and accessibility
-- **Need to add styling?** → Read [STYLING.md](./STYLING.md) for Tailwind usage, responsive patterns, and color tokens
-- **Want the big picture?** → Read [STYLEGUIDE.md](./STYLEGUIDE.md) for philosophy, conventions, and decision trees
+- **Need to create a component?** → Read [COMPONENTS.md](COMPONENTS.md) for component patterns, props definitions, and accessibility
+- **Need to add styling?** → Read [STYLING.md](STYLING.md) for Tailwind usage, responsive patterns, and color tokens
+- **Want the big picture?** → Read [STYLEGUIDE.md](STYLEGUIDE.md) for philosophy, conventions, and decision trees

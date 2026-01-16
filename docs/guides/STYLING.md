@@ -613,6 +613,6 @@ Only use `dark:` when the default color doesn't work:
 ## Next Steps
 
 1. Review existing component styling in `src/components/`
-2. Check COMPONENTS.md for component patterns
+2. Check [COMPONENTS.md](COMPONENTS.md) for component patterns
 3. Use these patterns in new components
 4. Run `npm run build` to verify no unused styles

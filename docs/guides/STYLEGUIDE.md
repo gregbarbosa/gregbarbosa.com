@@ -34,7 +34,7 @@ Saral is built for **simplicity, accessibility, and long-term maintainability**.
 ## Quick Reference
 
 ### Component Development
-→ **Read [COMPONENTS.md](./COMPONENTS.md)** for:
+→ **Read [COMPONENTS.md](COMPONENTS.md)** for:
 - When to create custom components vs. compose existing ones
 - Props definition patterns (interface vs. type)
 - Slot conventions (named vs. unnamed)
@@ -42,7 +42,7 @@ Saral is built for **simplicity, accessibility, and long-term maintainability**.
 - Component composition patterns
 
 ### Styling & Layout
-→ **Read [STYLING.md](./STYLING.md)** for:
+→ **Read [STYLING.md](STYLING.md)** for:
 - Tailwind class ordering and conventions
 - Responsive design patterns
 - Focus, hover, and state styles
@@ -50,7 +50,7 @@ Saral is built for **simplicity, accessibility, and long-term maintainability**.
 - Color tokens and dark mode
 
 ### Page Structure
-→ **Read [PATTERNS.md](./PATTERNS.md)** for:
+→ **Read [PATTERNS.md](PATTERNS.md)** for:
 - Standard page layout structure
 - Using `PageLayout` component
 - Width constraints (`max-w-2xl`, `max-w-3xl`)
@@ -92,7 +92,7 @@ Does this describe component props or HTML attributes?
          Or 'interface Props {...}' for simple objects
 ```
 
-**See COMPONENTS.md for detailed examples.**
+**See [COMPONENTS.md](COMPONENTS.md) for detailed examples.**
 
 ---
 
@@ -107,7 +107,7 @@ Is this reusable across multiple components?
          Example: src/components/BlogCard.astro
 ```
 
-**See STYLING.md for detailed guidance.**
+**See [STYLING.md](STYLING.md) for detailed guidance.**
 
 ---
 
@@ -140,7 +140,7 @@ src/
 │   ├── BaseLayout.astro   ← HTML structure, head, metadata
 │   └── BlogPostLayout.astro
 ├── pages/
-│   ├── index.astro        ← Follow PATTERNS.md structure
+│   ├── index.astro        ← Follow [PATTERNS.md](PATTERNS.md) structure
 │   ├── blog/index.astro
 │   └── blog/[...slug].astro
 ├── content/
@@ -177,13 +177,13 @@ src/
 | Area | Pattern | Example |
 |------|---------|---------|
 | **File names** | PascalCase | `BlogCard.astro`, `PageLayout.astro` |
-| **Props** | `interface Props` or `type Props` | See COMPONENTS.md |
+| **Props** | `interface Props` or `type Props` | See [COMPONENTS.md](COMPONENTS.md) |
 | **Imports** | Use path aliases | `import { Button } from '@/components/starwind/button'` |
 | **Classes** | Use `class:list` directive | `class:list={[baseClass, conditionalClass]}` |
-| **Variants** | Export `tv()` from component | See Button.astro example in STYLING.md |
-| **Accessibility** | ARIA + semantic HTML | See COMPONENTS.md checklist |
+| **Variants** | Export `tv()` from component | See Button.astro example in [STYLING.md](STYLING.md) |
+| **Accessibility** | ARIA + semantic HTML | See [COMPONENTS.md](COMPONENTS.md) checklist |
 | **Focus styles** | `focus-visible:ring-3` | Consistent across all interactive elements |
-| **Responsive** | Mobile-first with `md:`, `lg:` | See STYLING.md |
+| **Responsive** | Mobile-first with `md:`, `lg:` | See [STYLING.md](STYLING.md) |
 
 ---
 
@@ -233,7 +233,7 @@ Always document the reason in comments.
 
 ## Next Steps
 
-1. Read the guide relevant to your task (COMPONENTS.md, STYLING.md, PATTERNS.md)
+1. Read the guide relevant to your task ([COMPONENTS.md](COMPONENTS.md), [STYLING.md](STYLING.md), [PATTERNS.md](PATTERNS.md))
 2. Check existing code for similar patterns
 3. Follow the conventions
 4. Run quality gates before committing

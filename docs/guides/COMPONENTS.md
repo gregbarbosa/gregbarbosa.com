@@ -547,6 +547,6 @@ import { SITE_BASE } from '@/consts'
 After reading this guide:
 
 1. Review the examples in `src/components/`
-2. Check STYLING.md for component styling patterns
-3. See PATTERNS.md for page-level composition
+2. Check [STYLING.md](STYLING.md) for component styling patterns
+3. See [PATTERNS.md](PATTERNS.md) for page-level composition
 4. Run `npm run lint` to catch any pattern violations

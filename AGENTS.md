@@ -2,6 +2,19 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## 📚 Development Documentation
+
+Complete development guides are organized in the [`docs/`](./docs/) folder:
+
+- **[docs/guides/STYLEGUIDE.md](./docs/guides/STYLEGUIDE.md)** - Development philosophy, conventions, and decision trees
+- **[docs/guides/COMPONENTS.md](./docs/guides/COMPONENTS.md)** - Component patterns, props definitions, accessibility
+- **[docs/guides/STYLING.md](./docs/guides/STYLING.md)** - Tailwind CSS and styling conventions
+- **[docs/guides/PATTERNS.md](./docs/guides/PATTERNS.md)** - Page structure and layout patterns
+- **[docs/setup/OBSIDIAN-SETUP.md](./docs/setup/OBSIDIAN-SETUP.md)** - Obsidian vault configuration
+- **[docs/README.md](./docs/README.md)** - Documentation hub and quick reference
+
+**Start with [docs/guides/STYLEGUIDE.md](./docs/guides/STYLEGUIDE.md) for philosophy and overview, then jump to specific guides for implementation details.**
+
 ## Rules
 
 - Use `astro add` for official integrations (e.g. astro add tailwind, astro add react). For other packages, install using the command for the preferred package manager rather than editing package.json directly.
@@ -9,7 +22,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ### Page Structure
 
-- **Read [PATTERNS.md](./PATTERNS.md) before creating or modifying pages** - All pages must follow the standard page structure using `PageLayout`
+- **Read [docs/guides/PATTERNS.md](./docs/guides/PATTERNS.md) before creating or modifying pages** - All pages must follow the standard page structure using `PageLayout`
 - Never duplicate layout wrappers inside `PageLayout` slots
 - Always wrap page content in `max-w-2xl` or `max-w-3xl` with `mb-12`
 
@@ -292,7 +305,7 @@ When in doubt, ask yourself:
 
 ## Obsidian Vault Workflow
 
-This repo is configured as an Obsidian vault. See [OBSIDIAN-SETUP.md](./OBSIDIAN-SETUP.md) for plugin configuration.
+This repo is configured as an Obsidian vault. See [docs/setup/OBSIDIAN-SETUP.md](./docs/setup/OBSIDIAN-SETUP.md) for plugin configuration.
 
 **Content publishing workflow:**
 
