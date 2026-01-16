@@ -1,5 +1,5 @@
 ---
-import { type CollectionEntry, getCollection } from 'astro:content'
+import { type CollectionEntry, getCollection, render } from 'astro:content'
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import FormattedDate from '../../components/FormattedDate.astro'
 import type { ImageMetadata } from 'astro'
@@ -10,7 +10,7 @@ import PageLayout from '../../components/PageLayout.astro'
 export async function getStaticPaths() {
 	const freebies = await getCollection('freebies')
 	return freebies.map((freebie) => ({
-		params: { slug: freebie.slug },
+		params: { slug: freebie.id },
 		props: freebie,
 	}))
 }
@@ -18,14 +18,14 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<'freebies'>
 
 const freebie = Astro.props
-const { Content } = await freebie.render()
+const { Content } = await render(freebie)
 
 const freebieImages = import.meta.glob<{ default: ImageMetadata }>(
 	'/src/assets/freebies/**/*.{jpeg,jpg,png,gif,webp}'
 )
 
 const coverImageKey = Object.keys(freebieImages).find((path) =>
-	path.includes(`/freebies/${freebie.slug}/cover.`)
+	path.includes(`/freebies/${freebie.id}/cover.`)
 )
 ---
 

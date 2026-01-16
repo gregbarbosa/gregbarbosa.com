@@ -1,19 +1,19 @@
 ---
-import { type CollectionEntry, getCollection } from 'astro:content'
+import { type CollectionEntry, getCollection, render } from 'astro:content'
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import PageLayout from '../../components/PageLayout.astro'
 
 export async function getStaticPaths() {
 	const reviews = await getCollection('reading-list')
 	return reviews.map((review) => ({
-		params: { slug: review.slug },
+		params: { slug: review.id },
 		props: review,
 	}))
 }
 type Props = CollectionEntry<'reading-list'>
 
 const review = Astro.props
-const { Content } = await review.render()
+const { Content } = await render(review)
 ---
 
 <BaseLayout
@@ -43,14 +43,32 @@ const { Content } = await review.render()
 				<p class="text-xl mb-4">
 					by <span class="font-semibold">{review.data.author}</span>
 				</p>
-				<a
-					href={review.data.link}
-					target="_blank"
-					rel="noopener noreferrer"
-					class="text-primary hover:underline font-medium inline-flex items-center gap-1"
-				>
-					View on Bookshop / Amazon &rarr;
-				</a>
+				<div class="space-y-2">
+					{
+						review.data.link_amazon && (
+							<a
+								href={review.data.link_amazon}
+								target="_blank"
+								rel="noopener noreferrer"
+								class="text-primary hover:underline font-medium inline-flex items-center gap-1 block"
+							>
+								View on Amazon &rarr;
+							</a>
+						)
+					}
+					{
+						review.data.link_bookshop && (
+							<a
+								href={review.data.link_bookshop}
+								target="_blank"
+								rel="noopener noreferrer"
+								class="text-primary hover:underline font-medium inline-flex items-center gap-1 block"
+							>
+								View on Bookshop.org &rarr;
+							</a>
+						)
+					}
+				</div>
 			</div>
 
 			<hr class="border-foreground/10 mb-12" />

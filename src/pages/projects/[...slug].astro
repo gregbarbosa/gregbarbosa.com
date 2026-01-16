@@ -1,5 +1,5 @@
 ---
-import { type CollectionEntry, getCollection } from 'astro:content'
+import { type CollectionEntry, getCollection, render } from 'astro:content'
 import ProjectPostLayout from '../../layouts/ProjectPostLayout.astro'
 import type { MarkdownHeading } from 'astro'
 
@@ -7,12 +7,12 @@ export async function getStaticPaths() {
 	const projects = await getCollection('projects')
 	const headings = await Promise.all(
 		projects.map(async (project) => {
-			const data = await project.render()
+			const data = await render(project)
 			return data.headings
 		})
 	)
 	return projects.map((project, index) => ({
-		params: { slug: project.slug },
+		params: { slug: project.id },
 		props: { project, headings: headings[index] },
 	}))
 }
@@ -23,7 +23,7 @@ type Props = {
 }
 
 const { project, headings } = Astro.props
-const { Content } = await project.render()
+const { Content } = await render(project)
 ---
 
 <ProjectPostLayout
@@ -37,7 +37,7 @@ const { Content } = await project.render()
 	techStack={project.data.techStack}
 	featured={project.data.featured}
 	headings={headings}
-	slug={project.slug}
+	slug={project.id}
 >
 	<Content />
 </ProjectPostLayout>

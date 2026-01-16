@@ -1,20 +1,15 @@
-import { defineCollection, z } from 'astro:content'
+import { defineCollection } from 'astro:content'
+import { glob } from 'astro/loaders'
+import { z } from 'astro/zod'
 
 const blog = defineCollection({
-	// Type-check frontmatter using a schema
+	loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/blog' }),
 	schema: z.object({
-		// status: z.string(),
 		title: z.string(),
 		author: z.string().default('Greg Barbosa'),
 		description: z.string(),
-		// slug: z.string(),
 		featured: z.boolean().default(false),
 		category: z.string().optional(),
-		// tags: z.string(),
-		// image: z.string(),
-		// dateCreated: z.string(),
-		// dateUpdated: z.string(),
-		// datePublished: z.coerce.data(),
 		pubDate: z.coerce.date(),
 		updatedDate: z.coerce.date().optional(),
 		coverImageCredit: z.string().optional(),
@@ -22,6 +17,10 @@ const blog = defineCollection({
 })
 
 const readingList = defineCollection({
+	loader: glob({
+		pattern: '**/[^_]*.{md,mdx}',
+		base: './src/content/reading-list',
+	}),
 	schema: z.object({
 		title: z.string(),
 		author: z.string(),
@@ -37,6 +36,10 @@ const readingList = defineCollection({
 })
 
 const projects = defineCollection({
+	loader: glob({
+		pattern: '**/[^_]*.{md,mdx}',
+		base: './src/content/projects',
+	}),
 	schema: z.object({
 		title: z.string(),
 		description: z.string(),
@@ -51,6 +54,10 @@ const projects = defineCollection({
 })
 
 const freebies = defineCollection({
+	loader: glob({
+		pattern: '**/[^_]*.{md,mdx}',
+		base: './src/content/freebies',
+	}),
 	schema: z.object({
 		title: z.string(),
 		description: z.string(),

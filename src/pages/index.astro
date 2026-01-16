@@ -5,6 +5,7 @@ import heroImage from '../assets/images/gregbarbosa.jpg'
 import { SITE_DESCRIPTION } from '../consts'
 import { Icon } from 'astro-icon/components'
 import BlogCard from '../components/BlogCard.astro'
+import ProjectCard from '../components/ProjectCard.astro'
 import HeroMask from '../components/HeroMask.astro'
 import { getCollection } from 'astro:content'
 import { Button } from '@/components/starwind/button'
@@ -29,7 +30,7 @@ const projects = (await getCollection('projects'))
 	description="Director of Innovation & Systems at Avulux. Building fast websites, capturing street photography, and sharing creative experiments."
 >
 	<HeroMask />
-	<main id="main-content" class="app-container md:py-15 md:pt-25">
+	<main id="main-content" class="app-container md:py-15 md:pt-45">
 		<div class="flex flex-col lg:flex-row gap-4 items-center justify-center">
 			<div class="w-full lg:w-2/4 order-2 lg:order-1">
 				<div>
@@ -74,6 +75,24 @@ const projects = (await getCollection('projects'))
 		</div>
 		<Button variant="ghost" href="/blog" size="md"
 			>Read All
+			<Icon size={20} name="mdi:arrow-right" />
+		</Button>
+	</section>
+
+	<!-- Recent Projects Section -->
+	<section class="app-container py-2">
+		<h2 class="section-title">Recent Projects</h2>
+		<ul class="posts-grid-container">
+			{
+				projects.map((project) => (
+					<li>
+						<ProjectCard project={project} />
+					</li>
+				))
+			}
+		</ul>
+		<Button variant="ghost" href="/projects" size="md"
+			>See all
 			<Icon size={20} name="mdi:arrow-right" />
 		</Button>
 	</section>
