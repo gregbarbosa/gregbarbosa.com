@@ -19,6 +19,10 @@ All development guidance is organized by topic:
 - **[Google Analytics 4](./setup/google-analytics.md)** - GA4 integration with Partytown
 - **[GitHub Pages Deployment](./deployment/github-pages-deployment.md)** - Deploy to GitHub Pages
 
+### Audits & Analysis
+
+- **[Codebase Audit Prompt](./CODEBASE-AUDIT-PROMPT.md)** - Comprehensive audit prompt to check codebase alignment with styleguide, patterns, styling, and components
+
 ### Architecture & Strategy
 
 - **[Open Source Theme Strategy](./architecture/OPEN-SOURCE-THEME-STRATEGY.md)** - Publishing strategy and architecture
