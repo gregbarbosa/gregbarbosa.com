@@ -28,7 +28,7 @@ const {
 ---
 
 <div
-	class={tooltip({ class: className })}
+	class:list={tooltip({ class: className })}
 	data-slot="tooltip"
 	data-state="closed"
 	data-open-delay={openDelay}
@@ -61,7 +61,9 @@ const {
 
 			this.trigger.classList.add('starwind-tooltip-trigger')
 
-			if (!this.trigger || !this.content) return
+			if (!this.trigger || !this.content) {
+				return
+			}
 
 			// animationDuration is set with inline styles through passed prop to TooltipContent
 			const animationDurationString = this.content.style.animationDuration
@@ -80,13 +82,17 @@ const {
 		}
 
 		private setupAccessibility() {
-			if (!this.trigger || !this.content) return
+			if (!this.trigger || !this.content) {
+				return
+			}
 			this.trigger.setAttribute('aria-describedby', this.contentId)
 			this.content.id = this.contentId
 		}
 
 		private setupEvents() {
-			if (!this.trigger || !this.content) return
+			if (!this.trigger || !this.content) {
+				return
+			}
 
 			// Trigger events
 			this.trigger.addEventListener('mouseenter', () => this.show())
@@ -105,7 +111,9 @@ const {
 				window.addEventListener(
 					'resize',
 					() => {
-						if (!this.content) return
+						if (!this.content) {
+							return
+						}
 						this.content.style.transform = ''
 					},
 					{ passive: true }
@@ -133,7 +141,9 @@ const {
 		}
 
 		private show(immediate: boolean = false) {
-			if (!this.content || !this.trigger) return
+			if (!this.content || !this.trigger) {
+				return
+			}
 			if (immediate) {
 				this.tooltip.setAttribute('data-state', 'open')
 				this.content.setAttribute('data-state', 'open')
@@ -149,7 +159,9 @@ const {
 				this.tooltip.getAttribute('data-open-delay') || '700'
 			)
 			this.openTimerRef = window.setTimeout(() => {
-				if (!this.content || !this.trigger) return
+				if (!this.content || !this.trigger) {
+					return
+				}
 				this.tooltip.setAttribute('data-state', 'open')
 				this.content.setAttribute('data-state', 'open')
 				this.content.style.display = 'block'
@@ -159,14 +171,18 @@ const {
 		}
 
 		private hide(immediate: boolean = false) {
-			if (!this.content || !this.trigger) return
+			if (!this.content || !this.trigger) {
+				return
+			}
 			this.clearOpenTimer()
 
 			if (immediate) {
 				this.clearCloseTimer()
 				this.tooltip.setAttribute('data-state', 'closed')
 				setTimeout(() => {
-					if (!this.content) return
+					if (!this.content) {
+						return
+					}
 					this.content.style.display = 'none'
 				}, this.animationDuration)
 				this.content.setAttribute('data-state', 'closed')
@@ -177,10 +193,14 @@ const {
 				() => {
 					this.tooltip.setAttribute('data-state', 'closed')
 					setTimeout(() => {
-						if (!this.content) return
+						if (!this.content) {
+							return
+						}
 						this.content.style.display = 'none'
 					}, this.animationDuration)
-					if (!this.content) return
+					if (!this.content) {
+						return
+					}
 					this.content.setAttribute('data-state', 'closed')
 					this.closeTimerRef = null
 				},
@@ -189,10 +209,14 @@ const {
 		}
 
 		private checkBoundary(tooltipElement: HTMLElement) {
-			if (!tooltipElement) return
+			if (!tooltipElement) {
+				return
+			}
 
 			// if data-avoid-collisions does not exist, return
-			if (!tooltipElement.hasAttribute('data-avoid-collisions')) return
+			if (!tooltipElement.hasAttribute('data-avoid-collisions')) {
+				return
+			}
 
 			const viewportWidth = window.innerWidth
 			const tooltipRect = tooltipElement.getBoundingClientRect()

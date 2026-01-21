@@ -106,7 +106,7 @@ const {
 ---
 
 <div
-	class={tooltipContent({ side, align, class: className })}
+	class:list={tooltipContent({ side, align, class: className })}
 	data-slot="tooltip-content"
 	data-state="closed"
 	data-side={side}
@@ -119,5 +119,5 @@ const {
 	}}
 >
 	<slot> My tooltip! </slot>
-	<CaretUp class={tooltipCaret({ side })} />
+	<CaretUp class:list={tooltipCaret({ side })} />
 </div>
