@@ -5,7 +5,7 @@ import PageLayout from '../../components/PageLayout.astro'
 
 export async function getStaticPaths() {
 	const reviews = await getCollection('reading-list')
-	return reviews.map((review) => ({
+	return reviews.map((review: CollectionEntry<'reading-list'>) => ({
 		params: { slug: review.slug },
 		props: review,
 	}))
@@ -44,7 +44,7 @@ const { Content } = await review.render()
 					by <span class="font-semibold">{review.data.author}</span>
 				</p>
 				<a
-					href={review.data.link}
+					href={review.data.link_amazon}
 					target="_blank"
 					rel="noopener noreferrer"
 					class="text-primary hover:underline font-medium inline-flex items-center gap-1"
