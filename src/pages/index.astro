@@ -17,7 +17,7 @@ import {
 
 const posts = (await getCollection('blog'))
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-	.slice(0, 4)
+	.slice(0, 6)
 ---
 
 <HomeLayout
@@ -66,7 +66,7 @@ const posts = (await getCollection('blog'))
 		<section class="app-container py-2 mb-12">
 			<h2 class="section-title">Latest Posts</h2>
 			<GridSection
-				columns={{ base: 2, sm: 2, md: 3, lg: 3, xl: 3 }}
+				columns={{ base: 1, sm: 2, md: 2, lg: 3, xl: 3 }}
 				class="my-6"
 			>
 				{posts.map((post) => <BlogCard post={post} />)}
