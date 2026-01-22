@@ -20,7 +20,7 @@ const freebies = (await getCollection('freebies')).sort(
 		constrainContent={false}
 		maxWidth="clamp(20rem, 90vw, 85rem)"
 	>
-		<GridSection columns={{ base: 2, xl: 4 }}>
+		<GridSection columns={{ base: 2, xl: 4 }} class="my-6">
 			{freebies.map((freebie) => <FreebieCard freebie={freebie} />)}
 		</GridSection>
 	</PageLayout>

@@ -20,7 +20,7 @@ const posts = (await getCollection('blog')).sort(
 		constrainContent={false}
 		maxWidth="clamp(20rem, 90vw, 85rem)"
 	>
-		<GridSection columns={{ base: 1, sm: 2, md: 2, lg: 3, xl: 3 }}>
+		<GridSection columns={{ base: 1, sm: 2, md: 2, lg: 3, xl: 3 }} class="my-6">
 			{posts.map((post) => <BlogCard post={post} />)}
 		</GridSection>
 	</PageLayout>
