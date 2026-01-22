@@ -1,0 +1,39 @@
+---
+interface Props {
+	columns?:
+		| number
+		| {
+				base?: number
+				sm?: number
+				md?: number
+				lg?: number
+				xl?: number
+				'2xl'?: number
+		  }
+	gap?: string
+	class?: string
+}
+
+const { columns = 1, gap = '1.5rem', class: className } = Astro.props
+
+const col = typeof columns === 'number' ? { base: 1, lg: columns } : columns
+
+const gridClass = [
+	'grid',
+	col.base && `grid-cols-${col.base}`,
+	col.sm && `sm:grid-cols-${col.sm}`,
+	col.md && `md:grid-cols-${col.md}`,
+	col.lg && `lg:grid-cols-${col.lg}`,
+	col.xl && `xl:grid-cols-${col.xl}`,
+	col['2xl'] && `2xl:grid-cols-${col['2xl']}`,
+]
+	.filter(Boolean)
+	.join(' ')
+---
+
+<section
+	class:list={[gridClass, className]}
+	style={gap !== '1.5rem' ? { gap } : undefined}
+>
+	<slot />
+</section>

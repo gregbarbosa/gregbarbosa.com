@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content'
 import BlogCard from '../../components/BlogCard.astro'
-import BaseLayout from '../../layouts/BaseLayout.astro'
+import GridSection from '../../components/GridSection.astro'
 import PageLayout from '../../components/PageLayout.astro'
 
 const posts = (await getCollection('blog')).sort(
@@ -9,23 +9,13 @@ const posts = (await getCollection('blog')).sort(
 )
 ---
 
-<BaseLayout
-	title="Blog | Greg Barbosa"
-	description="Thoughts on software engineering, leadership, AI, and creative technology."
+<PageLayout
+	title="Blog"
+	description="Web dev, photography, and everything else."
+	constrainContent={false}
+	maxWidth="clamp(20rem, 90vw, 85rem)"
 >
-	<PageLayout
-		title="Blog"
-		description="Web dev, photography, and everything else."
-	>
-		<ul class="grid my-6 gap-6 grid-cols-1 md:grid-cols-4 xl:grid-cols-4">
-			{
-				posts.map((post) => (
-					<li>
-						<BlogCard post={post} />
-					</li>
-				))
-			}
-		</ul>
-	</PageLayout>
-</BaseLayout>
-text-xl md:text-8xl font-bold leading-none italic uppercase
+	<GridSection columns={{ base: 1, sm: 2, lg: 3, xl: 4 }}>
+		{posts.map((post) => <BlogCard post={post} />)}
+	</GridSection>
+</PageLayout>

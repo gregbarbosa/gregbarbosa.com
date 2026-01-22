@@ -22,8 +22,10 @@ export interface Props {
 	heroPadding?: string
 	/** Content section padding override (default: py-12) */
 	contentPadding?: string
-	/** Whether to wrap slot content in max-w-2xl container (default: true) */
+	/** Whether to wrap slot content in max-w container (default: true) */
 	constrainContent?: boolean
+	/** Max-width for content (supports clamp() syntax, default: clamp(20rem, 90vw, 85rem)) */
+	maxWidth?: string
 }
 
 const {
@@ -34,6 +36,7 @@ const {
 	heroPadding = 'pt-36',
 	contentPadding = 'py-12',
 	constrainContent = true,
+	maxWidth = 'clamp(20rem, 90vw, 85rem)',
 } = Astro.props
 ---
 
@@ -49,7 +52,7 @@ const {
 <section class:list={[`app-container`, `${contentPadding}`]}>
 	{
 		constrainContent ? (
-			<div class="max-w-2xl mb-12">
+			<div class="mb-12" style={`max-width: ${maxWidth};`}>
 				<slot />
 			</div>
 		) : (
