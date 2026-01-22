@@ -31,9 +31,6 @@ const gridClass = [
 	.join(' ')
 ---
 
-<section
-	class:list={[gridClass, className]}
-	style={gap !== '1.5rem' ? { gap } : undefined}
->
+<section class:list={[gridClass, className]} style={{ gap }}>
 	<slot />
 </section>
