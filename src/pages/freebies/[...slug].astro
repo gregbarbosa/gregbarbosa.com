@@ -30,7 +30,7 @@ const coverImageKey = Object.keys(freebieImages).find((path) =>
 ---
 
 <BaseLayout title={freebie.data.title} description={freebie.data.description}>
-	<PageLayout title={freebie.data.title}>
+	<PageLayout title={freebie.data.title} constrainContent={false}>
 		<div class="max-w-3xl">
 			<p class="text-lg text-muted-foreground mb-8">
 				<FormattedDate date={freebie.data.pubDate} />

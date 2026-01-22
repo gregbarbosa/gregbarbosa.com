@@ -20,7 +20,7 @@ const { Content } = await review.render()
 	title={review.data.title}
 	description={`Review of ${review.data.title} by ${review.data.author}`}
 >
-	<PageLayout title={review.data.title}>
+	<PageLayout title={review.data.title} constrainContent={false}>
 		<div class="max-w-3xl">
 			<div class="mb-12">
 				<div class="flex flex-wrap gap-4 text-muted-foreground mb-8">
