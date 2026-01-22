@@ -18,7 +18,10 @@ const { iconClass = 'text-xl' } = Astro.props
 				rel="noopener noreferrer"
 				aria-label={link.name}
 			>
-				<Icon name={`mdi:${link.icon}`} class:list={[iconClass]} />
+				<Icon
+					name={`mdi:${link.icon}`}
+					class:list={[iconClass, 'text-primary']}
+				/>
 			</a>
 		))
 	}
