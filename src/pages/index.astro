@@ -5,6 +5,7 @@ import heroImage from '../assets/images/gregbarbosa.jpg'
 import { SITE_DESCRIPTION } from '../consts'
 import { Icon } from 'astro-icon/components'
 import BlogCard from '../components/BlogCard.astro'
+import GridSection from '../components/GridSection.astro'
 import { getCollection } from 'astro:content'
 import { Button } from '@/components/starwind/button'
 import SocialLinks from '../components/SocialLinks.astro'
@@ -37,7 +38,7 @@ const posts = (await getCollection('blog'))
 									>*</Button
 								>
 							</TooltipTrigger>
-							<TooltipContent class="lowercase"> Hello! </TooltipContent>
+							<TooltipContent class="lowercase">Hello!</TooltipContent>
 						</Tooltip>
 					</h1>
 					<p class="text-xl mt-5">
@@ -64,9 +65,12 @@ const posts = (await getCollection('blog'))
 	<div slot="content">
 		<section class="app-container py-2 mb-12">
 			<h2 class="section-title">Latest Posts</h2>
-			<div class="posts-grid-container">
+			<GridSection
+				columns={{ base: 1, sm: 2, md: 2, lg: 3, xl: 3 }}
+				class="my-6"
+			>
 				{posts.map((post) => <BlogCard post={post} />)}
-			</div>
+			</GridSection>
 			<Button variant="ghost" href="/blog" size="md"
 				>Read All
 				<Icon size={20} name="mdi:arrow-right" />
