@@ -1,11 +1,10 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro'
+import HomeLayout from '../layouts/HomeLayout.astro'
 import { Image } from 'astro:assets'
 import heroImage from '../assets/images/gregbarbosa.jpg'
 import { SITE_DESCRIPTION } from '../consts'
 import { Icon } from 'astro-icon/components'
 import BlogCard from '../components/BlogCard.astro'
-import HeroMask from '../components/HeroMask.astro'
 import { getCollection } from 'astro:content'
 import { Button } from '@/components/starwind/button'
 import SocialLinks from '../components/SocialLinks.astro'
@@ -20,12 +19,11 @@ const posts = (await getCollection('blog'))
 	.slice(0, 4)
 ---
 
-<BaseLayout
+<HomeLayout
 	title="Greg Barbosa | Technically Creative"
 	description="Director of Innovation & Systems at Avulux. Building fast websites, capturing street photography, and sharing creative experiments."
 >
-	<HeroMask />
-	<main id="main-content" class="app-container md:py-15 md:pt-25">
+	<div slot="hero" class="app-container md:py-15 md:pt-25">
 		<div class="flex flex-col lg:flex-row gap-4 items-center justify-center">
 			<div class="w-full lg:w-2/4 order-2 lg:order-1">
 				<div>
@@ -60,17 +58,18 @@ const posts = (await getCollection('blog'))
 				/>
 			</div>
 		</div>
-	</main>
+	</div>
 
-	<!-- Recent Posts Section -->
-	<section class="app-container py-2 mb-12">
-		<h2 class="section-title">Latest Posts</h2>
-		<div class="posts-grid-container">
-			{posts.map((post) => <BlogCard post={post} />)}
-		</div>
-		<Button variant="ghost" href="/blog" size="md"
-			>Read All
-			<Icon size={20} name="mdi:arrow-right" />
-		</Button>
-	</section>
-</BaseLayout>
+	<div slot="content">
+		<section class="app-container py-2 mb-12">
+			<h2 class="section-title">Latest Posts</h2>
+			<div class="posts-grid-container">
+				{posts.map((post) => <BlogCard post={post} />)}
+			</div>
+			<Button variant="ghost" href="/blog" size="md"
+				>Read All
+				<Icon size={20} name="mdi:arrow-right" />
+			</Button>
+		</section>
+	</div>
+</HomeLayout>
