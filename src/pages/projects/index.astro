@@ -20,7 +20,7 @@ const projects = (await getCollection('projects')).sort(
 		constrainContent={false}
 		maxWidth="clamp(20rem, 90vw, 85rem)"
 	>
-		<GridSection columns={{ base: 2, md: 4, xl: 4 }} class="my-6">
+		<GridSection columns={{ base: 1, sm: 2, md: 2, lg: 2, xl: 2 }} class="my-6">
 			{projects.map((project) => <ProjectCard project={project} />)}
 		</GridSection>
 	</PageLayout>
