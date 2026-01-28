@@ -4,7 +4,7 @@ description: At Facebook's 2019 F8 event, the company announced a number of init
 author: 'Greg Barbosa'
 featured: false
 
-pubDate: 'May 02 2019'
+pubDate: '2019-05-02'
 ---
 
 Every year, at Facebook's F8 developer conference, the company gets on stage to share the latest changes coming to the company's platforms. At this year's event, Facebook announced a number of new initiatives that will directly impact various businesses. Let's take a look at what they are and what they'll mean to you.

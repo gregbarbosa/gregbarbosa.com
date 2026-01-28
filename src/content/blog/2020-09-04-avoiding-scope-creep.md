@@ -4,7 +4,7 @@ description: The number one thing to avoid as a freelancer.
 author: 'Greg Barbosa'
 featured: false
 
-pubDate: 'Sep 04 2020'
+pubDate: '2020-09-04'
 ---
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/pLEvW_8oX1Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="Number on thign to avoid as a freelancer."></iframe>

@@ -1,8 +1,9 @@
 import rss from '@astrojs/rss'
 import { getCollection } from 'astro:content'
+import { filterDrafts } from '../utils/filterDrafts'
 
 export async function GET(context) {
-	const blog = await getCollection('blog')
+	const blog = filterDrafts(await getCollection('blog'))
 	return rss({
 		// `<title>` field in output xml
 		title: 'Greg Barbosa',

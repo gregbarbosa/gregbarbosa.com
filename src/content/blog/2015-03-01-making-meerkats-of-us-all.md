@@ -4,7 +4,7 @@ description: I am absolutely excited for Meerkat. Like viciously excited.
 author: 'Greg Barbosa'
 featured: false
 
-pubDate: 'Mar 01 2015'
+pubDate: '2015-03-01'
 ---
 
 I am absolutely excited for Meerkat. Like viciously excited. After first hearing about Meerkat on Product Hunt my first thoughts immediately ran to, "Why isn't this already built into Twitter?"

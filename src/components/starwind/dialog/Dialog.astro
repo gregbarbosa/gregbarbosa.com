@@ -106,7 +106,9 @@ const { class: className, ...rest } = Astro.props
 			) as HTMLButtonElement[]
 
 			// if essential elements are not there, exit
-			if (!this.dialog || !this.backdrop) {return}
+			if (!this.dialog || !this.backdrop) {
+				return
+			}
 
 			this.setupAccessibility(dialogNumber)
 			this.setupEvents()
@@ -152,7 +154,9 @@ const { class: className, ...rest } = Astro.props
 		}
 
 		private setupEvents(): void {
-			if (!this.dialog) {return}
+			if (!this.dialog) {
+				return
+			}
 
 			// Add programmatic open/close via custom events on the wrapper
 			this.dialogWrapper.addEventListener('dialog:open', () => this.open())
@@ -188,7 +192,9 @@ const { class: className, ...rest } = Astro.props
 
 			// Close on click outside
 			this.dialog.addEventListener('click', (e) => {
-				if (!this.dialog) {return}
+				if (!this.dialog) {
+					return
+				}
 				const dialogDimensions = this.dialog.getBoundingClientRect()
 				const clickedInDialog =
 					e.clientX >= dialogDimensions.left &&
@@ -251,9 +257,13 @@ const { class: className, ...rest } = Astro.props
 		}
 
 		private open(): void {
-			if (!this.dialog || !this.backdrop) {return}
+			if (!this.dialog || !this.backdrop) {
+				return
+			}
 			// Return early if already open
-			if (this.dialog.open && !this._isClosing) {return}
+			if (this.dialog.open && !this._isClosing) {
+				return
+			}
 
 			// Cancel any pending close
 			if (this._closeTimeout !== null) {
@@ -282,9 +292,13 @@ const { class: className, ...rest } = Astro.props
 		}
 
 		private close(): void {
-			if (!this.dialog || !this.backdrop) {return}
+			if (!this.dialog || !this.backdrop) {
+				return
+			}
 			// Return early if already closed or closing
-			if (!this.dialog.open || this._isClosing) {return}
+			if (!this.dialog.open || this._isClosing) {
+				return
+			}
 
 			// Clear any existing close timeout
 			if (this._closeTimeout !== null) {
@@ -345,7 +359,9 @@ const { class: className, ...rest } = Astro.props
 		 * Updates the nested dialog state attributes
 		 */
 		private updateNestedState(): void {
-			if (!this.dialog) {return}
+			if (!this.dialog) {
+				return
+			}
 
 			if (this.nestedOpenCount > 0) {
 				this.dialog.setAttribute('data-nested-dialog-open', '')

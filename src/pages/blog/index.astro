@@ -1,11 +1,12 @@
 ---
 import { getCollection } from 'astro:content'
+import { filterDrafts } from '../../utils/filterDrafts'
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import BlogCard from '../../components/BlogCard.astro'
 import GridSection from '../../components/GridSection.astro'
 import PageLayout from '../../components/PageLayout.astro'
 
-const posts = (await getCollection('blog')).sort(
+const posts = filterDrafts(await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 )
 ---

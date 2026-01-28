@@ -1,10 +1,11 @@
 ---
 import { type CollectionEntry, getCollection } from 'astro:content'
+import { filterDrafts } from '../../utils/filterDrafts'
 import BlogPostLayout from '../../layouts/BlogPostLayout.astro'
 import type { MarkdownHeading } from 'astro'
 
 export async function getStaticPaths() {
-	const posts = await getCollection('blog')
+	const posts = filterDrafts(await getCollection('blog'))
 	const headings = await Promise.all(
 		posts.map(async (post) => {
 			const data = await post.render()

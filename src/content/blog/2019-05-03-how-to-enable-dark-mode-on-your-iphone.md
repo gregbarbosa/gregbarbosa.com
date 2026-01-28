@@ -4,7 +4,7 @@ description: Grayscale, black and white, or dark mode. Whatever you call it, des
 author: 'Greg Barbosa'
 featured: false
 
-pubDate: 'May 03 2019'
+pubDate: '2019-05-03'
 ---
 
 "But…why?"

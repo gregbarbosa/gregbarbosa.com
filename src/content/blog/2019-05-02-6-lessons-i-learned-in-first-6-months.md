@@ -4,7 +4,7 @@ description: After being fired from my day job, I realized it was finally time t
 author: 'Greg Barbosa'
 featured: false
 
-pubDate: 'May 02 2019'
+pubDate: '2019-05-02'
 ---
 
 Nearly 10 months ago, after being fired from my day job, I realized it was finally time to focus in on my own freelance business. Not a passion project, not a side-hustle, not another "small business". I was going to build a full-blown company. A company focused on helping others with their online presence. I thought I was ready.
