@@ -1,7 +1,7 @@
 ---
 title: 'Company of One'
 author: 'Paul Jarvis'
-rating: ''
+rating: '5'
 genre: 'Business'
 format: 'Kindle'
 link_amazon: 'https://amzn.to/3n2vv0H?tag=gregbarbosa-20'

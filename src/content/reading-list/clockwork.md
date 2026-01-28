@@ -1,7 +1,7 @@
 ---
 title: 'Clockwork, Revised and Expanded'
 author: 'Mike Michalowicz'
-rating: ''
+rating: '4'
 genre: 'Business'
 format: 'Paperback'
 link_amazon: 'https://amzn.to/3ZX2zWs?tag=gregbarbosa-20'

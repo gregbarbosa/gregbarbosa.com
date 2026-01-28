@@ -1,7 +1,7 @@
 ---
 title: 'The Win Without Pitching Manifesto'
 author: 'Blair Enns'
-rating: ''
+rating: '5'
 genre: 'Business'
 format: 'Hardcover'
 link_amazon: 'https://amzn.to/3NYOK65?tag=gregbarbosa-20'

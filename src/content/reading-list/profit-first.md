@@ -1,7 +1,7 @@
 ---
 title: 'Profit First'
 author: 'Mike Michalowicz'
-rating: ''
+rating: '5'
 genre: 'Business'
 format: 'Audiobook'
 link_amazon: 'https://amzn.to/42jX0Ty?tag=gregbarbosa-20'
