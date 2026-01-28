@@ -8,20 +8,17 @@ const { class: className } = Astro.props
 <Toggle
 	id="theme-toggle"
 	defaultPressed={false}
-	class:list={[
-		'rounded-full md:opacity-80 hover:opacity-100 transition-opacity size-12 md:size-11',
-		className,
-	]}
+	class:list={['rounded-full transition-opacity size-20 md:size-11', className]}
 	aria-label="Toggle theme"
 >
 	<Icon
 		name="mdi:white-balance-sunny"
-		class="theme-icon-light hidden text-2xl md:text-xl text-foreground"
+		class="theme-icon-light hidden text-3xl md:text-4xl text-foreground"
 		aria-hidden
 	/>
 	<Icon
 		name="mdi:moon-and-stars"
-		class="theme-icon-dark hidden text-2xl md:text-xl text-foreground"
+		class="theme-icon-dark hidden text-4xl md:text-4xl text-foreground"
 		aria-hidden
 	/>
 </Toggle>

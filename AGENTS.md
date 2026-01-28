@@ -2,10 +2,29 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## 📚 Development Documentation
+
+Complete development guides are organized in the [`docs/`](./docs/) folder:
+
+- **[docs/guides/STYLEGUIDE.md](./docs/guides/STYLEGUIDE.md)** - Development philosophy, conventions, and decision trees
+- **[docs/guides/COMPONENTS.md](./docs/guides/COMPONENTS.md)** - Component patterns, props definitions, accessibility
+- **[docs/guides/STYLING.md](./docs/guides/STYLING.md)** - Tailwind CSS and styling conventions
+- **[docs/guides/PATTERNS.md](./docs/guides/PATTERNS.md)** - Page structure and layout patterns
+- **[docs/setup/OBSIDIAN-SETUP.md](./docs/setup/OBSIDIAN-SETUP.md)** - Obsidian vault configuration
+- **[docs/README.md](./docs/README.md)** - Documentation hub and quick reference
+
+**Start with [docs/guides/STYLEGUIDE.md](./docs/guides/STYLEGUIDE.md) for philosophy and overview, then jump to specific guides for implementation details.**
+
 ## Rules
 
 - Use `astro add` for official integrations (e.g. astro add tailwind, astro add react). For other packages, install using the command for the preferred package manager rather than editing package.json directly.
 - Always check the latest docs before implementing new features.
+
+### Page Structure
+
+- **Read [docs/guides/PATTERNS.md](./docs/guides/PATTERNS.md) before creating or modifying pages** - All pages must follow the standard page structure using `PageLayout`
+- Never duplicate layout wrappers inside `PageLayout` slots
+- Always wrap page content in `max-w-2xl` or `max-w-3xl` with `mb-12`
 
 ### Browser Debugging Skills
 
@@ -54,15 +73,40 @@ Always run these commands before committing:
 3. `npm run astro check`
 4. `npm run build`
 
-## Architecture
+## Astro v6 Migration Status
+
+**Current Version:** Astro v6 beta (as of 2025-01-16)
+
+### Key v6 Changes
+
+This project has been upgraded to Astro v6 beta. Important API changes to be aware of:
+
+1. **Content Collections API** - Moved from `src/content/config.ts` to `src/content.config.ts`
+   - All collections now use explicit `glob()` loaders
+   - Schemas import from `astro/zod` instead of `astro:content`
+
+2. **Collection Entry Properties** - `.slug` → `.id`
+   - Collection entries no longer have a `.slug` property
+   - Use `.id` instead (file-based ID from the loader)
+   - **Critical:** Update all component links to use `.id` (see [BlogCard.astro](src/components/BlogCard.astro), [ProjectCard.astro](src/components/ProjectCard.astro), etc.)
+
+3. **Rendering Content** - New `render()` function
+   - Import: `import { render } from 'astro:content'`
+   - Call: `const { Content } = await render(entry)`
+   - Replaces old `entry.render()` instance method
+
+4. **Client-Side Routing** - `ViewTransitions` → `ClientRouter`
+   - Replace `import { ViewTransitions } from 'astro:transitions'`
+   - With: `import { ClientRouter } from 'astro:transitions'`
+   - Update component tag: `<ViewTransitions />` → `<ClientRouter />`
 
 ### Content Management
 
 - **Blog posts** are markdown files in `src/content/blog/`
-- The filename becomes the URL slug (e.g., `my-post.md` → `/blog/my-post`)
-- Blog schema defined in `src/content/config.ts` requires: `title`, `description`, `author`, `pubDate`, and optionally `updatedDate`, `coverImageCredit`, and `category`
-- Cover images must be placed at `src/assets/blogimages/<SLUG>/cover.jpg` (recommended: 853×480px)
-- Blog images for content go in `src/assets/blogimages/<SLUG>/` and are referenced as `![Alt](../../assets/blogimages/<SLUG>/image.ext)`
+- The filename becomes the URL ID (e.g., `my-post.md` → ID is `my-post`)
+- Blog schema defined in `src/content.config.ts` requires: `title`, `description`, `author`, `pubDate`, and optionally `updatedDate`, `coverImageCredit`, and `category`
+- Cover images must be placed at `src/assets/blogimages/<ID>/cover.jpg` (recommended: 853×480px)
+- Blog images for content go in `src/assets/blogimages/<ID>/` and are referenced as `![Alt](../../assets/blogimages/<ID>/image.ext)`
 
 ### Obsidian Templates
 
@@ -123,6 +167,128 @@ The project uses a strict ESLint setup:
 - JSX accessibility rules for .jsx/.tsx files
 - Config files (\*.config.js/mjs/ts) are ignored
 
+## Conventional Commits
+
+This project follows the **Conventional Commits** specification for all git commits. This ensures consistent, semantic commit messages that clearly communicate the type and impact of changes.
+
+**Reference:** https://www.conventionalcommits.org/en/v1.0.0/
+
+### Commit Format
+
+```
+<type>(<scope>): <subject>
+
+<body>
+
+<footer>
+```
+
+### Commit Types
+
+Choose the type that best describes the primary purpose of your commit:
+
+- **feat** - A new feature or capability
+  - _Example:_ `feat(homepage): add tagline subtitle`
+  - Use when: Adding new functionality, new components, new pages
+- **fix** - A bug fix
+  - _Example:_ `fix(navbar): correct mobile menu alignment`
+  - Use when: Resolving a broken feature, fixing styling issues, patching bugs
+- **style** - Code style changes (formatting, semicolons, whitespace) with NO logic impact
+  - _Example:_ `style(components): format button component`
+  - Use when: Running Prettier, fixing ESLint warnings (non-logic), adjusting CSS whitespace
+  - **DO NOT use for visual/design changes** - those are `fix` if buggy or `feat` if new
+- **refactor** - Code restructuring without changing functionality or fixing bugs
+  - _Example:_ `refactor(layouts): extract common patterns into BaseLayout`
+  - Use when: Reorganizing code, extracting components, improving code structure, renaming (without behavior change)
+- **chore** - Maintenance tasks, dependency updates, tooling (no user-facing impact)
+  - _Example:_ `chore(deps): update astro to 4.15.0`
+  - Use when: Package updates, build tool config, GitHub Actions changes, .gitignore modifications
+- **docs** - Documentation updates
+  - _Example:_ `docs(readme): update installation instructions`
+  - Use when: Updating README, comments, inline docs, or like this AGENTS.md update
+- **perf** - Performance improvements
+  - _Example:_ `perf(images): lazy-load blog cover images`
+  - Use when: Optimizing bundle size, reducing render time, caching improvements
+
+### Scope (Optional but Recommended)
+
+The scope specifies which part of the project is affected:
+
+- `homepage` - Home page changes
+- `navbar` - Navigation component
+- `blog` - Blog system (posts, layouts)
+- `components` - Reusable components
+- `layouts` - Page layouts
+- `styles` - Global styling
+- `config` - Configuration files
+- `deps` - Dependencies
+- `ci` - CI/CD workflows
+
+### Subject Line Rules
+
+- Use imperative, present tense: **"add"** not **"added"** or **"adds"**
+- Don't capitalize first letter: **"add"** not **"Add"**
+- No period at the end
+- Limit to ~50 characters
+- Be specific and descriptive
+
+### Body (Optional for Small Changes)
+
+Use for commits with more context needed:
+
+```
+feat(projects): redesign projects page with tech stack
+
+Add new sections for elevator pitch, why/how built, and access links.
+Implement grid layout for better project organization.
+Closes #36
+```
+
+### Breaking Changes
+
+If a commit introduces a **breaking change** that affects users/developers:
+
+```
+feat(theme)!: remove light mode support, lighthouse-only
+
+BREAKING CHANGE: Light theme mode is removed. Only lighthouse mode available.
+Users must switch to lighthouse theme in settings.
+```
+
+Or add `BREAKING CHANGE:` in the footer:
+
+```
+refactor(nav)!: restructure navigation config
+
+Complete rewrite of navigation structure.
+
+BREAKING CHANGE: Old nav format no longer supported.
+```
+
+### Decision Tree: Which Type?
+
+When in doubt, ask yourself:
+
+1. **Does it add new capability?** → `feat`
+2. **Does it fix something broken?** → `fix`
+3. **Is it just formatting/whitespace?** → `style`
+4. **Is it reorganizing without changing behavior?** → `refactor`
+5. **Is it a dependency/build/config change?** → `chore`
+6. **Is it making something faster?** → `perf`
+7. **Is it updating docs?** → `docs`
+
+### Common Examples for This Project
+
+| Change                         | Type       | Message                                      |
+| ------------------------------ | ---------- | -------------------------------------------- |
+| Add new blog sidebar component | `feat`     | `feat(components): add blog sidebar widget`  |
+| Fix broken blog links          | `fix`      | `fix(blog): correct archive link routing`    |
+| Format code with Prettier      | `style`    | `style(components): format with Prettier`    |
+| Reorganize component folders   | `refactor` | `refactor(components): reorganize by domain` |
+| Update Astro version           | `chore`    | `chore(deps): update astro to 4.15.0`        |
+| Update AGENTS.md guidance      | `docs`     | `docs: add conventional commits guidance`    |
+| Optimize hero image loading    | `perf`     | `perf(homepage): lazy-load hero image`       |
+
 ## Git Workflow Notes
 
 - Current branch: `main`
@@ -139,7 +305,7 @@ The project uses a strict ESLint setup:
 
 ## Obsidian Vault Workflow
 
-This repo is configured as an Obsidian vault. See [OBSIDIAN-SETUP.md](./OBSIDIAN-SETUP.md) for plugin configuration.
+This repo is configured as an Obsidian vault. See [docs/setup/OBSIDIAN-SETUP.md](./docs/setup/OBSIDIAN-SETUP.md) for plugin configuration.
 
 **Content publishing workflow:**
 

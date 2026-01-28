@@ -7,7 +7,7 @@ import BaseHead from '../components/BaseHead.astro'
 import { SocialLinks, SITE_TITLE, SITE_DESCRIPTION } from '../consts'
 import { Icon } from 'astro-icon/components'
 import { Button } from '@/components/starwind/button'
-import { ViewTransitions } from 'astro:transitions'
+import { ClientRouter } from 'astro:transitions'
 
 const title = 'Links'
 const description = 'All my social links and online presence in one place'
@@ -17,7 +17,7 @@ const description = 'All my social links and online presence in one place'
 <html lang="en">
 	<head>
 		<BaseHead title={title} description={description} />
-		<ViewTransitions />
+		<ClientRouter />
 	</head>
 	<body
 		class="text-foreground bg-background font-normal dark:text-foreground-dark dark:bg-background-dark transition-colors"

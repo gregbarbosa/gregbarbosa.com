@@ -11,13 +11,13 @@ const projects = (await getCollection('projects')).sort(
 
 <BaseLayout
 	title="Projects | Greg Barbosa"
-	description="A collection of apps, tools, and code experiments I've built."
+	description="Things I've made. Some more money, most for not."
 >
 	<PageLayout
 		title="Projects"
-		description="Here are some of the projects I've worked on."
+		description="Things I've made, open-source code included."
 	>
-		<ul class="posts-grid-container">
+		<ul class="grid my-6 gap-6 grid-cols-2 md:grid-cols-4 xl:grid-cols-4">
 			{
 				projects.map((project) => (
 					<li>

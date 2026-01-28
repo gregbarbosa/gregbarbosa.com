@@ -13,9 +13,9 @@ const reviews = await getCollection('reading-list')
 >
 	<PageLayout
 		title="Reading List"
-		description="Books I've read, recommend, and love."
+		description="Micro-reviews from my bookshelf."
 	>
-		<ul class="grid my-6 gap-6 grid-cols-1 md:grid-cols-2 xl:grid-cols-4">
+		<ul class="grid my-6 gap-6 grid-cols-2 md:grid-cols-4 xl:grid-cols-4">
 			{
 				reviews.map((review) => (
 					<li>

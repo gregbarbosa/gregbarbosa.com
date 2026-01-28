@@ -4,7 +4,7 @@ author: 'Blair Enns'
 rating: ''
 genre: 'Business'
 format: 'Hardcover'
-link: 'https://amzn.to/3NYOK65'
+link_amazon: 'https://amzn.to/3NYOK65?tag=gregbarbosa-20'
 description: 'An easy to digest guide on skipping the pitch process and winning over clients with your unique expertise.'
 cover: 'win-without-pitching.jpg'
 ---
