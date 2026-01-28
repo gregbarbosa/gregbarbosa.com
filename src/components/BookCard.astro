@@ -4,6 +4,7 @@ import type { ImageMetadata } from 'astro'
 import { Image } from 'astro:assets'
 import { Card, CardContent } from '@/components/starwind/card'
 import { AspectRatio } from '@/components/starwind/aspect-ratio'
+import { Icon } from 'astro-icon/components'
 
 const { review } = Astro.props
 
@@ -17,58 +18,97 @@ const coverPath = review.data.cover
 ---
 
 <Card class="flex flex-col gap-4 h-full group hover:shadow-lg transition-all">
-	<a href={review.data.link} target="_blank" rel="noopener noreferrer">
+	<div>
 		<AspectRatio ratio={2 / 3}>
 			{
 				coverPath && bookCovers[coverPath] && (
 					<Image
 						src={bookCovers[coverPath]()}
 						alt={review.data.title}
-						class="object-cover rounded-xl w-full h-full hover:shadow-lg transition-shadow"
+						class="object-cover w-full h-full hover:shadow-lg transition-shadow"
 						loading="eager"
 					/>
 				)
 			}
 			{
 				!coverPath && (
-					<div class="aspect-2/3 w-full bg-gray-200 dark:bg-gray-800 rounded-xl flex items-center justify-center text-gray-400 hover:shadow-lg transition-shadow">
+					<div class="aspect-2/3 w-full bg-gray-200 dark:bg-gray-800 flex items-center justify-center text-gray-400 hover:shadow-lg transition-shadow">
 						No Cover
 					</div>
 				)
 			}
 		</AspectRatio>
-	</a>
+	</div>
 	<CardContent class="p-4 pt-0 flex flex-col gap-2 flex-1">
-		<a
-			href={review.data.link}
-			target="_blank"
-			rel="noopener noreferrer"
+		<p
 			class="text-xl font-semibold group-hover:text-primary dark:group-hover:text-primary-dark group-hover:underline transition-colors leading-tight"
 		>
 			{review.data.title}
-		</a>
+		</p>
 		<p class="text-sm opacity-70 -mt-1">by {review.data.author}</p>
 		<p class="opacity-80 text-sm leading-relaxed">
 			{review.data.description || 'No description available.'}
 		</p>
 		<div class="mt-auto flex justify-between items-center gap-2">
-			{
-				review.data.rating && (
-					<span class="text-xs font-medium bg-primary/10 text-primary px-2 py-1 rounded">
-						{review.data.rating}
-					</span>
-				)
-			}
-			{
-				review.data.fullReview && (
-					<a
-						href={`${SITE_BASE}/reading-list/${review.slug}/`}
-						class="text-xs font-medium text-primary hover:underline"
-					>
-						Full Review &rarr;
-					</a>
-				)
-			}
+			<div>
+				{
+					review.data.rating && (
+						<span class="text-xs font-medium bg-primary/10 text-primary px-2 py-1 rounded">
+							{review.data.rating}
+						</span>
+					)
+				}
+			</div>
+			<div class="flex items-center gap-2">
+				{
+					review.data.link_amazon && (
+						<a
+							href={review.data.link_amazon}
+							target="_blank"
+							rel="noopener noreferrer"
+							aria-label={`Buy ${review.data.title} on Amazon`}
+							class="text-primary hover:text-primary/80 dark:text-primary-dark dark:hover:text-primary-dark/80 transition-colors"
+						>
+							<Icon name="mdi:amazon" class="w-5 h-5" />
+						</a>
+					)
+				}
+				{
+					review.data.link_bookshop && (
+						<a
+							href={review.data.link_bookshop}
+							target="_blank"
+							rel="noopener noreferrer"
+							aria-label={`Buy ${review.data.title} on Bookshop.org`}
+							class="text-primary hover:text-primary/80 dark:text-primary-dark dark:hover:text-primary-dark/80 transition-colors"
+							title="Bookshop.org"
+						>
+							<svg
+								class="w-5 h-5 fill-current"
+								viewBox="0 0 1000 1000"
+								xmlns="http://www.w3.org/2000/svg"
+								aria-hidden="true"
+							>
+								<path
+									fill-rule="evenodd"
+									clip-rule="evenodd"
+									d="M827.235 721.52C817.541 733.85 805.204 744.419 791.985 752.346C788.019 754.548 783.613 756.75 779.647 758.512C748.362 770.402 714.874 770.842 681.387 770.842H485.306H450.937H244.282C233.707 770.842 224.894 762.035 224.894 751.466V735.612V695.977V644.893V594.249V555.935C224.894 548.008 223.572 539.201 227.978 532.155C231.504 526.43 237.672 522.466 244.282 522.466H658.033C684.03 522.466 710.028 522.026 736.025 524.228C762.463 526.87 787.578 536.559 808.729 551.972C815.779 557.697 822.388 563.862 827.676 570.908C845.301 591.606 856.757 618.029 857.198 645.333C856.757 673.958 845.301 700.381 827.235 721.52ZM224.894 412.811V360.846V307.119V265.282V249.429C224.894 238.859 233.707 230.052 244.282 230.052H706.943C739.55 229.171 771.716 237.538 799.916 254.273C825.913 271.448 844.86 297.43 854.114 326.936C856.757 336.184 858.96 345.872 858.52 356.001C858.079 382.865 846.623 408.407 828.557 428.665C818.863 440.995 806.526 451.124 792.866 459.051C762.022 473.584 728.534 477.107 694.606 477.107H681.827H244.282C232.385 477.107 224.894 466.538 224.894 455.528C224.453 441.436 224.894 427.343 224.894 412.811ZM898.617 624.195C896.855 611.864 893.77 599.974 888.923 588.524C884.517 577.074 878.789 566.064 872.179 555.935C865.129 545.807 856.757 536.559 847.945 528.191C842.657 523.347 836.929 518.943 831.201 514.539L821.507 507.493C818.423 504.851 814.897 503.089 811.813 500.447C823.269 492.961 834.726 485.034 845.301 476.226C854.554 468.299 862.485 459.491 869.536 449.363C876.586 439.674 882.314 429.105 887.161 417.655C891.126 408.407 894.211 399.159 896.414 389.47C899.939 370.094 900.38 349.396 897.295 330.019C895.973 321.651 894.211 313.284 891.567 305.357C886.279 289.063 878.348 273.65 868.214 259.998C863.807 254.273 859.401 248.988 854.554 243.704C841.776 230.492 827.235 219.042 811.372 210.675C800.797 204.069 789.782 199.225 778.325 195.261C748.803 187.775 718.4 184.252 687.996 185.133C687.996 185.133 153.953 185.133 108.568 185.133C104.162 185.133 100.636 188.656 100.636 193.059V221.244C100.636 229.171 108.568 229.611 114.737 229.611H141.615C141.615 229.611 158.359 229.611 164.087 229.611C174.662 229.611 183.475 237.979 183.475 248.988C183.475 252.071 183.475 258.677 183.475 261.759C183.475 265.282 183.475 268.805 183.475 272.328C183.475 318.569 183.475 457.73 183.475 457.73C183.475 463.014 181.272 468.299 177.306 471.822C175.544 473.584 172.9 474.905 170.697 475.786C167.612 477.107 164.528 477.107 161.443 477.107C145.581 477.107 130.159 477.547 114.296 477.547C111.652 477.547 108.568 477.547 106.365 477.988C104.162 478.868 102.399 480.189 101.077 482.391C100.196 484.593 100.196 486.795 100.196 488.997C100.196 492.961 100.196 496.484 100.196 500.447C100.196 504.411 99.7552 508.814 100.196 512.778C100.196 514.539 100.636 516.301 101.518 518.062C102.84 521.145 106.365 522.026 109.449 522.026H130.159H160.121C166.29 522.026 172.459 522.907 177.306 527.31C183.034 532.595 183.475 539.641 183.475 546.687C183.475 553.293 183.475 559.899 183.475 566.945C183.475 577.074 183.475 587.203 183.475 596.891V606.139V650.618V676.6V725.043V750.585C183.475 761.154 174.662 769.962 164.087 769.962H130.159C126.193 769.962 118.262 769.962 114.296 769.962C112.093 769.962 109.89 769.962 108.568 769.962C105.924 769.962 104.602 770.402 102.84 771.723C101.518 772.604 100.636 774.366 100.636 776.127C100.636 777.008 100.636 778.769 100.636 779.65V806.513C100.636 808.275 101.077 810.037 102.399 811.358C105.043 813.56 107.687 814 111.212 814H315.664H557.57C607.361 814 656.271 813.56 706.062 814C720.603 814 736.465 813.56 751.006 811.358C760.7 810.037 770.394 807.835 779.647 804.752C791.103 800.789 802.119 795.944 812.254 789.779C828.116 780.971 842.657 769.521 855.435 755.869C879.229 729.887 895.533 697.739 899.058 662.508C900.38 650.618 900.38 637.406 898.617 624.195Z"
+								/>
+							</svg>
+						</a>
+					)
+				}
+				{
+					review.data.fullReview && (
+						<a
+							href={`${SITE_BASE}/reading-list/${review.slug}/`}
+							class="text-xs font-medium text-primary hover:underline"
+						>
+							Full Review &rarr;
+						</a>
+					)
+				}
+			</div>
 		</div>
 	</CardContent>
 </Card>
