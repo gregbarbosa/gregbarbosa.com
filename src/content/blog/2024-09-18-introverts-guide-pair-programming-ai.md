@@ -4,7 +4,7 @@ description: AI in your workflow with VS Code, Continue, and Ollama.
 author: 'Greg Barbosa'
 featured: false
 
-pubDate: 'Sep 18 2024'
+pubDate: '2024-09-18'
 ---
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/mMoFxfPBlII" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="An Introvert's Guide to Pair Programming"></iframe>

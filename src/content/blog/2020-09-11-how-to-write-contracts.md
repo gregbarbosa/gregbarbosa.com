@@ -4,7 +4,7 @@ description: Behind every great project, is a great contract.
 author: 'Greg Barbosa'
 featured: false
 
-pubDate: 'Sep 11 2020'
+pubDate: '2020-09-11'
 ---
 
 Last week, we talked about the number one freelancer mistake to avoid: scope creep. By managing expectations, you can ensure you and your clients have the best experience.

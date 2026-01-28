@@ -31,11 +31,9 @@ import GoogleAnalytics from './GoogleAnalytics.astro'
 				(window.matchMedia('(prefers-color-scheme: dark)').matches
 					? 'dark'
 					: 'light')
-			if (theme === 'dark') {
-				document.documentElement.classList.add('dark')
-			} else {
-				document.documentElement.classList.remove('dark')
-			}
+
+			document.documentElement.classList.toggle('dark', theme === 'dark')
+			document.documentElement.style.colorScheme = theme
 		}
 
 		// Apply immediately

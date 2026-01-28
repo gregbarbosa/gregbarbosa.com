@@ -40,7 +40,11 @@ import {
 						</NavbarLink>
 					))
 				}
-				<Button variant="primary" size="sm" href="#footer">Subscribe</Button>
+				<Button
+					variant={Astro.url.pathname === '/contact' ? 'default' : 'primary'}
+					size="sm"
+					href="/contact">Let's Talk</Button
+				>
 				<ThemeSelector />
 			</div>
 			<Sheet class="md:hidden">
@@ -87,7 +91,12 @@ import {
 								))
 							}
 						</div>
-						<Button variant="primary">Subscribe</Button>
+						<Button
+							variant={Astro.url.pathname === '/contact'
+								? 'default'
+								: 'primary'}
+							href="/contact">Let's Talk</Button
+						>
 					</SheetFooter>
 				</SheetContent>
 			</Sheet>

@@ -4,7 +4,7 @@ description: There's nothing wrong with setting goals, but too many set them wro
 author: 'Greg Barbosa'
 featured: false
 
-pubDate: 'Jan 13 2017'
+pubDate: '2017-01-13'
 ---
 
 New Year's resolutions are hard to keep. There are countless reasons why people fail to hold them, and even more why they decide to make them again the next year. There's nothing wrong with setting goals, but too many set them wrong. Possibly one of the biggest reason they're so hard to keep is that people over-exaggerate just how much they'll actually be able to attain.

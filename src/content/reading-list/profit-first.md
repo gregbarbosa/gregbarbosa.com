@@ -1,10 +1,10 @@
 ---
 title: 'Profit First'
 author: 'Mike Michalowicz'
-rating: ''
+rating: '5'
 genre: 'Business'
 format: 'Audiobook'
-link: 'https://amzn.to/42jX0Ty'
+link_amazon: 'https://amzn.to/42jX0Ty?tag=gregbarbosa-20'
 description: '5 bank accounts: 1 for income, 1 for profit, 1 for taxes, 1 for operating expenses, and 1 to pay yourself.'
 cover: 'profit-first.jpeg'
 ---

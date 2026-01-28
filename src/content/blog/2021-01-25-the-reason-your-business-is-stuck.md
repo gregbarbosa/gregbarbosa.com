@@ -4,7 +4,7 @@ description: I no longer spend the weekends wondering what I did with my work, b
 author: 'Greg Barbosa'
 featured: false
 
-pubDate: 'Jan 25 2021'
+pubDate: '2021-01-25'
 ---
 
 My business had felt stagnant for a while. It was going well, work was getting done, but I didn't feel like I was moving along in my career. I was spending every weekend wondering, "What did I even do this week?"

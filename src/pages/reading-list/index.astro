@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content'
 import BookCard from '../../components/BookCard.astro'
 import BaseLayout from '../../layouts/BaseLayout.astro'
+import GridSection from '../../components/GridSection.astro'
 import PageLayout from '../../components/PageLayout.astro'
 
 const reviews = await getCollection('reading-list')
@@ -13,16 +14,12 @@ const reviews = await getCollection('reading-list')
 >
 	<PageLayout
 		title="Reading List"
-		description="Books I've read, recommend, and love."
+		description="Micro-reviews from my bookshelf."
+		constrainContent={false}
+		maxWidth="clamp(20rem, 90vw, 85rem)"
 	>
-		<ul class="grid my-6 gap-6 grid-cols-1 md:grid-cols-2 xl:grid-cols-4">
-			{
-				reviews.map((review) => (
-					<li>
-						<BookCard review={review} />
-					</li>
-				))
-			}
-		</ul>
+		<GridSection columns={{ base: 1, sm: 2, md: 3, lg: 4, xl: 3 }} class="my-6">
+			{reviews.map((review) => <BookCard review={review} />)}
+		</GridSection>
 	</PageLayout>
 </BaseLayout>

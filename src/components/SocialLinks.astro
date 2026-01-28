@@ -1,0 +1,28 @@
+---
+import { Icon } from 'astro-icon/components'
+import { SocialLinks as socialLinksData } from '../consts'
+
+interface Props {
+	iconClass?: string
+}
+
+const { iconClass = 'text-xl' } = Astro.props
+---
+
+<div class="flex gap-6 mb-12">
+	{
+		socialLinksData.map((link) => (
+			<a
+				href={link.url}
+				target="_blank"
+				rel="noopener noreferrer"
+				aria-label={link.name}
+			>
+				<Icon
+					name={`mdi:${link.icon}`}
+					class:list={[iconClass, 'text-primary']}
+				/>
+			</a>
+		))
+	}
+</div>

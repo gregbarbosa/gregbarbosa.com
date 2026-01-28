@@ -1,11 +1,11 @@
 ---
-import { SocialLinks, WebsiteLinks, SITE_BASE } from '../consts'
+import { WebsiteLinks, SITE_BASE } from '../consts'
 import LogoSVG from '../assets/logo.svg'
-import { Icon } from 'astro-icon/components'
 import { Separator } from '@/components/starwind/separator'
-import { Button } from '@/components/starwind/button'
-import { ButtonGroup } from '@/components/starwind/button-group'
-import { Input } from '@/components/starwind/input'
+// import { Button } from '@/components/starwind/button'
+// import { ButtonGroup } from '@/components/starwind/button-group'
+// import { Input } from '@/components/starwind/input'
+import SocialLinks from '../components/SocialLinks.astro'
 
 const today = new Date()
 ---
@@ -16,15 +16,22 @@ const today = new Date()
 		<Separator orientation="horizontal" class="mb-8 md:hidden" />
 		<div>
 			<a href={`${SITE_BASE}/`} class="block w-fit" aria-label="Home">
-				<LogoSVG height={54} width={54} />
+				<LogoSVG height={36} width={36} />
 			</a>
 			<div class="gap-4 mt-4">
-				<ButtonGroup>
+				<!-- <ButtonGroup>
 					<Input placeholder="enter your email" />
 					<Button variant="outline" aria-label="Enter your email address">
 						Subscribe
 					</Button>
-				</ButtonGroup>
+				</ButtonGroup> -->
+				<p class="text-left md:text-left w-full">
+					&copy; {today.getFullYear()} Source code available at <a
+						class="underline"
+						href="https://github.com/gregbarbosa/gregbarbosa.com"
+						target="_blank">GitHub</a
+					>
+				</p>
 			</div>
 		</div>
 
@@ -44,13 +51,6 @@ const today = new Date()
 						</a>
 					))
 				}
-				<p class="text-left md:text-left w-full">
-					&copy; {today.getFullYear()} Source code available at <a
-						class="underline"
-						href="https://github.com/gregbarbosa/gregbarbosa.com"
-						target="_blank">GitHub</a
-					>
-				</p>
 			</div>
 		</div>
 
@@ -58,19 +58,7 @@ const today = new Date()
 		<div>
 			<h3 class="font-semibold text-2xl">Socials</h3>
 			<div class="flex flex-wrap gap-4 mt-4">
-				{
-					SocialLinks.map((link) => (
-						<a
-							class="text-lg"
-							href={link.url}
-							target="_blank"
-							rel="noopener noreferrer"
-							aria-label={link.name}
-						>
-							<Icon class="text-3xl" name={`mdi:${link.icon}`} />
-						</a>
-					))
-				}
+				<SocialLinks iconClass="text-3xl" />
 			</div>
 		</div>
 	</div>

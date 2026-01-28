@@ -1,10 +1,11 @@
 ---
 import { type CollectionEntry, getCollection } from 'astro:content'
 import BaseLayout from '../../layouts/BaseLayout.astro'
+import PageLayout from '../../components/PageLayout.astro'
 
 export async function getStaticPaths() {
 	const reviews = await getCollection('reading-list')
-	return reviews.map((review) => ({
+	return reviews.map((review: CollectionEntry<'reading-list'>) => ({
 		params: { slug: review.slug },
 		props: review,
 	}))
@@ -19,10 +20,9 @@ const { Content } = await review.render()
 	title={review.data.title}
 	description={`Review of ${review.data.title} by ${review.data.author}`}
 >
-	<main id="main-content" class="app-container py-24">
-		<article class="max-w-3xl mx-auto">
+	<PageLayout title={review.data.title} constrainContent={false}>
+		<div class="max-w-3xl">
 			<div class="mb-12">
-				<h1 class="text-4xl md:text-5xl font-bold mb-6">{review.data.title}</h1>
 				<div class="flex flex-wrap gap-4 text-muted-foreground mb-8">
 					<span
 						class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium"
@@ -44,7 +44,7 @@ const { Content } = await review.render()
 					by <span class="font-semibold">{review.data.author}</span>
 				</p>
 				<a
-					href={review.data.link}
+					href={review.data.link_amazon}
 					target="_blank"
 					rel="noopener noreferrer"
 					class="text-primary hover:underline font-medium inline-flex items-center gap-1"
@@ -60,6 +60,6 @@ const { Content } = await review.render()
 			>
 				<Content />
 			</div>
-		</article>
-	</main>
+		</div>
+	</PageLayout>
 </BaseLayout>

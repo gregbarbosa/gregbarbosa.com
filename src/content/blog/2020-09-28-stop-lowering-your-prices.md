@@ -4,7 +4,7 @@ description: Start negotiating on value, not on price.
 author: 'Greg Barbosa'
 featured: false
 
-pubDate: 'Sep 28 2020'
+pubDate: '2020-09-28'
 ---
 
 "Is there any way we could lower the price?"

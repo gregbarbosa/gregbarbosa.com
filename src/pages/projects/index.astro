@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content'
 import ProjectCard from '../../components/ProjectCard.astro'
 import BaseLayout from '../../layouts/BaseLayout.astro'
+import GridSection from '../../components/GridSection.astro'
 import PageLayout from '../../components/PageLayout.astro'
 
 const projects = (await getCollection('projects')).sort(
@@ -11,20 +12,16 @@ const projects = (await getCollection('projects')).sort(
 
 <BaseLayout
 	title="Projects | Greg Barbosa"
-	description="A collection of apps, tools, and code experiments I've built."
+	description="Things I've made, open-source code included."
 >
 	<PageLayout
 		title="Projects"
-		description="Here are some of the projects I've worked on."
+		description="Things I've made, open-source code included."
+		constrainContent={false}
+		maxWidth="clamp(20rem, 90vw, 85rem)"
 	>
-		<ul class="posts-grid-container">
-			{
-				projects.map((project) => (
-					<li>
-						<ProjectCard project={project} />
-					</li>
-				))
-			}
-		</ul>
+		<GridSection columns={{ base: 1, sm: 2, md: 2, lg: 2, xl: 2 }} class="my-6">
+			{projects.map((project) => <ProjectCard project={project} />)}
+		</GridSection>
 	</PageLayout>
 </BaseLayout>

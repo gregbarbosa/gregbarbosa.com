@@ -1,0 +1,17 @@
+---
+import BaseLayout from './BaseLayout.astro'
+import HeroMask from '../components/HeroMask.astro'
+
+interface Props {
+	title?: string
+	description?: string
+}
+
+const { title, description } = Astro.props
+---
+
+<BaseLayout title={title} description={description}>
+	<HeroMask />
+	<slot name="hero" />
+	<slot name="content" />
+</BaseLayout>
